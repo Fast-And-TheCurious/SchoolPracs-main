@@ -1,0 +1,142 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background: #080710;
+}
+/*  */
+.exit_button{
+    background: #685f5f;
+    min-height: 1.5rem;
+    min-width: 2.5rem;
+    margin-left: 4rem;
+    margin-top: 3.5rem;
+}
+/*  */
+.container{
+    height: 100vh;
+    max-height: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form_body{
+    position: relative;
+    width: 30rem;
+}
+
+/*  */
+.login-form{
+ position: relative;
+ z-index: 2;
+ padding: 40px;
+ background-color: rgba(225,225,225,0.1);
+ border-radius: 10px;
+ backdrop-filter: blur(10px);
+}
+.login_title{
+    padding-bottom: 28px;
+    text-align: center;
+    color: #fff;
+}
+.login_form-label{
+    display: block;
+    padding-bottom: 20px;
+}
+.login-form_input{
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: white;
+    font-size: 16px;
+    background-color: rgba(225,225,225,0.07);
+    border-radius: 3px;
+}
+.login-form_input::placeholder{
+    color: white;
+    letter-spacing: 1.5px;
+}
+.label_buttons-body{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    gap:30px;
+}
+.login_button{
+    padding: 10px 0;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    width: 100%;
+    color: #000;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 
+    background-color 0.4s,
+    color 0.4s;
+}
+.login_button:hover{
+    background-color: rgba(225,225,225,0.04);
+    color: white;
+}
+.login_link{
+    color: white;
+}
+@media(max-width:660px)
+{
+    .container
+    {
+        padding: 0 60 pxs;
+    }
+    .form_body::before,
+    .form_body::after
+    {
+        top: -55px; 
+        left: -55px;
+        width: 150px;
+        height: 150px;           
+    }
+    .form_body::after
+    {
+        top: auto; 
+        left: auto;
+        right: -55px;
+        bottom: -55px;                 
+    }
+}
+@media(max-width:46px){
+    .container
+    {
+        padding: 0 40 pxs;
+    }
+    .login-form{
+        padding: 20px;
+    }
+    .login_title{
+        font-size: 20px;
+    }
+    .form_body::before,
+    .form_body::after
+    {
+        top: -55px; 
+        left: -35px;
+        width: 130px;
+        height: 130px;           
+    }
+    .form_body::after
+    {
+        top: auto; 
+        left: auto;
+        right: -35px;
+        bottom: -35px;                 
+    }
+}

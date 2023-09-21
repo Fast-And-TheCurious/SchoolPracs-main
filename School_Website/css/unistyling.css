@@ -1,0 +1,74 @@
+/* Main Heading */
+.main_heading {
+    margin-top: .5rem;
+    font-size: 32px;
+    color: #333;
+    font-weight: bold;
+}
+/* Subheading */
+.sub_heading {
+    font-size: 24px;
+    font-weight:600;
+    color: #666;
+    margin-top: 10px;
+}
+/* Sub-Subheading */
+.sub_sub-heading {   
+    font-size: 18px;
+    color: #999;
+    margin-top: 8px;
+}
+.line-separation {
+    border-top: 2px solid #000; 
+    margin: .5rem 0;
+}
+.container {
+    max-width: 90%; 
+    margin: 0 auto;
+    padding: 20px; 
+}
+/* Style for each topic box */
+.styling-box {
+    width: 100%; 
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.styling-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.directbtn a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    background: rgba(153, 139, 139, 0.2);
+    border: rgba(59, 55, 55, 0.2) solid 0.15rem;
+}
+.directbtn a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000;
+    padding: 0.25rem 1rem;
+    background: rgba(0, 0, 0, 0.2);;
+    border-radius: .5rem;
+}
+.description {
+    margin: 1rem 0;
+    color: #666;
+}
+.back_button {
+    font-size: 1.2rem;
+    min-height:fit-content;
+  }
+  
+  .back_button a {
+    border-bottom: #383838 solid .5px;
+  }
+  
+  .back_button a:hover {
+    color: #7c7a7a;
+    border-bottom: #7c7a7a solid .5px;
+  }
+  

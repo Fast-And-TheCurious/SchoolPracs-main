@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/School_Website/css/lesson.css" />
+  <link rel="stylesheet" href="/School_Website/css/unistyling.css" />
+  <link rel="stylesheet" href="/School_Website/css/header&Footer.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Lessons</title>
+</head>
+
+<body>
+  <div id="header-container"></div>
+  <script id="header-template" type="text/x-handlebars-template">
+      <section class="header">
+        <nav>
+          <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
+          <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+              {{#each menuItems}}
+                <li><a href="{{this.link}}">{{this.label}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
+        </nav>
+      </section>
+    </script>
+  <section class="main_container">
+    <!-- sidebar -->
+    <aside class="sidebar">
+      <div class="back_button">
+        <a href="/School_Website/html/topic.html">Topic</a>
+    </div>
+      <div class="main_heading">   
+        <p>Unit 1: Introduction</p>
+      </div>      
+      <div class="line-separation"></div>
+      <ul id="lessonList">
+          <!-- JavaScript will populate this list -->
+      </ul>
+  </aside>
+  
+    <section class="video_container">
+     
+      <div class="video_box_display">
+        <img class="video" src="/School_Website/Videos/cat.gif"> <!-- make gif only show when video failed to load -->      
+      </div>
+      
+      <div class="button-container">
+        <div class="button">
+          <button id="previousUnitButton">Previous Lesson</button>
+          <button id="nextUnitButton">Next Lesson</button>        
+            <button id="downloadButton">Notes</button>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- HTML content -->
+    <script>
+      // Your JavaScript code for rendering the sidebar goes here
+    </script>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+  <script id="footer-template" type="text/x-handlebars-template">
+      <footer class="footer">
+        <h1>{{contactHeading}}</h1>
+        <div class="container">
+          <div class="row">
+            {{#each columns}}
+              <div class="footer-col">
+                <h4>{{this.title}}</h4>
+                <ul>
+                  {{#each this.links}}
+                    <li><a href="{{this.url}}">{{this.label}}</a></li>
+                  {{/each}}
+                </ul>
+              </div>
+            {{/each}}
+            <div class="footer-col">
+              <h4>{{socialHeading}}</h4>
+              <div class="social-links">
+                {{#each socialIcons}}
+                  <a href="{{this.url}}"><i class="{{this.iconClass}}"></i></a>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </script>
+  <script src="/School_Website/JavaScript/lesson1.js"></script>
+  <script src="/School_Website/JavaScript/headerAndFooter.js"></script>
+</body>
+
+</html>

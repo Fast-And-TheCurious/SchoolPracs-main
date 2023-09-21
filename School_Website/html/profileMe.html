@@ -1,0 +1,309 @@
+ <!-- Use this website to help: https://demos.creative-tim.com/argon-dashboard/docs/components/forms.html -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/School_Website/css/profileMe.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <title>User Profile</title>
+  
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ </head>
+ <body>
+    <!-- Sidebar -->
+ <!--  <div class="sidebar">
+    <div class="top">
+      <div class="logo">
+        <i class='bx bx-user'></i>
+        <span>MathGeniusMinds</span>
+      </div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <div class="user">
+      <img src="images/delmmedia_Abstract_background_signifying_Risk_management_for_st_532b59b2-12c7-4711-a4b6-47a58673d6e1.png" alt="" class="user-img">
+      User profile image 
+      <div>-->
+       <!--  <p class="bold">Username</p> -->
+        <!-- Username, get and display user name-->
+       <!--  <p>Learner</p> -->
+        <!-- Learner or teacher -->
+   <!--    </div>
+    </div>
+    <ul>
+      <li>
+        <a href="#" onclick="showPage('dashboard')">
+          <i class="bx bxs-grid-alt"></i>
+          <span class="nav-item">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="#" onclick="showPage('settings')">
+          <i class="bx bx-cog"></i>
+          <span class="nav-item">Settings</span>
+        </a>
+        <span class="tooltip">Setting</span>
+      </li>
+
+      <li>
+        <a href="#" onclick="showPage('logout')">
+          <i class="bx bx-log-out"></i>
+          <span class="nav-item">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+    </ul>
+    </div> -->
+<!-- Main content -->
+    <div class="main-content">
+      <div class="page active-page" id="dashboard">
+    <!--     <span class="heading">Your Dashboard</span>
+        
+        <div class="container"> 
+                  
+                    <div class="name_container">
+                      <div class="Name label">
+                        <span class="name">Name</span>
+                        <input type="text" class="form-control" value="">
+                       Put user Full name in here 
+                      </div>
+                    </div>
+                    
+                    <div class="email_container">
+                      <div class="Email label">
+                        <span class="email">Email</span>
+                        <input type="text" class="form-control" value="">
+                         Put user Full name in here 
+                      </div>
+                    </div>
+                    <div class="grade_container">
+                      <div class="Grade label">
+                        <span class="email">Email</span>
+                        <input type="text" class="form-control" value="">
+                       Put user Full name in here 
+                      </div>
+                    </div>
+        </div>    --> 
+        
+      </div>
+      <div class="container">
+        <div class="main-content">          
+                
+          <!-- Page content -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card shadow">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                      <div class="card-profile-image">
+                        <a href="#">
+                          <img src="/School_Website/images/jgsnow_cyberpunk_post-apocalyptic_urban_street_cinematic_high_d_a841e87f-aee3-44d7-8bb5-6151aae8e669.png
+                          " class="rounded-circle">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body pt-0">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card-profile-stats justify-content-center mt-md-5">
+                          </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3>Username<span class="font-weight-light"></h3>
+                      <hr class="my-4">
+                     
+                        <h6 class="heading-small text-muted mb-4">User Stats:</h6>    
+
+                        
+                          <div class="profile-grid">
+                            <div class="profile-item">
+                              <label class="profile-heading" for="user-profile">Completed Courses</label>
+                              <div class="completedCourses number-display">
+                                <span id="system-number">0</span>
+                              </div>
+                            </div>
+                            <div class="profile-item">
+                              <label class="profile-heading" for="user-profile">Points</label>
+                              <div class="totalPoints number-display">
+                                <span id="system-number">0</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                        <hr class="my-4">                     
+                        <h3>Settings<span class="font-weight-light"></h3>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="ThemeSettingsCheck" >
+                            <label class="form-check-label" for="defaultCheck2">
+                            Dark Mode
+                            </label>
+                        </div>
+                        <div class="btn">
+                          <button class="updateSettingsButton">Update</button>
+                      </div>
+                      <hr class="my-4">  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                  <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h3 class="mb-0">My account</h3>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <form>
+                      <!-- User information -->
+                      <h6 class="heading-small text-muted mb-4">User information</h6>
+                      <div class="pl-lg-4">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group focused">
+                              <label class="form-control-label" for="input-username">Username</label>
+                              <input type="text" id="input-username" class="form-control" placeholder="Username" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-email">Email address</label>
+                              <input type="email" id="input-email" class="form-control" placeholder="TheBuilder@example.com" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
+                            </div>
+                          </div>
+                        </div>
+                       
+                      </div>
+                      <hr class="my-4">
+
+                      <!-- Progress -->
+                      <!-- https://www.chartjs.org/docs/latest/getting-started/integration.html -->
+                      <h6 class="heading-small text-muted mb-4">Analytics</h6>
+                      <div class="pl-lg-4">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label class="sub-title" for="input-history">History</label>
+                                <div class="history_display">
+                                  <ul class="history_content">
+                                    <li>getCourseHistory()</li>
+                                    <li>getCourseHistory()</li>
+                                    <li>getCourseHistory()</li>
+                                    <li>getCourseHistory()</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-cource">Frequency</label>
+                              <div class="frequency_courses">
+                                  <canvas id="lineChart"></canvas>
+                              </div>
+                          </div>
+                          <script>
+                              // Sample data for lessons and tests completed
+                              const lessonData = [10, 15, 20, 25, 30]; // Replace with your actual data
+                              const testData = [5, 10, 8, 12, 15]; // Replace with your actual data
+                      
+                              // Get the canvas element
+                              const ctx = document.getElementById('lineChart').getContext('2d');
+                      
+                              // Create a line chart
+                              const lineChart = new Chart(ctx, {
+                                  type: 'line',
+                                  data: {
+                                      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // Replace with appropriate labels
+                                      datasets: [
+                                          {
+                                              label: 'Lessons Completed',
+                                              borderColor: 'blue',
+                                              data: lessonData,
+                                          },
+                                          {
+                                              label: 'Tests Completed',
+                                              borderColor: 'green',
+                                              data: testData,
+                                          },
+                                      ],
+                                  },
+                                  options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false,
+                                  },
+                              });
+                          </script>
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="my-4">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      <!-- <div class="page" id="settings">
+        <span class="heading">Settings</span>
+        
+        <input class="form-check-input" type="checkbox" value="" id="dark-theme">
+        Dark Mode
+      </div> -->
+    </div>
+     <!--  <div class="page" id="logout">
+      <h1>Logout</h1>
+      </div>  -->
+    </div>
+
+ </body>
+ <script>
+  let btn=document.querySelector('#btn');
+  let sidebar= document.querySelector('.sidebar');
+  btn.onclick = function(){
+    sidebar.classList.toggle('active');
+  };  
+
+/*  */
+  function showPage(pageId) {
+        const pages = document.querySelectorAll(".page");
+        const navItems = document.querySelectorAll(".nav-item");
+
+        // Hide all pages and remove active class from nav items
+        pages.forEach((page) => {
+          page.classList.remove("active-page");
+        });
+
+        navItems.forEach((navItem) => {
+          navItem.classList.remove("active");
+        });
+
+        // Show selected page and add active class to corresponding nav item
+        const selectedPage = document.getElementById(pageId);
+        const selectedNavItem = document.querySelector(
+          `.nav-item[data-page="${pageId}"]`
+        );
+
+        selectedPage.classList.add("active-page");
+        selectedNavItem.classList.add("active");
+      }
+ </script>
+ <script src="JavaScript/profile.js"></script>
+ </html>

@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;    
+}
+:root{    
+    --text-colour: #fff; /* Make it contrast with the red */
+    --background-color: #f44336;/* Find less bright red */
+    --widthOfContent: 97%;
+    --border-color:1px solid #726f6f;
+    --box-padding: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;   
+  }
+/* CSS for Split Container */
+.split-container {
+    display: flex;
+    height: 100%; /* Adjust the height as needed */
+    background: rgb(247, 246, 246);
+}
+.main-container{
+  height: 100%;
+}
+.split-container > div:first-child {
+    flex: 0 0 20rem; /* Set the left area to a fixed width of 20rem */
+}
+
+.split-container > div:last-child {
+    flex: 1; /* The right area takes up the remaining space */
+    overflow: auto; 
+  
+}
+
+ /* Sidebar */
+
+ .sidebar {
+  margin: 0;
+  padding: 0.8rem;
+  width: 18rem;
+  max-height: 40rem; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
+  position: sticky;
+  top: 0; 
+  bottom: 0; 
+}
+  /* Style for the sidebar title */
+  .sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;  
+  }
+  
+  /* Style for the lesson list */
+  .sidebar-content {
+    /* Set the max height of the content container */
+    max-height: inherit;
+    overflow-y: inherit;
+  }  
+  /* Style for the entire sidebar content */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }  
+  /* Style for each lesson item */
+  .sidebar li {
+    margin-bottom: 10px;
+  }  
+  /* Style for lesson links */
+  .sidebar a {
+    text-decoration: none;
+    color: #383838;
+    font-weight: bold;
+    transition: color 0.2s;
+  }  
+  /* Add hover effect for lesson links */
+  .sidebar_lessonBox {
+    min-height: 3rem;
+    padding: .2rem;
+  }
+  .sidebar_lessonBox:hover {
+    background-color: rgb(214, 214, 214);
+  }  
+  
+  .content_area2 {
+    display: flex;
+    flex-direction: column; 
+    flex-grow: 1; 
+    overflow: auto; 
+}
+
+.unit_display_box {
+    padding: 20px;
+    border: 3rem solid darkgray;
+    margin: 10px;
+}
+
+.unit_description {
+  background: white;
+    padding: var(--box-padding);
+    border: var(--border-color);
+    width: var(--widthOfContent);
+    margin-top: 10px;
+}
+.unit_box_display{
+  padding: var(--box-padding);
+  margin-top: .5rem;
+  width: var(--widthOfContent);
+  min-height: fit-content;
+  border: var(--border-color);
+  background: white;
+}
+.unit_title_display{
+  min-height: fit-content;
+  border-bottom: .5px solid #383838;
+  
+
+}.unit_lesson_display_area {
+  margin-top: .1rem;
+  position: relative;
+}
+
+.lesson_flex {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+}
+
+.lesson_flex li {
+  flex-basis: 50%; /* Divide the container into two columns */
+  padding: 5px; /* Add padding for spacing between items */
+  box-sizing: border-box; /* Include padding in the item's width calculation */
+}
