@@ -25,10 +25,10 @@ const lessonData = {
           practiceLink4: "",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -374,17 +374,18 @@ function updateContent(unit) {
       unitDescription: "",
     }); // Empty description
     document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
+
   } else {
     showAllUnits = false;
 
-    // Find the selected unit's mastery points
+    // Find the selected unit's data
     const selectedLesson = lessonData.lessons.find(
       (lesson) => lesson.unit === unit
     );
 
     // Update the content in the second area for the selected unit
     const titleData = {
-      unit: unit,
+      unit: selectedLesson.unit,
       title: selectedLesson.title,
       masteryPoints: selectedLesson.masteryPoints,
     };
@@ -396,6 +397,10 @@ function updateContent(unit) {
       unitDescription: selectedLesson.unitDescription,
     });
     document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
+
+    // Display the uniqueLessonTitles and lessonDescriptions
+    const lessonDataHtml = lessonTemplate({ lessons: selectedLesson.unitLessons });
+    document.getElementById("lesson-container").innerHTML += lessonDataHtml;
   }
 }
 
@@ -415,7 +420,3 @@ document.querySelector(".main_heading").addEventListener("click", () => {
 
 // Initial content when the page loads (e.g., for all units)
 updateContent("Title");
-
-
-
-

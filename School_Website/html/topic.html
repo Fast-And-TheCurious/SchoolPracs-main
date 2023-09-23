@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/School_Website/css/topic.css">
-  <link rel="stylesheet" href="/School_Website/css/unistyling.css">
-  <link rel="stylesheet" href="/School_Website/css/header&Footer.css">
-  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
-    rel="stylesheet">
-  <title>Topics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/School_Website/css/topic.css">
+    <link rel="stylesheet" href="/School_Website/css/unistyling.css">
+    <link rel="stylesheet" href="/School_Website/css/header&Footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+        rel="stylesheet">
+    <title>Topics</title>
 </head>
 
 <body>
-  <div id="header-container"></div>
-  <script id="header-template" type="text/x-handlebars-template">
+    <div id="header-container"></div>
+    <script id="header-template" type="text/x-handlebars-template">
         <section class="header">
             <nav>
                 <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
@@ -31,13 +31,13 @@
             </nav>
         </section>
     </script>
- 
-  <div class="split-container">
-    <div>
-        <div class="main-container">
-            <aside class="sidebar">
+
+    <div class="split-container">
+        <div>
+            <div class="main-container">
                 <aside class="sidebar">
-                    <script id="lesson-sidebar-template" type="text/x-handlebars-template">
+                    <aside class="sidebar">
+                        <script id="lesson-sidebar-template" type="text/x-handlebars-template">
                         <div class="sidebar-content">
                             <div class="headings">
                                 <div class="back_button">
@@ -70,67 +70,82 @@
                             </ul>
                         </div>
                     </script>
-                
-                    <div id="lesson-sidebar"></div>
-             </aside>
-                
+
+                        <div id="lesson-sidebar"></div>
+                    </aside>
+
+            </div>
         </div>
-    </div>
-    <div >
-        <section class="content_area2">
-            <div id="title-container"></div>
-           
+        <div>
             <section class="content_area2">
-                <div id="title-container main-container">
-                    <script id="title-template" type="text/x-handlebars-template">
+                <div id="title-container"></div>
+
+                <section class="content_area2">
+                    <div id="title-container main-container">
+                        <script id="title-template" type="text/x-handlebars-template">
                         <h2>{{unit}}: {{title}}</h2>
                         <p>{{masteryPoints}} possible mastery points</p>
                     </script>
-                </div>
-                <script id="unit-description-template" type="text/x-handlebars-template">
+                    </div>
+                    <script id="unit-description-template" type="text/x-handlebars-template">
                     <div class="unit_description">
                         <h2>About This Unit</h2>
                         <p>{{unitDescription}}</p>
                     </div>
                 </script>
-                <div id="lesson-container"></div>
-                <script id="lesson-template" type="text/x-handlebars-template">
+                    <div id="lesson-container"></div>
+                    <script id="lesson-template" type="text/x-handlebars-template">
                     {{#each lessons}}
-                        <div class="unit_display_box">
-                            <h2>{{unit}}</h2>
-                            <h3>{{title}}</h3>
-                            <p>{{description}}</p>
-                            <a href="{{link}}">Watch Video</a>
-                            <div class="practice-section">
-                                <h4>Practice</h4>
-                                <p>Here you can practice what you've learned in this lesson.</p>
-                                <a href="{{practiceLink}}">Start Practice</a>
-                             </div>
-                        </div>
-                    {{/each}}
-                </script>
-            </section>
-            <div class="unit_box_display">
-                <div class="unit_title_display sub_heading">                    
-                UNIT 1: NiceName
-                </div>
-                <div class="unit_lesson_display_area">
-                    <ul class="lesson_flex">
-                        <li>wfw</li>
-                        <li>wfw</li>
-                        <li>wfwf</li>
-                        <li>wfwfw</li>
-                    </ul>
-                </div>
-            </div>
-            
-        </section>
-    </div>
-</div>
+                      <div class="unit_display_box">
 
-  <!-- Footer -->
-  <div id="footer-container"></div>
-  <script id="footer-template" type="text/x-handlebars-template">
+                        <ul>
+                         <!-- Fix -->
+                            <li>{{#with this.unitLessons}}
+                              {{uniquelessonTitles.lesson1Title}}
+                                {{/with}}
+                            </li>
+                                <li><a href="">
+                                    {{#with this.unitLessons}}
+                                    {{uniquelessonTitles.lesson2Title}}
+                                    {{/with}}
+                                </a>
+                            </li>
+                                <li>
+                                    <a href="">
+                                        {{#with this.unitLessons}}
+                                        {{uniquelessonTitles.lesson3Title}}
+                                        {{/with}}
+                                    </a>                                
+                            </li>
+                                <li>
+                                    <a href="">
+                                        {{#with this.unitLessons}}
+                                        {{uniquelessonTitles.lesson4Title}}
+                                        {{/with}}
+                                    </a>
+                        </li>
+                          </ul>
+                        <h2>{{this.unit}}</h2>
+                        <h3>{{this.title}}</h3>
+                        <p>{{this.description}}</p>
+                        <a href="{{this.link}}">Watch Video</a>
+                        <div class="practice-section">
+                          <h4>Practice</h4>
+                          <p>Here you can practice what you've learned in this lesson.</p>
+                          <a href="{{this.practiceLink}}">Practice</a>
+                        </div>
+                  
+                       
+                      </div>
+                    {{/each}}
+                  </script>
+                </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    <script id="footer-template" type="text/x-handlebars-template">
         <footer class="footer">
             <h1>{{contactHeading}}</h1>
             <div class="container">

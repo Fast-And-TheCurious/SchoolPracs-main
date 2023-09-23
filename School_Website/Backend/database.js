@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const mysql = require("mysql2");
+const mysql = require("mysql");
 
 const connection = mysql.createConnection({
   host: "102.130.115.69",
@@ -54,11 +54,6 @@ connection.query("SELECT CourseID, Title, Description FROM Course", (err, result
     console.log(`CourseID: ${row.CourseID}, Title: ${row.Title}, Description: ${row.Description}`);
   });
 
-function update(query) {
-  connection.query(query, function (err) {
-    if (err) throw err;
-  });
-}
 
 function select(query) {
   return new Promise((resolve, reject) => {
