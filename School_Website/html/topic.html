@@ -93,52 +93,38 @@
                         <p>{{unitDescription}}</p>
                     </div>
                 </script>
-                    <div id="lesson-container"></div>
-                    <script id="lesson-template" type="text/x-handlebars-template">
-                    {{#each lessons}}
-                      <div class="unit_display_box">
 
-                        <ul>
-                         <!-- Fix -->
-                            <li>{{#with this.unitLessons}}
-                              {{uniquelessonTitles.lesson1Title}}
-                                {{/with}}
-                            </li>
-                                <li><a href="">
-                                    {{#with this.unitLessons}}
-                                    {{uniquelessonTitles.lesson2Title}}
-                                    {{/with}}
-                                </a>
-                            </li>
-                                <li>
-                                    <a href="">
-                                        {{#with this.unitLessons}}
-                                        {{uniquelessonTitles.lesson3Title}}
-                                        {{/with}}
-                                    </a>                                
-                            </li>
-                                <li>
-                                    <a href="">
-                                        {{#with this.unitLessons}}
-                                        {{uniquelessonTitles.lesson4Title}}
-                                        {{/with}}
-                                    </a>
-                        </li>
-                          </ul>
-                        <h2>{{this.unit}}</h2>
-                        <h3>{{this.title}}</h3>
-                        <p>{{this.description}}</p>
-                        <a href="{{this.link}}">Watch Video</a>
-                        <div class="practice-section">
-                          <h4>Practice</h4>
-                          <p>Here you can practice what you've learned in this lesson.</p>
-                          <a href="{{this.practiceLink}}">Practice</a>
+                <div id="lesson-container"></div>
+                <script id="lesson-template" type="text/x-handlebars-template">
+                  {{#each lessons}}
+                    <div class="unit_display_box">
+                     
+                      <div class="main_heading">{{unit}}:{{title}}</div>
+                      <p>{{description}}</p>
+                      <a href="{{unitLink}}">Watch Video</a>
+                                    
+                      <ul class="unit_lesson_links">
+                        <div class="lesson_columns">
+                            <div class="sub_sub-heading">
+                                <li><a href="{{unitLessons.lessonLink.lessonLink1}}">{{unitLessons.uniquelessonTitles.lesson1Title}}</a></li>
+                                <li><a href="{{unitLessons.lessonLink.lessonLink2}}">{{unitLessons.uniquelessonTitles.lesson2Title}}</a></li>
+                                <li><a href="{{unitLessons.lessonLink.lessonLink3}}">{{unitLessons.uniquelessonTitles.lesson3Title}}</a></li>
+                                <li><a href="{{unitLessons.lessonLink.lessonLink4}}">{{unitLessons.uniquelessonTitles.lesson4Title}}</a></li>
+                            </div>
                         </div>
-                  
-                       
-                      </div>
-                    {{/each}}
-                  </script>
+                        
+                        <div>
+                           <div class="sub_heading">Practice</div>
+                            <p>Here you can practice what you've learned in this lesson.</p>
+                            <a href="{{unitLessons.unitPracticeLinks.practiceLink1}}">Practice</a>
+                          </div>  
+                      </ul>
+                    </div>
+                  {{/each}}
+                </script>
+                
+
+                
                 </section>
         </div>
     </div>

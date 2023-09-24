@@ -97,6 +97,11 @@ body {
     margin: 10px;
 }
 
+.unit_lesson_links a {
+  text-decoration: none; 
+  color: black;
+}
+
 .unit_description {
   background: white;
     padding: var(--box-padding);
@@ -134,4 +139,15 @@ body {
   flex-basis: 50%; /* Divide the container into two columns */
   padding: 5px; /* Add padding for spacing between items */
   box-sizing: border-box; /* Include padding in the item's width calculation */
+}
+.lesson_columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 1rem; /* Adjust the gap between items as needed */
+  list-style: none; /* Remove list bullets */
+}
+
+/* Style the list items (anchors) */
+.lesson_columns a {
+  text-decoration: none; /* Remove underlines */ 
 }

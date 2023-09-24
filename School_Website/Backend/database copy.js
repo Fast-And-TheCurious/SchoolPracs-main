@@ -1,13 +1,25 @@
 #!/usr/bin/env node
-const mysql = require("mysql");
+/* const {createPool} = require('mysql');
 
-const connection = mysql.createConnection({
+const pool = createPool({
   host: "102.130.115.69",
   user: "bryantm",
   password: "Reddam2021@1",
   database: "bryantmDB",
-});
+})
 
+pool.query("SELECT * FROM bryantmDB.Course",(errr,res)=>{
+  return console.log(res)
+}) */
+
+/* const connection = mysql.createConnection({
+  host: "102.130.115.69",
+  user: "bryantm",
+  password: "Reddam2021@1",
+  database: "bryantmDB",
+}); */
+
+/* 
 function createConnection() {
   return new Promise((resolve, reject) => {
     connection.connect((err) => {
@@ -28,3 +40,4 @@ function endConnection() {
     console.log("Disconnected from MySQL database!");
   });
 }
+module.exports = {createConnection, endConnection}; */

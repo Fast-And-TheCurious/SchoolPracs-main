@@ -61,10 +61,10 @@ const lessonData = {
         },
 
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -96,10 +96,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -131,10 +131,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -165,10 +165,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -200,10 +200,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -235,10 +235,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -270,10 +270,10 @@ const lessonData = {
           lessonLink4: "lesson4.html",
         },
         lessonDescriptions: {
-          lesson1: "",
-          lesson2: "",
-          lesson3: "",
-          lesson4: "",
+          lesson1: "Description for Lesson 1",
+          lesson2: "Description for Lesson 2",
+          lesson3: "Description for Lesson 3",
+          lesson4: "Description for Lesson 4",
         },
       },
       unitDescription:
@@ -329,6 +329,7 @@ const dataToRender = {
 
 // Render sidebar with combined data and insert it into the page
 const lessonSidebarHtml = lessonSidebarTemplate(dataToRender);
+
 document.getElementById("lesson-sidebar").innerHTML = lessonSidebarHtml;
 
 /* left container */
@@ -353,8 +354,12 @@ const unitDescriptionSource = document.getElementById(
 ).innerHTML;
 const unitDescriptionTemplate = Handlebars.compile(unitDescriptionSource);
 
-const lessonSource = document.getElementById("lesson-template").innerHTML;
-const lessonTemplate = Handlebars.compile(lessonSource);
+// Compile the Handlebars template
+const lessonTemplate = Handlebars.compile(document.getElementById("lesson-template").innerHTML);
+
+// Render the lessons
+const lessonHtml = lessonTemplate(lessonData);
+document.getElementById("lesson-container").innerHTML = lessonHtml;
 
 // Function to update the content based on the user's click
 function updateContent(unit) {
@@ -418,5 +423,5 @@ document.querySelector(".main_heading").addEventListener("click", () => {
   updateContent("All Units: Total Mastery Points");
 });
 
-// Initial content when the page loads (e.g., for all units)
-updateContent("Title");
+
+
