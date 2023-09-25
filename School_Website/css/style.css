@@ -169,14 +169,10 @@ nav .locate{
 }
 
 /* Cources */
-.courseStuff{
-    margin: 0px;
-    height: 600px;
-}
 
 p{
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;

@@ -15,6 +15,35 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+.top-left-div {
+    font-weight: 550;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    text-align: center;
+    border-radius: .25rem;
+    box-shadow: 8px 10px 6px rgba(255, 255, 255, 0.2);
+    /* note for me */
+    /* off set to right, offset bottom, amount of blur */
+  }
+  .top-left-div:hover {
+    font-weight: 500;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    text-align: center;
+    border-radius: .25rem;
+    box-shadow: 8px 10px 1px rgba(255, 255, 255, 0.2);       
+  }
+  .top-left-div a{
+  text-decoration: none;
+    color: black;
+  }
 .form_body{
     position: relative;
     width: 40rem;
@@ -101,10 +130,6 @@ textarea::-webkit-scrollbar {
     background-color: rgba(225,225,225,0.04);
     color: white;
 }
-.login_link{
-    color: white;
-}
-
 
 @media(max-width:46px){
     .container
