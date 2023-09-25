@@ -18,7 +18,11 @@ const lessonData = {
           lessonink3: "lesson3.html",
           lessonLink4: "lesson4.html",
         },
-        unitPracticeLinks: {
+        unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },      
+      unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
           practiceLink3: "",
@@ -47,6 +51,10 @@ const lessonData = {
           lesson3Title: "Real-life Applications",
           lesson4Title: "Cool Case Studies",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -83,6 +91,10 @@ const lessonData = {
           lesson3Title: "Inequalities and Their Solutions",
           lesson4Title: "Equations in Real-life Problems",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -118,6 +130,10 @@ const lessonData = {
           lesson3Title: "Vectors and Matrices",
           lesson4Title: "Advanced Problem Solving",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -152,6 +168,10 @@ const lessonData = {
           lesson3Title: "Probability and Distributions",
           lesson4Title: "Statistical Inference",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -187,6 +207,10 @@ const lessonData = {
           lesson3Title: "Geometry in the Real World",
           lesson4Title: "Non-Euclidean Geometry",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -222,6 +246,10 @@ const lessonData = {
           lesson3Title: "Applications of Abstract Algebra",
           lesson4Title: "Algebraic Structures in Cryptography",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -257,6 +285,10 @@ const lessonData = {
           lesson3Title: "Non-Linear Systems and Applications",
           lesson4Title: "Matrix Methods for Solving Systems",
         },
+         unitPracticeTitles:{
+          unitPracticeTitle1:"PracticeStuff",
+          unitPracticeTitle2:"notherPraciceStuff",
+      },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -280,6 +312,7 @@ const lessonData = {
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
     },
+    
   ],
 };
 
@@ -392,22 +425,70 @@ function updateContent(unit) {
     const titleData = {
       unit: selectedLesson.unit,
       title: selectedLesson.title,
-      masteryPoints: selectedLesson.masteryPoints,
+      masteryPoints: "Mastery points: "+selectedLesson.masteryPoints,
     };
 
     const titleHtml = titleTemplate(titleData);
     document.getElementById("title-container").innerHTML = titleHtml;
 
-    const unitDescriptionHtml = unitDescriptionTemplate({
-      unitDescription: selectedLesson.unitDescription,
-    });
-    document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
+    // Create an array of titles and their associated information
+    const titlesAndInfo = [
+      { title: "Lesson 1", info: selectedLesson.unitLessons.uniquelessonTitles.lesson1Title },
+      { title: "Lesson 2", info: selectedLesson.unitLessons.uniquelessonTitles.lesson2Title },
+      { title: "Lesson 3", info: selectedLesson.unitLessons.uniquelessonTitles.lesson3Title },
+      { title: "Lesson 4", info: selectedLesson.unitLessons.uniquelessonTitles.lesson4Title },
+    ];
 
-    // Display the uniqueLessonTitles and lessonDescriptions
-    const lessonDataHtml = lessonTemplate({ lessons: selectedLesson.unitLessons });
-    document.getElementById("lesson-container").innerHTML += lessonDataHtml;
+    // Generate a box for each title and info
+    const boxesHtml = titlesAndInfo.map((item) => `
+      <div class="info-box">
+        <h2>${item.title}</h2>
+        <p>${item.info}</p>
+      </div>
+    `).join('');
+
+    // Create an "About" section
+    const aboutHtml = `
+      <div class="about-section">
+        <h2>About</h2>
+        <p>${selectedLesson.unitDescription}</p>
+      </div>
+    `;
+
+    // Display the "About" section and the generated boxes in the lesson-container
+    const lessonContainerHtml = `
+      <div class="lesson-content">
+        ${aboutHtml}
+        <div class="boxes-container">
+          ${boxesHtml}
+        </div>
+      </div>
+    `;
+
+    document.getElementById("lesson-container").innerHTML = lessonContainerHtml;
+
+    // Scroll to content_area2 after updating the content
+    const contentArea2 = document.getElementById("content_area2");
+    if (contentArea2) {
+      contentArea2.scrollIntoView({ behavior: "smooth" });
+    }
   }
 }
+// Add event listeners to sidebar units
+document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    const unit =
+      event.currentTarget.querySelector(".sub_sub-heading").textContent;
+    updateContent(unit);
+  });
+});
+
+// Add event listener to main_heading to show all units
+document.querySelector(".main_heading").addEventListener("click", () => {
+  updateContent("All Units: Total Mastery Points");
+});
+
+
 
 // Add event listeners to sidebar units
 document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {

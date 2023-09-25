@@ -60,7 +60,7 @@
                             <div class="line-separation"></div>
                             <ul>
                                 {{#each lessons}}
-                                <li class="sidebar_lessonBox" id="lesson_{{id}}" onclick="testFunction(this)">
+                                <li class="sidebar_lessonBox" id="lesson_{{id}}">
                                     <div class="sub_sub-heading">{{this.unit}}</div>
                                     <a href="{{this.link}}">{{this.title}}</a>
                                 </li>
@@ -73,7 +73,6 @@
 
                         <div id="lesson-sidebar"></div>
                     </aside>
-
             </div>
         </div>
         <div>
@@ -84,7 +83,7 @@
                     <div id="title-container main-container">
                         <script id="title-template" type="text/x-handlebars-template">
                         <h2>{{unit}}: {{title}}</h2>
-                        <p>{{masteryPoints}} possible mastery points</p>
+                        <div class="sub_sub-heading">{{masteryPoints}}</div>
                     </script>
                     </div>
                     <script id="unit-description-template" type="text/x-handlebars-template">
@@ -95,13 +94,14 @@
                 </script>
 
                 <div id="lesson-container"></div>
+               
+  
                 <script id="lesson-template" type="text/x-handlebars-template">
                   {{#each lessons}}
-                    <div class="unit_display_box">
-                     
-                      <div class="main_heading">{{unit}}:{{title}}</div>
+                    <div class="unit_display_box">                     
+                        <a href="#{{unit}}" class="main_heading">{{unit}}:{{title}}</a>
+
                       <p>{{description}}</p>
-                      <a href="{{unitLink}}">Watch Video</a>
                                     
                       <ul class="unit_lesson_links">
                         <div class="lesson_columns">
@@ -113,11 +113,14 @@
                             </div>
                         </div>
                         
-                        <div>
+                        <div >
                            <div class="sub_heading">Practice</div>
                             <p>Here you can practice what you've learned in this lesson.</p>
-                            <a href="{{unitLessons.unitPracticeLinks.practiceLink1}}">Practice</a>
-                          </div>  
+                            <ul>
+                                <li><a href="{{unitLessons.unitPracticeLinks.practiceLink1}}">{{unitLessons.unitPracticeTitles.unitPracticeTitle1}}</a></li>
+                                <li><a href="{{unitLessons.unitPracticeLinks.practiceLink1}}">{{unitLessons.unitPracticeTitles.unitPracticeTitle2}}</a></li>
+                            </ul>                            
+                        </div>  
                       </ul>
                     </div>
                   {{/each}}
