@@ -76,7 +76,6 @@
     width: 100%;
     background: grey;
     margin-left: 1rem;
-    margin-right: 1rem;
 }
 
 .video_box_display {
@@ -86,6 +85,7 @@
     background: black;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .video {
@@ -93,6 +93,9 @@
     max-height: 100%; 
     height: auto; 
 }
+  .hidden {
+    display: none;
+  } 
 
 .button-container {
     display: flex;
