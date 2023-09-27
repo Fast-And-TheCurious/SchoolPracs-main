@@ -51,6 +51,7 @@ connection.query("SELECT CourseID, Title, Description FROM Course", (err, result
   // Process the results
   results.forEach((row) => {
     console.log("Data from database");
+    let id = row.CourseID;
     console.log(`CourseID: ${row.CourseID}, Title: ${row.Title}, Description: ${row.Description}`);
   });
 
