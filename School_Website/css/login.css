@@ -11,10 +11,27 @@ body{
 .exit_button{
     background: #685f5f;
     min-height: 1.5rem;
-    min-width: 2.5rem;
+    width:fit-content;
     margin-left: 4rem;
     margin-top: 3.5rem;
+    padding: 1rem;
+    border-radius: .25rem;
 }
+.exit_button a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+.exit_button:hover{    
+    background: #928787;
+    min-height: 1.5rem;
+    width:fit-content;
+    margin-left: 4rem;
+    margin-top: 3.5rem;
+    padding: 1rem;
+    border-radius: .25rem;
+}
+
 /*  */
 .container{
     height: 100vh;
