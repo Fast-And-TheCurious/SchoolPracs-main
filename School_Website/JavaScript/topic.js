@@ -18,11 +18,11 @@ const lessonData = {
           lessonink3: "lesson3.html",
           lessonLink4: "lesson4.html",
         },
-        unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },      
-      unitPracticeLinks: {
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
+        unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
           practiceLink3: "",
@@ -33,6 +33,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -51,10 +54,10 @@ const lessonData = {
           lesson3Title: "Real-life Applications",
           lesson4Title: "Cool Case Studies",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -73,6 +76,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -91,10 +97,10 @@ const lessonData = {
           lesson3Title: "Inequalities and Their Solutions",
           lesson4Title: "Equations in Real-life Problems",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -112,6 +118,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -130,10 +139,10 @@ const lessonData = {
           lesson3Title: "Vectors and Matrices",
           lesson4Title: "Advanced Problem Solving",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -151,6 +160,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -168,10 +180,10 @@ const lessonData = {
           lesson3Title: "Probability and Distributions",
           lesson4Title: "Statistical Inference",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -189,6 +201,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -207,10 +222,10 @@ const lessonData = {
           lesson3Title: "Geometry in the Real World",
           lesson4Title: "Non-Euclidean Geometry",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -228,6 +243,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -246,10 +264,10 @@ const lessonData = {
           lesson3Title: "Applications of Abstract Algebra",
           lesson4Title: "Algebraic Structures in Cryptography",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -267,6 +285,9 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
+        },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
         },
       },
       unitDescription:
@@ -285,10 +306,10 @@ const lessonData = {
           lesson3Title: "Non-Linear Systems and Applications",
           lesson4Title: "Matrix Methods for Solving Systems",
         },
-         unitPracticeTitles:{
-          unitPracticeTitle1:"PracticeStuff",
-          unitPracticeTitle2:"notherPraciceStuff",
-      },
+        unitPracticeTitles: {
+          unitPracticeTitle1: "PracticeStuff",
+          unitPracticeTitle2: "notherPraciceStuff",
+        },
         unitPracticeLinks: {
           practiceLink1: "",
           practiceLink2: "",
@@ -307,23 +328,25 @@ const lessonData = {
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
         },
+        worksheets: {
+          worksheetLesson: "worksheet.txt",
+        },
       },
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
     },
-    
   ],
 };
 
-// Calculate the total mastery points of all units
+// Calculate total mastery points of all units
 const totalMasteryPoints = lessonData.lessons
   .reduce((total, lesson) => {
     return total + parseFloat(lesson.masteryPoints.replace(/,/g, ""));
   }, 0)
   .toLocaleString();
 
-// Calculate the number of unique units
+// Calculate  number of unique units
 const uniqueUnits = [
   ...new Set(lessonData.lessons.map((lesson) => lesson.unit)),
 ];
@@ -333,7 +356,7 @@ const unitInformation = {
   unitInfo: [{ title: "Title", numUnits: numUnits }],
 };
 
-// Function to change the title dynamically
+// Function change title dynamically
 function changeTitle(newTitle) {
   unitInformation.unitInfo[0].title = newTitle;
   // Update the rendered HTML to reflect the new title
@@ -342,7 +365,7 @@ function changeTitle(newTitle) {
     updatedLessonSidebarHtml;
 }
 
-// To show all units and total mastery points or individual unit mastery points
+//Showing units and total mastery points or individual unit mastery points
 let showAllUnits = true;
 
 // Get the Handlebars template for the lesson sidebar
@@ -367,17 +390,16 @@ document.getElementById("lesson-sidebar").innerHTML = lessonSidebarHtml;
 
 /* left container */
 
-// Sample data for the title (replace with your actual data)
 const titleData = {
   unit: "All Units: Total Mastery Points",
   title: totalMasteryPoints,
 };
 
-// Get the Handlebars template for the title
+//Handlebars template for title
 const titleTemplateSource = document.getElementById("title-template").innerHTML;
 const titleTemplate = Handlebars.compile(titleTemplateSource);
 
-// Render the title with the data and insert it into the page
+// Render title with data+insert into page
 const titleHtml = titleTemplate(titleData);
 document.getElementById("title-container").innerHTML = titleHtml;
 
@@ -388,7 +410,9 @@ const unitDescriptionSource = document.getElementById(
 const unitDescriptionTemplate = Handlebars.compile(unitDescriptionSource);
 
 // Compile the Handlebars template
-const lessonTemplate = Handlebars.compile(document.getElementById("lesson-template").innerHTML);
+const lessonTemplate = Handlebars.compile(
+  document.getElementById("lesson-template").innerHTML
+);
 
 // Render the lessons
 const lessonHtml = lessonTemplate(lessonData);
@@ -412,7 +436,6 @@ function updateContent(unit) {
       unitDescription: "",
     }); // Empty description
     document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
-
   } else {
     showAllUnits = false;
 
@@ -425,7 +448,7 @@ function updateContent(unit) {
     const titleData = {
       unit: selectedLesson.unit,
       title: selectedLesson.title,
-      masteryPoints: "Mastery points: "+selectedLesson.masteryPoints,
+      masteryPoints: "Mastery points: " + selectedLesson.masteryPoints,
     };
 
     const titleHtml = titleTemplate(titleData);
@@ -433,19 +456,39 @@ function updateContent(unit) {
 
     // Create an array of titles and their associated information
     const titlesAndInfo = [
-      { title: "Lesson 1", info: selectedLesson.unitLessons.uniquelessonTitles.lesson1Title },
-      { title: "Lesson 2", info: selectedLesson.unitLessons.uniquelessonTitles.lesson2Title },
-      { title: "Lesson 3", info: selectedLesson.unitLessons.uniquelessonTitles.lesson3Title },
-      { title: "Lesson 4", info: selectedLesson.unitLessons.uniquelessonTitles.lesson4Title },
+      {
+        title: "Lesson 1",
+        info: selectedLesson.unitLessons.uniquelessonTitles.lesson1Title,
+      },
+      {
+        title: "Lesson 2",
+        info: selectedLesson.unitLessons.uniquelessonTitles.lesson2Title,
+      },
+      {
+        title: "Lesson 3",
+        info: selectedLesson.unitLessons.uniquelessonTitles.lesson3Title,
+      },
+      {
+        title: "Lesson 4",
+        info: selectedLesson.unitLessons.uniquelessonTitles.lesson4Title,
+      },
+      {
+        title: "Worksheets",
+        
+      },
     ];
 
     // Generate a box for each title and info
-    const boxesHtml = titlesAndInfo.map((item) => `
+    const boxesHtml = titlesAndInfo
+      .map(
+        (item) => `
       <div class="info-box">
         <h2>${item.title}</h2>
         <p>${item.info}</p>
       </div>
-    `).join('');
+    `
+      )
+      .join("");
 
     // Create an "About" section
     const aboutHtml = `
@@ -488,8 +531,6 @@ document.querySelector(".main_heading").addEventListener("click", () => {
   updateContent("All Units: Total Mastery Points");
 });
 
-
-
 // Add event listeners to sidebar units
 document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -505,4 +546,6 @@ document.querySelector(".main_heading").addEventListener("click", () => {
 });
 
 
-
+const dt = document.getElementById("worksheetDownloadButton");
+dt.href = "School_Website\pdfs\test.pdf";
+dt.download = "test";

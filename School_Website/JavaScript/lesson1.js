@@ -1,12 +1,16 @@
 const lessonDataExport = {
   lessons: [
     {
+      id: 1,
       unit: "UNIT 1",
       unitTitle: "Introduction",
       note: "example.txt",
       aboutUnit: "good description",
+
+
+      unitlessonContent:{
       uniquelessonTitles: {
-        lessonTitle: "Course Overview",
+        lesson1Title: "Course Overview",
         lesson2Title: "Getting Started",
         lesson3Title: "Importance of the Subject",
         lesson4Title: "Course Objectives",
@@ -17,26 +21,23 @@ const lessonDataExport = {
         thirdLink: "lesson3.html",
         fourthLink: "lesson4.html",
       },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-      worksheets: {
-        worksheetLesson1:"worksheet1.txt",        
-      },
+      youTubeVideos: [
+        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+      ],    
+    },
+    
+    
     },
     {
+      id: 2,
       unit: "UNIT 2",
       unitTitle: "Cool Stuff",
       note: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lesson1Title: "Exploring Cool Concepts",
         lesson2Title: "Advanced Cool Techniques",
@@ -59,16 +60,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 3,
       unit: "UNIT 3",
       unitTitle: "Solving Equations & Inequalities",
       note: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lesson1Title: "Introduction to Equations",
         lesson2Title: "Solving Linear Equations",
@@ -91,16 +92,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 4,
       unit: "UNIT 4",
       unitTitle: "Advanced Topics in Math",
       notes: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lessonpageTitle: "Complex Numbers",
         lesson2Title: "Trigonometry and Calculus",
@@ -123,16 +124,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 5,
       unit: "UNIT 5",
       unitTitle: "Statistics and Data Analysis",
       notes: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lessonpageTitle: "Introduction to Statistics",
         lesson2Title: "Data Collection and Analysis",
@@ -155,16 +156,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 6,
       unit: "UNIT 6",
       unitTitle: "Geometry and Geometric Figures",
       notes: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lessonpageTitle: "Basic Geometric Shapes",
         lesson2Title: "Euclidean Geometry",
@@ -187,16 +188,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 7,
       unit: "UNIT 7",
       unitTitle: "Algebraic Structures and Abstract Algebra",
       notes: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lessonpageTitle: "Groups and Rings",
         lesson2Title: "Fields and Vector Spaces",
@@ -219,16 +220,16 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
     {
+      id: 8,
       unit: "UNIT 8",
       unitTitle: "Systems of Equations",
       notes: "example.txt",
       aboutUnit: "good description",
-
+      unitlessonContent:{
       uniquelessonTitles: {
         lessonpageTitle: "Introduction to Systems of Equations",
         lesson2Title: "Solving Linear Systems",
@@ -251,38 +252,36 @@ const lessonDataExport = {
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       },
-      worksheets: {
-        worksheetLesson1: "worksheet.txt",
-      },
+    
+    },
     },
   ],
 };
 
-// Initialize the unit index to the first unit
 let currentUnitIndex = 0;
 
-// Function to populate the sidebar
 function populateSidebar(unitIndex) {
   const sidebar = document.querySelector(".sidebar ul");
   sidebar.innerHTML = "";
 
-  // unit title top
   const mainHeading = document.querySelector(".main_heading");
   mainHeading.innerHTML = `<p>${lessonDataExport.lessons[unitIndex].unit}: ${lessonDataExport.lessons[unitIndex].unitTitle}</p>`;
 
-  // Populate the uniquelessonTitles
-  const uniqueLessonTitles =
-    lessonDataExport.lessons[unitIndex].uniquelessonTitles;
+  const uniqueLessonTitles = lessonDataExport.lessons[unitIndex].unitlessonContent.uniquelessonTitles;
   for (const lessonKey in uniqueLessonTitles) {
     const lessonTitle = uniqueLessonTitles[lessonKey];
     if (lessonTitle) {
       const listItem = document.createElement("li");
       listItem.classList.add("sidebar_lessonBox");
-      listItem.innerHTML = `<a href="${lessonDataExport.lessons[unitIndex].lessonLink[lessonKey]}">${lessonTitle}</a>`;
+      listItem.innerHTML = `<a href="${lessonDataExport.lessons[unitIndex].unitlessonContent.lessonLink[lessonKey]}">${lessonTitle}</a>`;
       sidebar.appendChild(listItem);
     }
   }
 }
+
+
+
+
 
 // Function to handle the "Next Lesson" button click
 function onNextLessonClick() {
@@ -338,26 +337,4 @@ function downloadFile() {
 // Add a click event listener to the "Download Notes" button
 const downloadButton = document.getElementById("downloadButton");
 downloadButton.addEventListener("click", downloadFile);
-
-function worksheetDownloadButton() {
-  // Get the current selected unit index (e.g., based on user interaction)
-  const UnitIndexSelected = 0; // Replace with the actual selected unit index
-  const selectedLessonIndex = 0; // Replace with the actual selected lesson index
-  // Get the note file name for the selected unit and lesson
-  const worksheetFileName =
-  lessonDataExport.lessons[UnitIndexSelected].worksheets.worksheetLesson1;
-  const worksheetFileContent = "This is the content of the file."; 
-  const blob = new Blob([worksheetFileContent], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = worksheetFileName;
-
-  a.click();
-
-  URL.revokeObjectURL(url);
-}
-const dt = document.getElementById("worksheetDownloadButton");
-dt.addEventListener("click", worksheetDownloadButton);
 
