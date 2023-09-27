@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
   host: "102.130.115.69",
