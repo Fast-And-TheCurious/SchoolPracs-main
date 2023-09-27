@@ -6,8 +6,6 @@ const lessonDataExport = {
       unitTitle: "Introduction",
       note: "example.txt",
       aboutUnit: "good description",
-
-
       unitlessonContent:{
       uniquelessonTitles: {
         lesson1Title: "Course Overview",
@@ -28,8 +26,6 @@ const lessonDataExport = {
         "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
       ],    
     },
-    
-    
     },
     {
       id: 2,
@@ -59,8 +55,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
@@ -91,8 +86,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
@@ -123,8 +117,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
@@ -155,8 +148,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
@@ -187,8 +179,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
@@ -219,8 +210,7 @@ const lessonDataExport = {
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         lsson4Video:
           "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
+      },    
     },
     },
     {
