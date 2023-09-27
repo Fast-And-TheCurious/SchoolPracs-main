@@ -93,8 +93,7 @@
                     </div>
                 </script>
 
-                <div id="lesson-container"></div>
-               
+                <div id="lesson-container"></div>              
   
                 <script id="lesson-template" type="text/x-handlebars-template">
                   {{#each lessons}}
@@ -110,6 +109,10 @@
                                 <li><a href="{{unitLessons.lessonLink.lessonLink2}}">{{unitLessons.uniquelessonTitles.lesson2Title}}</a></li>
                                 <li><a href="{{unitLessons.lessonLink.lessonLink3}}">{{unitLessons.uniquelessonTitles.lesson3Title}}</a></li>
                                 <li><a href="{{unitLessons.lessonLink.lessonLink4}}">{{unitLessons.uniquelessonTitles.lesson4Title}}</a></li>
+                               <!--  <li id="worksheetDownloadButton"><a href="#">{{unitLessons.worksheets}}</a></li> -->
+                                <form method="get" action="/School_Website/pdfs/test.pdf" target="#">
+                                    <button type="submit">Worksheet!</button>
+                                 </form>
                             </div>
                         </div>
                         
@@ -124,10 +127,7 @@
                       </ul>
                     </div>
                   {{/each}}
-                </script>
-                
-
-                
+                </script>            
                 </section>
         </div>
     </div>
