@@ -466,7 +466,7 @@ function updateContent(unit) {
       },
       {
         title: "Worksheets",
-        
+        info: "Practice what you have learnt",
       },
     ];
 
@@ -474,11 +474,12 @@ function updateContent(unit) {
     const boxesHtml = titlesAndInfo
       .map(
         (item) => `
-      <div class="info-box">
+      <div class="info-box"><a href=""> 
         <h2>${item.title}</h2>
         <p>${item.info}</p>
+        </a>
       </div>
-    `
+    `/* Make link to each specific unit lesson */
       )
       .join("");
 
