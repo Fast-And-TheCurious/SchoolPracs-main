@@ -1,6 +1,5 @@
-const connection = require('./database'); // Import the database connection
+const connection = require('./database'); 
 
-// Function to retrieve data from the database
 function getLessonData(callback) {
   connection.query('SELECT * FROM lessons', (error, results) => {
     if (error) {
@@ -10,7 +9,6 @@ function getLessonData(callback) {
     callback(null, results);
   });
 }
-// Function to structure data into the desired format
 function formatData(results) {
   const lessonData = {
     lessons: results.map((row) => ({
@@ -44,7 +42,6 @@ function formatData(results) {
   return lessonData;
 }
 
-// Usage: Retrieve data and format it into the desired object
 getLessonData((error, results) => {
   if (error) {
     return;

@@ -28,14 +28,12 @@ function select(query) {
   });
 }
 
-
 // Perform a SELECT query to fetch CourseID, Title, and Description
 connection.query("SELECT CourseID, Title, Description FROM Course", (err, results) => {
   if (err) {
     console.error("Error executing query:", err);
     return;
-  }
-  
+  }  
   
   // Process the results
   results.forEach((row) => {/* Make a for loop that works with the specific unit and course unit, adds the lesson data needed for the object that handlebars uses */
@@ -59,9 +57,6 @@ function select(query) {
     });
   });
 }
-
-
-
 
 module.exports = {update, select};
 });
