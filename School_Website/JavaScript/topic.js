@@ -33,11 +33,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,500",
@@ -76,11 +75,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,140",
@@ -118,11 +116,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "2,100",
@@ -160,11 +157,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },       
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "400",
@@ -201,11 +197,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
@@ -243,11 +238,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
@@ -285,11 +279,10 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
@@ -327,16 +320,15 @@ const lessonData = {
           lesson2: "Description for Lesson 2",
           lesson3: "Description for Lesson 3",
           lesson4: "Description for Lesson 4",
-        },
-        worksheets: {
-          worksheetLesson: "worksheet.txt",
-        },
+        },        
       },
+      worksheet: "worksheet.txt",
+      
       unitDescription:
         "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
       masteryPoints: "1,100",
     },
-  ],
+  ]
 };
 
 // Calculate total mastery points of all units

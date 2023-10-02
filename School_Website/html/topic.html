@@ -46,7 +46,8 @@
                                 <div class="main_heading">
                                     {{#if showAllUnits}}
                                     {{#each unitInfo}}
-                                    {{this.title}}
+                                    <a href="{{this.link}}">{{this.title}}</a>
+                                    
                                     {{/each}}
                                     {{/if}}
                                 </div>
@@ -62,7 +63,7 @@
                                 {{#each lessons}}
                                 <li class="sidebar_lessonBox" id="lesson_{{id}}">
                                     <div class="sub_sub-heading">{{this.unit}}</div>
-                                    <a href="{{this.link}}">{{this.title}}</a>
+                                 {{this.title}}
                                 </li>
 
                                 <div class="line-separation"></div>
