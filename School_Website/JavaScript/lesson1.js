@@ -6,26 +6,28 @@ const lessonDataExport = {
       unitTitle: "Introduction",
       note: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lesson1Title: "Course Overview",
-        lesson2Title: "Getting Started",
-        lesson3Title: "Importance of the Subject",
-        lesson4Title: "Course Objectives",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: [
-        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      ],    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Course Overview",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Getting Started",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Importance of the Subject",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Course Objectives",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 2,
@@ -33,30 +35,28 @@ const lessonDataExport = {
       unitTitle: "Cool Stuff",
       note: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lesson1Title: "Exploring Cool Concepts",
-        lesson2Title: "Advanced Cool Techniques",
-        lesson3Title: "Real-life Applications",
-        lesson4Title: "Cool Case Studies",
-      },
-      lessonLink: {
-        firstLink: "lesson1.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Exploring Cool Concepts",
+          lessonLink: "lesson1.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Advanced Cool Techniques",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Real-life Applications",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Cool Case Studies",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 3,
@@ -64,30 +64,28 @@ const lessonDataExport = {
       unitTitle: "Solving Equations & Inequalities",
       note: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lesson1Title: "Introduction to Equations",
-        lesson2Title: "Solving Linear Equations",
-        lesson3Title: "Inequalities and Their Solutions",
-        lesson4Title: "Equations in Real-life Problems",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Introduction to Equations",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Solving Linear Equations",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Inequalities and Their Solutions",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Equations in Real-life Problems",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 4,
@@ -95,30 +93,28 @@ const lessonDataExport = {
       unitTitle: "Advanced Topics in Math",
       notes: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lessonpageTitle: "Complex Numbers",
-        lesson2Title: "Trigonometry and Calculus",
-        lesson3Title: "Vectors and Matrices",
-        lesson4Title: "Advanced Problem Solving",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Complex Numbers",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Trigonometry and Calculus",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Vectors and Matrices",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Advanced Problem Solving",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 5,
@@ -126,30 +122,28 @@ const lessonDataExport = {
       unitTitle: "Statistics and Data Analysis",
       notes: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lessonpageTitle: "Introduction to Statistics",
-        lesson2Title: "Data Collection and Analysis",
-        lesson3Title: "Probability and Distributions",
-        lesson4Title: "Statistical Inference",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Introduction to Statistics",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Data Collection and Analysis",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Probability and Distributions",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Statistical Inference",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 6,
@@ -157,30 +151,28 @@ const lessonDataExport = {
       unitTitle: "Geometry and Geometric Figures",
       notes: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lessonpageTitle: "Basic Geometric Shapes",
-        lesson2Title: "Euclidean Geometry",
-        lesson3Title: "Geometry in the Real World",
-        lesson4Title: "Non-Euclidean Geometry",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Basic Geometric Shapes",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Euclidean Geometry",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Geometry in the Real World",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Non-Euclidean Geometry",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 7,
@@ -188,30 +180,28 @@ const lessonDataExport = {
       unitTitle: "Algebraic Structures and Abstract Algebra",
       notes: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lessonpageTitle: "Groups and Rings",
-        lesson2Title: "Fields and Vector Spaces",
-        lesson3Title: "Applications of Abstract Algebra",
-        lesson4Title: "Algebraic Structures in Cryptography",
-      },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },    
-    },
+      unitlessonContent: [
+        {
+          lessonTitle: "Groups and Rings",
+          lessonLink: "lessonpage.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Fields and Vector Spaces",
+          lessonLink: "lesson2.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+        {
+          lessonTitle: "Applications of Abstract Algebra",
+          lessonLink: "lesson3.html",
+          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+        },
+        {
+          lessonTitle: "Algebraic Structures in Cryptography",
+          lessonLink: "lesson4.html",
+          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+        },
+      ],
     },
     {
       id: 8,
@@ -219,36 +209,33 @@ const lessonDataExport = {
       unitTitle: "Systems of Equations",
       notes: "example.txt",
       aboutUnit: "good description",
-      unitlessonContent:{
-      uniquelessonTitles: {
-        lessonpageTitle: "Introduction to Systems of Equations",
-        lesson2Title: "Solving Linear Systems",
-        lesson3Title: "Non-Linear Systems and Applications",
-        lesson4Title: "Matrix Methods for Solving Systems",
+      unitlessonContent: [
+        {
+            lessonTitle: "Introduction to Systems of Equations",
+            lessonLink: "lessonpage.html",
+            youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          },
+          {
+            lessonTitle: "Solving Linear Systems",
+            lessonLink: "lesson2.html",
+            youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+          },
+          {
+            lessonTitle: "Non-Linear Systems and Applications",
+            lessonLink: "lesson3.html",
+            youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          },
+          {
+            lessonTitle: "Matrix Methods for Solving Systems",
+            lessonLink: "lesson4.html",
+            youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+          },
+        ],
       },
-      lessonLink: {
-        firstLink: "lessonpage.html",
-        secondLink: "lesson2.html",
-        thirdLink: "lesson3.html",
-        fourthLink: "lesson4.html",
-      },
-      youTubeVideos: {
-        lesson1Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson2Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lesson3Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-        lsson4Video:
-          "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
-      },
-    
-    },
-    },
-  ],
+    ]  
 };
-
 let currentUnitIndex = 0;
+let currentLessonIndex = 0;
 
 function populateSidebar(unitIndex) {
   const sidebar = document.querySelector(".sidebar ul");
@@ -257,74 +244,87 @@ function populateSidebar(unitIndex) {
   const mainHeading = document.querySelector(".main_heading");
   mainHeading.innerHTML = `<p>${lessonDataExport.lessons[unitIndex].unit}: ${lessonDataExport.lessons[unitIndex].unitTitle}</p>`;
 
-  const uniqueLessonTitles = lessonDataExport.lessons[unitIndex].unitlessonContent.uniquelessonTitles;
-  for (const lessonKey in uniqueLessonTitles) {
-    const lessonTitle = uniqueLessonTitles[lessonKey];
-    if (lessonTitle) {
-      const listItem = document.createElement("li");
-      listItem.classList.add("sidebar_lessonBox");
-      listItem.innerHTML = `<a href="${lessonDataExport.lessons[unitIndex].unitlessonContent.lessonLink[lessonKey]}">${lessonTitle}</a>`;
-      sidebar.appendChild(listItem);
-    }
+  const unitlessonContent = lessonDataExport.lessons[unitIndex].unitlessonContent;
+  for (const lesson of unitlessonContent) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("sidebar_lessonBox");
+    listItem.innerHTML = `<a href="${lesson.lessonLink}">${lesson.lessonTitle}</a>`;
+    sidebar.appendChild(listItem);
   }
+}
+
+function updateVideo() {
+  const youtubeVideo = document.getElementById("youtubeVideo");
+  const lessonTitleElement = document.getElementById("lessonTitle"); // Get the lesson title element
+  const sidebarLessons = document.querySelectorAll(".sidebar_lessonBox");
+
+  // Remove the active-lesson class from all sidebar lessons
+  sidebarLessons.forEach((lesson) => {
+    lesson.classList.remove("active-lesson");
+  });
+
+  // Add the active-lesson class to the currently displayed lesson in the sidebar
+  sidebarLessons[currentLessonIndex].classList.add("active-lesson");
+
+  // Update the lesson title based on the selected lesson
+  lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+
+  // Update the YouTube video URL
+  youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;
 }
 
 
 
+// Initialize the sidebar with the first unit and first lesson
+populateSidebar(currentUnitIndex);
+updateVideo();
 
+// Function to handle the "Next Unit" button click
+function onNextUnitClick() {
+  if (currentUnitIndex < lessonDataExport.lessons.length - 1) {
+    currentUnitIndex++;
+    currentLessonIndex = 0; // Reset lesson index to the first lesson
+    populateSidebar(currentUnitIndex);
+    updateVideo();
+  }
+}
+
+// Function to handle the "Previous Unit" button click
+function onPreviousUnitClick() {
+  if (currentUnitIndex > 0) {
+    currentUnitIndex--;
+    currentLessonIndex = 0; // Reset lesson index to the first lesson
+    populateSidebar(currentUnitIndex);
+    updateVideo();
+  }
+}
+
+// Add event listeners to the unit navigation buttons
+const nextUnitButton = document.getElementById("nextUnitButton");
+nextUnitButton.addEventListener("click", onNextUnitClick);
+
+const previousUnitButton = document.getElementById("previousUnitButton");
+previousUnitButton.addEventListener("click", onPreviousUnitClick);
 
 // Function to handle the "Next Lesson" button click
 function onNextLessonClick() {
-  if (currentUnitIndex < lessonDataExport.lessons.length - 1) {
-    currentUnitIndex++;
-    populateSidebar(currentUnitIndex);
+  if (currentLessonIndex < lessonDataExport.lessons[currentUnitIndex].unitlessonContent.length - 1) {
+    currentLessonIndex++;
+    updateVideo();
   }
 }
 
 // Function to handle the "Previous Lesson" button click
 function onPreviousLessonClick() {
-  if (currentUnitIndex > 0) {
-    currentUnitIndex--;
-    populateSidebar(currentUnitIndex);
+  if (currentLessonIndex > 0) {
+    currentLessonIndex--;
+    updateVideo();
   }
 }
 
-// Add event listeners to the buttons
-const nextUnitButton = document.getElementById("nextUnitButton");
-nextUnitButton.addEventListener("click", onNextLessonClick);
+// Add event listeners to the lesson navigation buttons
+const nextLessonButton = document.getElementById("nextLessonButton");
+nextLessonButton.addEventListener("click", onNextLessonClick);
 
-const previousUnitButton = document.getElementById("previousUnitButton");
-previousUnitButton.addEventListener("click", onPreviousLessonClick);
-
-// Initialize the sidebar with the first unit
-populateSidebar(currentUnitIndex);
-
-function downloadFile() {
-  // Get the current selected unit index (e.g., based on user interaction)
-  const selectedUnitIndex = 0; // Replace with the actual selected unit index
-  const selectedLessonIndex = 0; // Replace with the actual selected lesson index
-  // Get the note file name for the selected unit and lesson
-  const noteFileName = lessonDataExport.lessons[selectedUnitIndex].note;
-  // Fetch the content of the note file (you can use AJAX or fetch here)
-  const noteFileContent = "This is the content of the file."; // Replace with actual content retrieval logic
-
-  // Create a Blob from the file content
-  const blob = new Blob([noteFileContent], { type: "text/plain" });
-  // Create a URL for the Blob
-  const url = URL.createObjectURL(blob);
-  // Create a download link
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = noteFileName;
-
-  // Trigger a click event on the link to initiate the download
-  a.click();
-
-  // Release the URL object
-  URL.revokeObjectURL(url);
-}
-
-// Add a click event listener to the "Download Notes" button
-const downloadButton = document.getElementById("downloadButton");
-downloadButton.addEventListener("click", downloadFile);
-
+const previousLessonButton = document.getElementById("previousLessonButton");
+previousLessonButton.addEventListener("click", onPreviousLessonClick);

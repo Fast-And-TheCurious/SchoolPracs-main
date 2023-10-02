@@ -124,3 +124,13 @@
 .button button:hover {
     background: rgb(99, 99, 108); /* Change button color on hover */
 }
+.unitLessonTitle{
+    margin-top: 1rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+.active-lesson {
+    background-color: #ebeaea; /* Change this to your desired highlight color */
+    font-weight: bold; 
+  }
+  
