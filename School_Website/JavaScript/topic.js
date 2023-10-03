@@ -331,6 +331,7 @@ const lessonData = {
   ]
 };
 
+
 // Calculate total mastery points of all units
 const totalMasteryPoints = lessonData.lessons
   .reduce((total, lesson) => {
@@ -380,165 +381,147 @@ const lessonSidebarHtml = lessonSidebarTemplate(dataToRender);
 
 document.getElementById("lesson-sidebar").innerHTML = lessonSidebarHtml;
 
-/* left container */
+
 
 const titleData = {
-  unit: "All Units: Total Mastery Points",
-  title: totalMasteryPoints,
-};
-
-//Handlebars template for title
-const titleTemplateSource = document.getElementById("title-template").innerHTML;
-const titleTemplate = Handlebars.compile(titleTemplateSource);
-
-// Render title with data+insert into page
-const titleHtml = titleTemplate(titleData);
-document.getElementById("title-container").innerHTML = titleHtml;
-
-// Get the Handlebars templates for unit descriptions and lessons
-const unitDescriptionSource = document.getElementById(
-  "unit-description-template"
-).innerHTML;
-const unitDescriptionTemplate = Handlebars.compile(unitDescriptionSource);
-
-// Compile the Handlebars template
-const lessonTemplate = Handlebars.compile(
-  document.getElementById("lesson-template").innerHTML
-);
-
-// Render the lessons
-const lessonHtml = lessonTemplate(lessonData);
-document.getElementById("lesson-container").innerHTML = lessonHtml;
-
-// Function to update the content based on the user's click
-function updateContent(unit) {
-  if (unit === "Title" || unit === "All Units: Total Mastery Points") {
-    showAllUnits = true;
-
-    // Updating content in the second area for all units
-    const titleData = {
-      unit: "All Units: Total Mastery Points",
-      title: totalMasteryPoints,
-    };
-
-    const titleHtml = titleTemplate(titleData);
-    document.getElementById("title-container").innerHTML = titleHtml;
-
-    const unitDescriptionHtml = unitDescriptionTemplate({
-      unitDescription: "",
-    }); // Empty description
-    document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
-  } else {
-    showAllUnits = false;
-
-    // Find the selected unit's data
-    const selectedLesson = lessonData.lessons.find(
-      (lesson) => lesson.unit === unit
-    );
-
-    // Update the content in the second area for the selected unit
-    const titleData = {
-      unit: selectedLesson.unit,
-      title: selectedLesson.title,
-      masteryPoints: "Mastery points: " + selectedLesson.masteryPoints,
-    };
-
-    const titleHtml = titleTemplate(titleData);
-    document.getElementById("title-container").innerHTML = titleHtml;
-
-    // Create an array of titles and their associated information
-    const titlesAndInfo = [
-      {
-        title: "Lesson 1",
-        info: selectedLesson.unitLessons.uniquelessonTitles.lesson1Title,
-      },
-      {
-        title: "Lesson 2",
-        info: selectedLesson.unitLessons.uniquelessonTitles.lesson2Title,
-      },
-      {
-        title: "Lesson 3",
-        info: selectedLesson.unitLessons.uniquelessonTitles.lesson3Title,
-      },
-      {
-        title: "Lesson 4",
-        info: selectedLesson.unitLessons.uniquelessonTitles.lesson4Title,
-      },
-      {
-        title: "Worksheets",
-        info: "Practice what you have learnt",
-      },
-    ];
-
-    // Generate a box for each title and info
-    const boxesHtml = titlesAndInfo
-      .map(
-        (item) => `
-      <div class="info-box"><a href=""> 
-        <h2>${item.title}</h2>
-        <p>${item.info}</p>
-        </a>
-      </div>
-    `/* Make link to each specific unit lesson */
-      )
-      .join("");
-
-    // Create an "About" section
-    const aboutHtml = `
-      <div class="about-section">
-        <h2>About</h2>
-        <p>${selectedLesson.unitDescription}</p>
-      </div>
-    `;
-
-    // Display the "About" section and the generated boxes in the lesson-container
-    const lessonContainerHtml = `
-      <div class="lesson-content">
-        ${aboutHtml}
-        <div class="boxes-container">
-          ${boxesHtml}
+    unit: "All Units: Total Mastery Points",
+    title: totalMasteryPoints,
+  };
+  
+  const titleTemplateSource = document.getElementById("title-template").innerHTML;
+  const titleTemplate = Handlebars.compile(titleTemplateSource);
+  
+  const titleHtml = titleTemplate(titleData);
+  document.getElementById("title-container").innerHTML = titleHtml;
+  
+  const unitDescriptionSource = document.getElementById(
+    "unit-description-template"
+  ).innerHTML;
+  const unitDescriptionTemplate = Handlebars.compile(unitDescriptionSource);
+  
+  const lessonTemplate = Handlebars.compile(
+    document.getElementById("lesson-template").innerHTML
+  );
+  
+  const lessonHtml = lessonTemplate(lessonData);
+  document.getElementById("lesson-container").innerHTML = lessonHtml;
+  
+  function updateContent(unit) {
+    if (unit === "Title" || unit === "All Units: Total Mastery Points") {
+      showAllUnits = true;
+  
+      const titleData = {
+        unit: "All Units: Total Mastery Points",
+        title: totalMasteryPoints,
+      };
+  
+      const titleHtml = titleTemplate(titleData);
+      document.getElementById("title-container").innerHTML = titleHtml;
+  
+      const unitDescriptionHtml = unitDescriptionTemplate({
+        unitDescription: "",
+      }); 
+      document.getElementById("lesson-container").innerHTML = unitDescriptionHtml;
+    } else {
+      showAllUnits = false;
+  
+      const selectedLesson = lessonData.lessons.find(
+        (lesson) => lesson.unit === unit
+      );
+  
+      const titleData = {
+        unit: selectedLesson.unit,
+        title: selectedLesson.title,
+        masteryPoints: "Mastery points: " + selectedLesson.masteryPoints,
+      };
+  
+      const titleHtml = titleTemplate(titleData);
+      document.getElementById("title-container").innerHTML = titleHtml;
+  
+      const titlesAndInfo = [
+        {
+          title: "Lesson 1",
+          info: selectedLesson.unitLessons.uniquelessonTitles.lesson1Title,
+        },
+        {
+          title: "Lesson 2",
+          info: selectedLesson.unitLessons.uniquelessonTitles.lesson2Title,
+        },
+        {
+          title: "Lesson 3",
+          info: selectedLesson.unitLessons.uniquelessonTitles.lesson3Title,
+        },
+        {
+          title: "Lesson 4",
+          info: selectedLesson.unitLessons.uniquelessonTitles.lesson4Title,
+        },
+        {
+          title: "Worksheets",
+          info: "Practice what you have learnt",
+        },
+      ];
+  
+      const boxesHtml = titlesAndInfo
+        .map(
+          (item) => `
+        <div class="info-box"><a href=""> 
+          <h2>${item.title}</h2>
+          <p>${item.info}</p>
+          </a>
         </div>
-      </div>
-    `;
-
-    document.getElementById("lesson-container").innerHTML = lessonContainerHtml;
-
-    // Scroll to content_area2 after updating the content
-    const contentArea2 = document.getElementById("content_area2");
-    if (contentArea2) {
-      contentArea2.scrollIntoView({ behavior: "smooth" });
+      `
+        )
+        .join("");
+  
+      const aboutHtml = `
+        <div class="about-section">
+          <h2>About</h2>
+          <p>${selectedLesson.unitDescription}</p>
+        </div>
+      `;
+  
+      const lessonContainerHtml = `
+        <div class="lesson-content">
+          ${aboutHtml}
+          <div class="boxes-container">
+            ${boxesHtml}
+          </div>
+        </div>
+      `;
+  
+      document.getElementById("lesson-container").innerHTML = lessonContainerHtml;
+  
+      const contentArea2 = document.getElementById("content_area2");
+      if (contentArea2) {
+        contentArea2.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }
-}
-// Add event listeners to sidebar units
-document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
-  item.addEventListener("click", (event) => {
-    const unit =
-      event.currentTarget.querySelector(".sub_sub-heading").textContent;
-    updateContent(unit);
+  document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      const unit =
+        event.currentTarget.querySelector(".sub_sub-heading").textContent;
+      updateContent(unit);
+    });
   });
-});
-
-// Add event listener to main_heading to show all units
-document.querySelector(".main_heading").addEventListener("click", () => {
-  updateContent("All Units: Total Mastery Points");
-});
-
-// Add event listeners to sidebar units
-document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
-  item.addEventListener("click", (event) => {
-    const unit =
-      event.currentTarget.querySelector(".sub_sub-heading").textContent;
-    updateContent(unit);
+  
+  document.querySelector(".main_heading").addEventListener("click", () => {
+    updateContent("All Units: Total Mastery Points");
   });
-});
-
-// Add event listener to main_heading to show all units
-document.querySelector(".main_heading").addEventListener("click", () => {
-  updateContent("All Units: Total Mastery Points");
-});
-
-
-const dt = document.getElementById("worksheetDownloadButton");
-dt.href = "School_Website\pdfs\test.pdf";
-dt.download = "test";
+  
+  document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      const unit =
+        event.currentTarget.querySelector(".sub_sub-heading").textContent;
+      updateContent(unit);
+    });
+  });
+  
+  document.querySelector(".main_heading").addEventListener("click", () => {
+    updateContent("All Units: Total Mastery Points");
+  });
+  
+  
+  const dt = document.getElementById("worksheetDownloadButton");
+  dt.href = "School_Website\pdfs\test.pdf";
+  dt.download = "test";
