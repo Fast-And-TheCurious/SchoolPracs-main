@@ -93,7 +93,7 @@ body {
 
 .unit_display_box {
     padding: 20px;
-    border: 1rem solid darkgray;
+    border: .1rem solid darkgray;
     margin: 10px;
 }
 
