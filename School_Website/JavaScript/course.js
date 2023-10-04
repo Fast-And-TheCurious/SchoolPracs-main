@@ -1,5 +1,6 @@
 // get course details from database
-const coursesData = [
+//dummy content
+/* const coursesData = [
   {
       title: "Course 1: Algebra Fundamentals",
       description: "In this course, you will build a solid foundation in algebraic concepts and techniques...",
@@ -15,20 +16,37 @@ const coursesData = [
     description: "Take your geometry skills to the next level with this comprehensive course. From angles...",
     link: "course2.html"
 }
-];
+]; */
+const formattedLessons = require('./course.js'); 
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Get the Handlebars template
+console.log("Formatted Lessons in Another File:", formattedLessons);
+
+/* document.addEventListener('DOMContentLoaded', function () {
+  
   const courseTemplateSource = document.getElementById('course-template').innerHTML;
   const courseTemplate = Handlebars.compile(courseTemplateSource);
 
-  // Get the container where courses will be inserted
   const coursesContainer = document.getElementById('courses-container');
 
-  // Render each course and insert it into the container
   coursesData.forEach(function (course) {
       const courseHtml = courseTemplate(course);
       coursesContainer.innerHTML += courseHtml;
   });
-});
+}); */
+// Import Handlebars library
+const Handlebars = require("handlebars");
 
+// Import the formattedLessons array (assuming it's exported correctly in another file)
+const formattedLessons = require('./course.js'); // Update the path accordingly
+
+document.addEventListener('DOMContentLoaded', function () {
+  const courseTemplateSource = document.getElementById('course-template').innerHTML;
+  const courseTemplate = Handlebars.compile(courseTemplateSource);
+
+  const coursesContainer = document.getElementById('courses-container');
+
+  formattedLessons.forEach(function (lesson) { // Use formattedLessons instead of coursesData
+    const lessonHtml = courseTemplate(lesson); // Use lesson instead of course
+    coursesContainer.innerHTML += lessonHtml;
+  });
+});
