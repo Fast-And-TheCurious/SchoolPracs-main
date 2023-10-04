@@ -7,56 +7,46 @@ const connection = mysql.createConnection({
   password: "Reddam2021@1",
   database: "bryantmDB",
 });
+module.exports = connection;
+function createConnection() {
+  return new Promise((resolve, reject) => {
+    connection.connect((err) => {
+      if (err) {
+        console.error("Error connecting to MySQL server:", err);
+        reject(err);
+      } else {
+        console.log("Connected to MySQL server!");
+        resolve();
+      }
+    });
+  });
+}
 
-function update(query) {
-  connection.query(query, function (err) {
+function update(query, values) {
+  connection.query(query, values, function (err) {
     if (err) throw err;
-  });//delete,update,create,insert
+  });
 }
 
-function select(query) {
+function select(query, values) {
   return new Promise((resolve, reject) => {
-    connection.query(query, (err, result) => {
+    connection.query(query, values, (err, result) => {
       if (err) {
-        console.error("Error with recieving data:", err);
+        console.error("Error with receiving data:", err);
         reject(err);
       } else {
-        console.log("Recieved the data!");
+        console.log("Received the data!");
         resolve(result);
       }
     });
   });
 }
 
-// Perform a SELECT query to fetch CourseID, Title, and Description
-connection.query("SELECT CourseID, Title, Description FROM Course", (err, results) => {
-  if (err) {
-    console.error("Error executing query:", err);
-    return;
-  }  
-  
-  // Process the results
-  results.forEach((row) => {/* Make a for loop that works with the specific unit and course unit, adds the lesson data needed for the object that handlebars uses */
-    row.unitLessons = "Hello";
-    console.log("Data from database");
-    let id = row.CourseID;
-    console.log(`CourseID: ${row.CourseID}, Title: ${row.Title}, Description: ${row.Description}`);
-  });
-  console.log(results);
-
-function select(query) {
-  return new Promise((resolve, reject) => {
-    connection.query(query, (err, result) => {
-      if (err) {
-        console.error("Error with recieving data:", err);
-        reject(err);
-      } else {
-        console.log("Recieved the data!");
-        resolve(result);
-      }
-    });
+function endConnection() {
+  connection.end((err) => {
+    if (err) throw err;
+    console.log("Disconnected from MySQL database!");
   });
 }
 
-module.exports = {update, select};
-});
+module.exports = { createConnection, update, select, endConnection };
