@@ -10,15 +10,10 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
-const { createPool } = require("mysql2/promise"); // Import createPool
+const { createPool } = require("mysql2/promise");
 
 app.use(cors());
 app.use(express.json());
-
-// Import your route handlers and middleware here
-// Example:
-// const userRoutes = require("./routes/userRoutes");
-// app.use("/users", userRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -27,7 +22,7 @@ app.use((err, req, res, next) => {
 });
 
 const formattedLessons = [];
-
+module.exports = formattedLessons;
 async function main() {
   try {
     const pool = createPool({
@@ -43,42 +38,41 @@ async function main() {
     // Perform a SELECT query to fetch CourseID, Title, and Description
     const [rows, fields] = await pool.query("SELECT * FROM Course");
 
-    // Process the results
+    // Create an array to store the promises for fetching lesson data
+    const lessonPromises = [];
+
     rows.forEach(async (row) => {
-      // Assuming you want to fetch lesson data based on CourseID and set it to unitLessons
-      // You need to execute another query here to retrieve the lesson data
       const courseId = row.CourseID;
 
-      // Example: Execute a query to fetch lesson data based on courseId
-      const [lessonRows, lessonFields] = await pool.query(
-        "SELECT * FROM Courses",
-        [courseId]
+      // Push the promise for fetching lesson data into the array
+      lessonPromises.push(
+        pool.query("SELECT * FROM Courses", [courseId])
       );
+    });
 
-      // Assuming you have lesson data, you can assign it to the unitLessons property
+    // Wait for all the lesson queries to finish
+    const lessonResults = await Promise.all(lessonPromises);
+
+    lessonResults.forEach(([lessonRows, lessonFields], index) => {
+      const row = rows[index];
       row.unitLessons = lessonRows;
 
-      console.log("Data from database:\n");
-      //formating
-
-      // Assuming `unitLessons` is an array of lessons
       const lessons = row.unitLessons.map((lesson) => ({
         title: `Course ${lesson.id}: ${lesson.title}`,
         description: lesson.about_description,
         link: lesson.link,
       }));
 
-      console.log("Formatted Lessons:", formattedLessons);
-
-      // Push lessons to formattedLessons array
       formattedLessons.push(...lessons);
     });
+
+    // Log formattedLessons once it's populated
+    console.log("Formatted Lessons:", formattedLessons);
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   } catch (error) {
-    // Handle any errors that occur during the connection or server setup
     console.error("Error:", error);
     process.exit(1);
   }
@@ -86,6 +80,3 @@ async function main() {
 
 // Call the main function to start the application
 main();
-
-// Export the formattedLessons array within the same file
-module.exports.formattedLessons = formattedLessons;
