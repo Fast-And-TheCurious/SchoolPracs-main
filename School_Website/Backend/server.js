@@ -36,7 +36,7 @@ async function main() {
       password: "Reddam2021@1",
       database: "bryantmDB",
       waitForConnections: true,
-      connectionLimit: 10, 
+      connectionLimit: 10,
       queueLimit: 0,
     });
 
@@ -67,13 +67,11 @@ async function main() {
         description: lesson.about_description,
         link: lesson.link,
       }));
-      
-      
-     
-      console.log("Formatted Lessons:", formattedLessons);
-      module.exports = formattedLessons;
 
-       formattedLessons.push(...lessons);
+      console.log("Formatted Lessons:", formattedLessons);
+
+      // Push lessons to formattedLessons array
+      formattedLessons.push(...lessons);
     });
 
     app.listen(PORT, () => {
@@ -85,6 +83,9 @@ async function main() {
     process.exit(1);
   }
 }
-module.exports = formattedLessons;
+
 // Call the main function to start the application
 main();
+
+// Export the formattedLessons array within the same file
+module.exports.formattedLessons = formattedLessons;

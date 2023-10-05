@@ -525,7 +525,6 @@ const titleData = {
   const dt = document.getElementById("worksheetDownloadButton");
   dt.href = "School_Website\pdfs\test.pdf";
   dt.download = "test"; */
-
   const data = {
     lessons: [
       {
