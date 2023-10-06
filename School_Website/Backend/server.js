@@ -14,15 +14,16 @@ const { createPool } = require("mysql2/promise");
 
 app.use(cors());
 app.use(express.json());
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
 
-const formattedLessons = [];
-module.exports = formattedLessons;
+
+
+
+/*
 async function main() {
   try {
     const pool = createPool({
@@ -34,23 +35,19 @@ async function main() {
       connectionLimit: 10,
       queueLimit: 0,
     });
+/
+    const [rows, fields] = await pool.query("SELECT * FROM Courses");
 
-    // Perform a SELECT query to fetch CourseID, Title, and Description
-    const [rows, fields] = await pool.query("SELECT * FROM Course");
-
-    // Create an array to store the promises for fetching lesson data
     const lessonPromises = [];
 
     rows.forEach(async (row) => {
       const courseId = row.CourseID;
 
-      // Push the promise for fetching lesson data into the array
       lessonPromises.push(
         pool.query("SELECT * FROM Courses", [courseId])
       );
     });
 
-    // Wait for all the lesson queries to finish
     const lessonResults = await Promise.all(lessonPromises);
 
     lessonResults.forEach(([lessonRows, lessonFields], index) => {
@@ -63,10 +60,9 @@ async function main() {
         link: lesson.link,
       }));
 
-      formattedLessons.push(...lessons);
+      courseFormattedArray.push(...lessons);
     });
 
-    // Log formattedLessons once it's populated
     console.log("Formatted Lessons:", formattedLessons);
 
     app.listen(PORT, () => {
@@ -77,6 +73,147 @@ async function main() {
     process.exit(1);
   }
 }
+main(); */
 
-// Call the main function to start the application
-main();
+
+const pool = createPool({
+  host: "102.130.115.69",
+  user: "bryantm",
+  password: "Reddam2021@1",
+  database: "bryantmDB",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
+/* Course */
+
+const courseFormattedArray = []; // Initialize the array to store course data
+
+async function storeCoursesInArray() {
+  let connection;
+  try {
+    // Get a connection from the pool
+    connection = await pool.getConnection();
+
+    // Execute a SELECT query to fetch all rows from the "Courses" table
+    const [rows, fields] = await connection.query("SELECT * FROM Courses");
+
+    // Iterate through the rows and store each course in the courseFormattedArray array
+    rows.forEach((course) => {
+      courseFormattedArray.push({
+        id: course.id,
+        name: course.name,
+        title: course.title,
+        about_description: course.about_description,
+      });
+    });
+
+    // Log the course data to the console
+    console.log("\nCourses stored in courseFormattedArray array:\n", courseFormattedArray);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    if (connection) {
+      // Release the connection back to the pool
+      connection.release();
+    }
+  }
+}
+
+// Call the function to fetch and store courses in the array
+storeCoursesInArray();
+
+/* Lesson */
+
+let lessonArray; // Declare the variable to store the lesson data
+
+async function fetchLessons() {
+  let connection;
+  try {
+    // Get a connection from the pool
+    connection = await pool.getConnection();
+
+    // Execute a SELECT query to fetch all rows from the "Lesson" table
+    const [rows, fields] = await connection.query("SELECT * FROM Lesson");
+
+    // Assign the lesson data to the lessonArray variable
+    lessonArray = rows;
+
+    // Log the lesson data to the console
+    console.log("\nLessons:\n");
+    console.log(lessonArray);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    if (connection) {
+      // Release the connection back to the pool
+      connection.release();
+    }
+  }
+}
+
+// Call the function to fetch lessons and populate lessonArray
+fetchLessons();
+
+const unitArray = []; // Initialize the array to store unit data
+
+async function fetchUnits() {
+  let connection;
+  try {
+    // Get a connection from the pool
+    connection = await pool.getConnection();
+
+    // Execute a SELECT query to fetch all rows from the "Unit" table
+    const [rows, fields] = await connection.query("SELECT * FROM Unit");
+
+    // Store the unit data in the unitArray
+    unitArray.push(...rows);
+
+    // Log the unit data to the console
+    console.log("\nUnits:\n");
+    console.log(unitArray);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    if (connection) {
+      // Release the connection back to the pool
+      connection.release();
+    }
+  }
+}
+
+// Call the function to fetch and store units in the array
+fetchUnits();
+
+/* User */
+
+const userArray = []; // Initialize the array to store user data
+
+async function fetchUsers() {
+  let connection;
+  try {
+    // Get a connection from the pool
+    connection = await pool.getConnection();
+
+    // Execute a SELECT query to fetch all rows from the "User" table
+    const [rows, fields] = await connection.query("SELECT * FROM User");
+
+    // Store the user data in the userArray
+    userArray.push(...rows);
+
+    // Log the user data to the console
+    console.log("\nUsers:\n");
+    console.log(userArray);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    if (connection) {
+      // Release the connection back to the pool
+      connection.release();
+    }
+  }
+}
+
+// Call the function to fetch and store users in the array
+fetchUsers();
