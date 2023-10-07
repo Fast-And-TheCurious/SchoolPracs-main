@@ -8,10 +8,15 @@ const LoginManager = require("./loginManager");
  */
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const { createPool } = require("mysql2/promise");
 
+
+const secretKey = 'your-secret-key';
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 // Error handling middleware
@@ -88,7 +93,7 @@ const pool = createPool({
 
 /* Course */
 
-const courseFormattedArray = []; // Initialize the array to store course data
+const courseFormattedArray = []; 
 
 async function storeCoursesInArray() {
   let connection;
@@ -109,7 +114,6 @@ async function storeCoursesInArray() {
       });
     });
 
-    // Log the course data to the console
     console.log("\nCourses stored in courseFormattedArray array:\n", courseFormattedArray);
   } catch (error) {
     console.error("Error:", error);
@@ -121,12 +125,23 @@ async function storeCoursesInArray() {
   }
 }
 
+
+
+const arrayOfObjects = [
+  { name: "John", age: 25 },
+  { name: "Jane", age: 30 },
+  { name: "Bob", age: 35 }
+];
+
+module.exports = arrayOfObjects;
+
+module.exports.courseFormattedArray = courseFormattedArray; 
 // Call the function to fetch and store courses in the array
 storeCoursesInArray();
 
 /* Lesson */
 
-let lessonArray; // Declare the variable to store the lesson data
+let lessonArray=[]; 
 
 async function fetchLessons() {
   let connection;
@@ -141,8 +156,8 @@ async function fetchLessons() {
     lessonArray = rows;
 
     // Log the lesson data to the console
-    console.log("\nLessons:\n");
-    console.log(lessonArray);
+    /* console.log("\nLessons:\n");
+    console.log(lessonArray); */
   } catch (error) {
     console.error("Error:", error);
   } finally {
@@ -152,7 +167,7 @@ async function fetchLessons() {
     }
   }
 }
-
+module.exports.lessonArray= lessonArray;
 // Call the function to fetch lessons and populate lessonArray
 fetchLessons();
 
@@ -171,8 +186,8 @@ async function fetchUnits() {
     unitArray.push(...rows);
 
     // Log the unit data to the console
-    console.log("\nUnits:\n");
-    console.log(unitArray);
+   /*  console.log("\nUnits:\n");
+    console.log(unitArray); */
   } catch (error) {
     console.error("Error:", error);
   } finally {
@@ -182,7 +197,7 @@ async function fetchUnits() {
     }
   }
 }
-
+module.exports.unitArray= unitArray;
 // Call the function to fetch and store units in the array
 fetchUnits();
 
@@ -203,8 +218,8 @@ async function fetchUsers() {
     userArray.push(...rows);
 
     // Log the user data to the console
-    console.log("\nUsers:\n");
-    console.log(userArray);
+  /*   console.log("\nUsers:\n");
+    console.log(userArray); */
   } catch (error) {
     console.error("Error:", error);
   } finally {
@@ -214,6 +229,118 @@ async function fetchUsers() {
     }
   }
 }
-
+module.exports.userArray= userArray;
 // Call the function to fetch and store users in the array
 fetchUsers();
+
+
+app.post('/register', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  try {
+      const connection = await pool.getConnection();
+      
+      // Hash and salt the password (You should use a proper password hashing library)
+      const hashedPassword = hashPasswordFunction(password);
+
+      // Insert the user data into the "User" table
+      await connection.query(
+          'INSERT INTO User (username, email, password) VALUES (?, ?, ?)',
+          [username, email, hashedPassword]
+      );
+
+      connection.release();
+      
+      // Respond with a success message or redirect to the login page
+      res.status(200).send('Registration successful');
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Registration failed');
+  }
+});
+// Login route: Verify user credentials and generate a JWT
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Retrieve the user's data based on the provided email
+    const [rows] = await connection.query(
+      'SELECT * FROM User WHERE email = ?',
+      [email]
+    );
+
+    if (rows.length === 0) {
+      // User not found
+      connection.release();
+      return res.status(401).send('Invalid credentials');
+    }
+
+    const user = rows[0];
+
+    // Verify the password (You should use the same hashing function as used during registration)
+    const passwordMatch = comparePasswordFunction(password, user.password);
+
+    if (!passwordMatch) {
+      // Incorrect password
+      connection.release();
+      return res.status(401).send('Invalid credentials');
+    }
+
+    // Generate a JWT containing user information
+    const token = jwt.sign({ id: user.id, email: user.email }, secretKey, { expiresIn: '1h' });
+
+    connection.release();
+
+    res.json({ token });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Login failed');
+  }
+});
+
+// Protected route: Verify JWT before allowing access
+app.get('/protected', (req, res) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ message: 'Token not provided' });
+  }
+
+  // Verify the JWT's signature and decode its payload
+  jwt.verify(token, secretKey, async (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    // Token is valid; you can access the user's data from `decoded`
+    const userId = decoded.id;
+
+    try {
+      const connection = await pool.getConnection();
+
+      // Retrieve the user's data based on the user ID
+      const [rows] = await connection.query(
+        'SELECT * FROM User WHERE id = ?',
+        [userId]
+      );
+
+      if (rows.length === 0) {
+        connection.release();
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      const user = rows[0];
+
+      connection.release();
+
+      res.json({ message: 'Access granted', user });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Error retrieving user data');
+    }
+  });
+});
+
+

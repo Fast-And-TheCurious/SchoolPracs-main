@@ -5,6 +5,8 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>SignUp Form</title>
     <link rel="stylesheet" href="/School_Website/css/login.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
     <div class="exit_button">
@@ -13,7 +15,7 @@
     </div>
     <div class="container">
        <div class="form_body">
-        <form id="login"action="#" class="login-form">
+        <form id="login"  action="/register" method="POST" class="login-form">
             <h1 class="login_title">Sign Up Form</h1>
             <label for="login" class="login_form-label">
                 <input id="username" type="text" placeholder="Username"class="login-form_input">
@@ -25,12 +27,44 @@
                 <input id="password" type="text" placeholder="Pasword"class="login-form_input">
             </label>
             <div class="label_buttons-body">
-                <button onclick="writeFile()" form="login"type="submit"class="login_button">Login</button>
+                <button onclick="writeFile()" form="login"type="submit"class="login_button">Sign Up</button>
             </div>
             <!-- Add a welcome image  -->
         </form>
        </div> 
     </div>
-    <script src="JavaScript/signUp.js"></script>
 </body>
 </html>
+
+<!-- Login Form (login.html):
+
+The HTML form (<form>) is defined with a POST method and an action attribute pointing to /login. This means that when a user submits this form, it will send a POST request to the /login endpoint on your server.
+
+Inside the form, there are input fields for the user to enter their email/username and password.
+
+When the user clicks the "Login" button, it triggers the form submission. The action attribute directs the browser to send a POST request to your server at /login.
+
+Signup Form (signUp.html):
+
+Similar to the login form, the signup form is defined with a POST method and an action attribute pointing to /register. When a user submits this form, it sends a POST request to the /register endpoint on your server.
+
+The form includes input fields for the user to enter their desired username, email, and password.
+
+When the user clicks the "Sign Up" button, it triggers the form submission, and the action attribute directs the browser to send a POST request to your server at /register.
+
+Server-Side Logic (server.js):
+
+In your Node.js server code (server.js), you would need to implement the logic to handle these endpoints (/login and /register).
+
+For the /register endpoint:
+
+The server should receive the user's registration data (username, email, password) in the POST request.
+It should then validate the data (e.g., check if the email is unique).
+Hash and salt the password for security.
+Store the user's data in the database (in your "User" table) to create a new user account.
+For the /login endpoint:
+
+The server should receive the user's login data (email/username and password) in the POST request.
+It should look up the user's information in the database based on the provided email/username.
+Verify the password by comparing the entered password with the stored hashed password.
+If the credentials match, create a session/token to authenticate the user and grant access to protected resources or redirect them to their dashboard. -->

@@ -28,4 +28,3 @@
   }
   ];  */
   // Import the exported formattedLessons array
-

@@ -1,15 +1,13 @@
 // In the course.js file
-const formattedLessons = require('../Backend/server');
+/* const formattedLessons = require('../Backend/server');
 
 console.log(`In course.js FILE: ${formattedLessons}`); 
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Make an HTTP GET request to the server to fetch data
-  fetch('/api/courses') // Replace with the actual API endpoint on your server
+  fetch('/api/courses') 
     .then((response) => response.json())
     .then((data) => {
-      // 'data' contains the response from the server
-      renderCourses(data); // Call a function to render the courses
+      renderCourses(data); 
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function renderCourses(formattedLessons) {
-  // Now you can use 'formattedLessons' to render the courses as needed
   const courseTemplateSource = document.getElementById('course-template').innerHTML;
   const courseTemplate = Handlebars.compile(courseTemplateSource);
 
@@ -33,11 +30,27 @@ function renderCourses(formattedLessons) {
     coursesContainer.appendChild(courseElement);
   });
 }
+ */
+
+const arrayOfObjects = require('../Backend/server');
+
+console.log(arrayOfObjects);
 
 
 
+/* console.log("IN COURSE FILE"+courseFormattedArray); */
+const { courseFormattedArray } = require('../Backend/server'); // Adjust the relative path as needed
 
-
+// Check if courseFormattedArray is populated
+if (courseFormattedArray.length === 0) {
+  console.log('courseFormattedArray is empty or not yet populated.');
+} else {
+  // Iterate through and print the contents
+  courseFormattedArray.forEach((course) => {
+    console.log("\nCourse file\n");
+    console.log(course.id, course.name, course.title, course.about_description);
+  });
+}
 
 
 /* 

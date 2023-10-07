@@ -882,3 +882,11 @@ const titleData = {
   dt.href = "School_Website\pdfs\test.pdf";
   dt.download = "test";
 */
+
+const arrayOfObjects = [
+  { name: "John", age: 25 },
+  { name: "Jane", age: 30 },
+  { name: "Bob", age: 35 }
+];
+
+module.exports = arrayOfObjects;
