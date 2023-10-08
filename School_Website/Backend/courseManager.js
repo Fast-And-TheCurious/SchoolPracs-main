@@ -1,30 +1,47 @@
-/* document.addEventListener('DOMContentLoaded', function () {
-  
-  const courseTemplateSource = document.getElementById('course-template').innerHTML;
-  const courseTemplate = Handlebars.compile(courseTemplateSource);
+const { select, update } = require("./database");
 
-  const coursesContainer = document.getElementById('courses-container');
+class courseManager {
+  async getCourses() {
+    try {
+      const query = "SELECT * FROM bryantmDB.Courses";
+      const [result] = await select(query);
+      return result;
+    } catch (error) {
+      return error;
+    }
 
-  coursesData.forEach(function (course) {
-      const courseHtml = courseTemplate(course);
-      coursesContainer.innerHTML += courseHtml;
-  });
-}); */
-/* const coursesData = [
-    {
-        title: "Course 1: Algebra Fundamentals",
-        description: "In this course, you will build a solid foundation in algebraic concepts and techniques...",
-        link: "topic.html"
-    },
-    {
-        title: "Course 2: Geometry Mastery",
-        description: "Take your geometry skills to the next level with this comprehensive course. From angles...",
-        link: "course2.html"
-    },
-    {
-      title: "Course 3: Logs",
-      description: "Take your geometry skills to the next level with this comprehensive course. From angles...",
-      link: "course2.html"
+
+    /* const courseFormattedArray = []; 
+
+async function storeCoursesInArray() {
+  let connection;
+  try {
+    connection = await pool.getConnection();
+
+    const [rows, fields] = await connection.query("SELECT * FROM Courses");
+
+   rows.forEach((course) => {
+      courseFormattedArray.push({
+        id: course.id,
+        name: course.name,
+        title: course.title,
+        about_description: course.about_description,
+      });
+    });
+
+    console.log("\nCourses stored in courseFormattedArray array:\n", courseFormattedArray);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    if (connection) {
+      connection.release();
+    }
   }
-  ];  */
-  // Import the exported formattedLessons array
+}
+
+module.exports.courseFormattedArray = courseFormattedArray; 
+storeCoursesInArray(); */
+  }
+}
+
+module.exports = courseManager;

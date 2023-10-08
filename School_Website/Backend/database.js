@@ -8,6 +8,7 @@ const connection = mysql.createConnection({
   database: "bryantmDB",
 });
 module.exports = connection;
+
 function createConnection() {
   return new Promise((resolve, reject) => {
     connection.connect((err) => {
