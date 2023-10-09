@@ -50,20 +50,27 @@ getLessonData((error, results) => {
   console.log(JSON.stringify(lessonData, null, 2));
 }); */
 
-/* Lesson */
-const { select, update } = require("./database");
+/* Lesson */const { select } = require("./database");
 
-class lessonManager{
-  async getLessons(){
-    try{
+class lessonManager {
+  async getLessons() {
+    try {
       const query = "SELECT * FROM Lesson";
       const [result] = await select(query);
-    }catch(error){
-      return error;
+
+      if (!result || result.length === 0) {
+        return { error: "No lessons found", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching lessons:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
 }
+
 module.exports = lessonManager;
+
 
 /* let lessonArray=[]; 
 

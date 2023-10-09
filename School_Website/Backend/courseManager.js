@@ -1,17 +1,5 @@
-const { select, update } = require("./database");
-
-class courseManager {
-  async getCourses() {
-    try {
-      const query = "SELECT * FROM bryantmDB.Courses";
-      const [result] = await select(query);
-      return result;
-    } catch (error) {
-      return error;
-    }
-
-
-    /* const courseFormattedArray = []; 
+const { select } = require("./database");
+/* const courseFormattedArray = []; 
 
 async function storeCoursesInArray() {
   let connection;
@@ -41,6 +29,23 @@ async function storeCoursesInArray() {
 
 module.exports.courseFormattedArray = courseFormattedArray; 
 storeCoursesInArray(); */
+
+class courseManager {
+  async getCourses() {
+    try {
+      const query = "SELECT * FROM bryantmDB.Courses";
+      const [result] = await select(query);
+      if (!result || result.length === 0) {
+        return { error: "No courses found", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching courses:", error);
+      return {
+        error: "An error occurred while processing the request",
+        statusCode: 500,
+      };
+    }
   }
 }
 

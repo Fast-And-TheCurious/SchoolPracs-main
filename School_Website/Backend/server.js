@@ -41,12 +41,14 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-//All the api end-points
+//api end-points
+
 /* User */
+
 app.get("/api/user/login", (req, res) => {
   const { username, password } = req.query;
 
-  let user = new UserManager();
+  let user = new userManager();
 
   user.userLogin(username, password).then((jsonifiedResult) => {
       res.status(200).send(jsonifiedResult);
@@ -55,6 +57,29 @@ app.get("/api/user/login", (req, res) => {
       res.status(500).send("Error occurred");
     });
 });
+
+app.get("/api/user/getGmail", (req, res) => {
+  const { username } = req.query;
+
+  let user = new userManager();
+
+  user
+    .getUserEmail(username)
+    .then((result) => {
+      if (result) {
+        // User found, send the email address
+        res.status(200).send({ email: result.email });
+      } else {
+        // User not found, send an appropriate response
+        res.status(404).send("User not found");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred");
+    });
+});
+
 app.get("/api/user/email", (req, res) => {
   const { email } = req.query;
 
@@ -172,10 +197,23 @@ app.post("/api/user/profile", (req, res) => {
   let user = new userManager();
   user.updateProfile(
     userID,
-    newUserName,
+    newUsername,
     newProfileIcon,
   );
   res.json({ message: "Data received and processed successfully" });
 });
 
+app.post("/api/user/createAccount", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const emailAddress = req.body.emailAddress;
+
+  let user = new userManager();
+  user.createAccount(
+    username,
+    password,
+    emailAddress
+  );
+  res.json({ message: "Data received and processed successfully" });
+});
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

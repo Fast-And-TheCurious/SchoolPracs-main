@@ -1,44 +1,45 @@
 const { select, update } = require("./database");
 
-class userManager{
-    async updateProfile(
-        newUserName,
-              newProfileIcon,
-              userID,
+class userManager {
+  async updateProfile(newUserName, newProfileIcon, userID) {
+    try {
+      const query = `UPDATE bryantmDB.User SET username = ?, profileIcon = ?  WHERE (UserID = ?)`;
+      await update(query, [newUserName, newProfileIcon, userID]);
+      return "Update profile operation successful";
+    } catch (error) {
+      return error;
+    }
+  }
 
-    ){
-      try {
-            const query = `UPDATE bryantmDB.User SET username = ?, profileIcon = ?  WHERE (UserID = ?)`;
-            await update(query, [
-              newUserName,
-              newProfileIcon,
-              userID,
-            ]);
-            return "Update profile operation successful";
-          } catch (error) {
-            return error;
-          }
-        }
-    
-    async getUserID(username) {
-        try {
-          const query = `SELECT UserID FROM bryantmDB.User where username = ?`;
-          const [result] = await select(query, [username]);
-          return result;
-        } catch (error) {
-          return error;
-        }
-      }
-      async getUsername(userID) {
-        try {
-          const query = `SELECT username FROM bryantmDB.User where UserID = ?`;
-          const [result] = await select(query, [userID]);
-          return result;
-        } catch (error) {
-          return error;
-        }
-      }
- //Checking if the email address is the user's email
+  async getUserID(username) {
+    try {
+      const query = `SELECT UserID FROM bryantmDB.User where username = ?`;
+      const [result] = await select(query, [username]);
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+  async getUserEmail(userID) {
+    try {
+      const query = `SELECT gmail FROM bryantmDB.User WHERE userID = ?`;
+      const [result] = await select(query, [userID]);
+      return result ? result.gmail : null; // Return the Gmail address or null if not found
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async getUsername(userID) {
+    try {
+      const query = `SELECT username FROM bryantmDB.User where UserID = ?`;
+      const [result] = await select(query, [userID]);
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+  //Checking if the email address is the user's email
   //This is used to allow user to login if they forgot their password
   async doUserEmailMatch(username, email) {
     try {
@@ -49,7 +50,6 @@ class userManager{
       return error;
     }
   }
- 
 
   async getUserProfile(userID) {
     try {
@@ -62,44 +62,39 @@ class userManager{
   }
   async getUserProfileIcon(userID) {
     try {
-      const query = `SELECT profileIcon FROM bryantmDB.User where UserID = ?`;
+      const query = `SELECT profileIcon FROM bryantmDB.User WHERE UserID = ?`;
       const [result] = await select(query, [userID]);
-      //This happens if the userID does not exists
-      //When created an account, a user will a profile icon
-      if (result.length === 0) {
-        return new Error("Unable to get the link of the user's profile icon");
+
+      if (result && result.length > 0) {
+        // Return profile icon if found
+        return result[0].profileIcon;
+      } else {
+        return {
+          error: "User's profile icon not found",
+          statusCode: 404,
+        };
       }
-      return result;
     } catch (error) {
-      return error;
+      console.error("An error occurred:", error);
+      return "An error occurred while processing the request.";
     }
   }
   //Check if the user's login credential is correct
-  async userLogin(username, password) {
+  async userLogin(gmail, password) {
     try {
       const query = `SELECT count(*) FROM bryantmDB.User where username = ? AND password = ?`;
-      const [result] = await select(query, [username, password]);
+      const [result] = await select(query, [gmail, password]);
       return result["count(*)"] == 1;
     } catch (error) {
       return error;
     }
   }
-  
-  async createAccount(
-    username,
-    password,
-    profileIcon,
-    email
-  ) {
+
+  async createAccount(username, password, profileIcon, email) {
     try {
-      const query = `INSERT INTO User (username, password, profileIcon, email) VALUES (?, ?, ?, now(), ?, ?, 0, 0); 
-      `;//change the insert to wokr for your database
-      await update(query, [
-        username,
-        password,
-        profileIcon,
-        email,
-      ]);
+      const query = `INSERT INTO bryantmDB.User (username, password, profileIcon, email) VALUES (?, ?, ?, ?);`;
+      //change the insert to wokr for your database
+      await update(query, [username, password, profileIcon, email]);
     } catch (error) {
       return error;
     }
@@ -124,6 +119,5 @@ class userManager{
       return error;
     }
   }
-
 }
 module.exports = userManager;
