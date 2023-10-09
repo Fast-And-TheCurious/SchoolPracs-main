@@ -2,6 +2,8 @@
  <!DOCTYPE html>
  <html lang="en">
  <head>
+  <link rel="stylesheet" href="/School_Website/css/theme.css">
+  <script src="/js/theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
@@ -13,9 +15,9 @@
   
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
  </head>
- <body>
-    <!-- Sidebar -->
- <!--  <div class="sidebar">
+ <body class="light-mode">
+  <!--   Sidebar
+  <div class="sidebar">
     <div class="top">
       <div class="logo">
         <i class='bx bx-user'></i>
@@ -26,12 +28,12 @@
     <div class="user">
       <img src="images/delmmedia_Abstract_background_signifying_Risk_management_for_st_532b59b2-12c7-4711-a4b6-47a58673d6e1.png" alt="" class="user-img">
       User profile image 
-      <div>-->
-       <!--  <p class="bold">Username</p> -->
-        <!-- Username, get and display user name-->
-       <!--  <p>Learner</p> -->
-        <!-- Learner or teacher -->
-   <!--    </div>
+      <div>
+        <p class="bold">Username</p>
+        Username, get and display user name
+        <p>Learner</p>
+        Learner or teacher
+      </div>
     </div>
     <ul>
       <li>
@@ -59,37 +61,7 @@
     </ul>
     </div> -->
 <!-- Main content -->
-    <div class="main-content">
-      <div class="page active-page" id="dashboard">
-    <!--     <span class="heading">Your Dashboard</span>
-        
-        <div class="container"> 
-                  
-                    <div class="name_container">
-                      <div class="Name label">
-                        <span class="name">Name</span>
-                        <input type="text" class="form-control" value="">
-                       Put user Full name in here 
-                      </div>
-                    </div>
-                    
-                    <div class="email_container">
-                      <div class="Email label">
-                        <span class="email">Email</span>
-                        <input type="text" class="form-control" value="">
-                         Put user Full name in here 
-                      </div>
-                    </div>
-                    <div class="grade_container">
-                      <div class="Grade label">
-                        <span class="email">Email</span>
-                        <input type="text" class="form-control" value="">
-                       Put user Full name in here 
-                      </div>
-                    </div>
-        </div>    --> 
-        
-      </div>
+    <div class="main-content">     
       <div class="container">
         <div class="main-content">          
                 
@@ -126,28 +98,38 @@
                             <div class="profile-item">
                               <label class="profile-heading" for="user-profile">Completed Courses</label>
                               <div class="completedCourses number-display">
-                                <span id="system-number">0</span>
+                                <span id="num_completedCourses">0</span>
                               </div>
                             </div>
                             <div class="profile-item">
                               <label class="profile-heading" for="user-profile">Points</label>
                               <div class="totalPoints number-display">
-                                <span id="system-number">0</span>
+                                <span id="num_points">0</span>
                               </div>
                             </div>
                           </div>
                           
-                        <hr class="my-4">                     
-                        <h3>Settings<span class="font-weight-light"></h3>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ThemeSettingsCheck" >
-                            <label class="form-check-label" for="defaultCheck2">
-                            Dark Mode
-                            </label>
-                        </div>
-                        <div class="btn">
-                          <button class="updateSettingsButton">Update</button>
-                      </div>
+                        <hr class="my-4">  
+                        <div class="setting_box">
+                          <h3>Settings<span class="font-weight-light"></h3>
+                            <div class="form-check flex-nextTo">
+                              <div>
+                                <input class="form-check-input" type="checkbox" value="" id="ThemeSettingsCheck" >
+                              <label class="form-check-label" for="defaultCheck2">
+                              Dark Mode
+                              </label>
+                              </div>                              
+                              <div class="btn">
+                                <button id="theme_updated_btn" class="updateSettingsButton">Update</button>
+                            </div>
+                          </div>                          
+                        <div class="page" id="logout">
+                            <button class="logout_button">
+                              Logout
+                            </button>
+                          </div> 
+                        </div>                   
+                      
                       <hr class="my-4">  
                     </div>
                   </div>
@@ -172,14 +154,14 @@
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="form-group focused">
-                              <label class="form-control-label" for="input-username">Username</label>
-                              <input type="text" id="input-username" class="form-control" placeholder="Username" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
+                              <label  class="form-control-label" for="input-username">Username</label>
+                              <input type="text" id="username" class="form-control" placeholder="Username" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="form-group">
                               <label class="form-control-label" for="input-email">Email address</label>
-                              <input type="email" id="input-email" class="form-control" placeholder="TheBuilder@example.com" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
+                              <input type="email" id="user-email" class="form-control" placeholder="TheBuilder@example.com" value=""><!-- value <-- is the value the user will input when making an account so use the sorted value -->
                             </div>
                           </div>
                         </div>
@@ -197,9 +179,7 @@
                               <div class="form-group">
                                 <label class="sub-title" for="input-history">History</label>
                                 <div class="history_display">
-                                  <ul class="history_content">
-                                    <li>getCourseHistory()</li>
-                                    <li>getCourseHistory()</li>
+                                  <ul id="history_content" class="history_content">
                                     <li>getCourseHistory()</li>
                                     <li>getCourseHistory()</li>
                                   </ul>
@@ -259,34 +239,22 @@
               </div>
             </div>
           </div>
-        </div>
-        
-      <!-- <div class="page" id="settings">
-        <span class="heading">Settings</span>
-        
-        <input class="form-check-input" type="checkbox" value="" id="dark-theme">
-        Dark Mode
-      </div> -->
-    </div>
-     <!--  <div class="page" id="logout">
-      <h1>Logout</h1>
-      </div>  -->
+        </div>      
+    </div>     
     </div>
 
  </body>
- <script>
+<!--  <script>
   let btn=document.querySelector('#btn');
   let sidebar= document.querySelector('.sidebar');
   btn.onclick = function(){
     sidebar.classList.toggle('active');
   };  
 
-/*  */
   function showPage(pageId) {
         const pages = document.querySelectorAll(".page");
         const navItems = document.querySelectorAll(".nav-item");
 
-        // Hide all pages and remove active class from nav items
         pages.forEach((page) => {
           page.classList.remove("active-page");
         });
@@ -295,7 +263,6 @@
           navItem.classList.remove("active");
         });
 
-        // Show selected page and add active class to corresponding nav item
         const selectedPage = document.getElementById(pageId);
         const selectedNavItem = document.querySelector(
           `.nav-item[data-page="${pageId}"]`
@@ -304,6 +271,6 @@
         selectedPage.classList.add("active-page");
         selectedNavItem.classList.add("active");
       }
- </script>
- <script src="JavaScript/profile.js"></script>
+ </script> -->
+ <script src="/School_Website/JavaScript/profile.js"></script>
  </html>
