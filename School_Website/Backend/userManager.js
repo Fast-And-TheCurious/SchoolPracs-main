@@ -53,7 +53,7 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username,username,profileIcon, FROM bryantmDB.User where UserID = ?;`;
+      const query = `SELECT username,profileIcon, FROM bryantmDB.User where UserID = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
