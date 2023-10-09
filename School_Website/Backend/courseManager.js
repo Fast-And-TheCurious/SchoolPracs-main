@@ -34,7 +34,7 @@ class courseManager {
   async getCourses() {
     try {
       const query = "SELECT * FROM bryantmDB.Courses";
-      const [result] = await select(query);
+      const result = await select(query);
       if (!result || result.length === 0) {
         return { error: "No courses found", statusCode: 404 };
       }
