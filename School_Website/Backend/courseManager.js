@@ -22,7 +22,7 @@ async function storeCoursesInArray() {
     console.error("Error:", error);
   } finally {
     if (connection) {
-      connection.release();
+      connection.release()
     }
   }
 }
