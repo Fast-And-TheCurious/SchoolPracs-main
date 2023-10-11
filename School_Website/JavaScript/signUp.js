@@ -13,5 +13,34 @@ const userUsername = document.querySelector("#username");
  does email entered exist in database
  does username already exist
  */
+// signup.js
+//change code
 
- const server = "http://127.0.0.1:5000/api/user/email";
+signUpButton.addEventListener("click", function () {
+  const server = "http://127.0.0.1:5000/api/user/createAccount";
+  const requestBody = {
+    gmail: userGmail.value,
+    password: userPassword.value,
+    username: userUsername.value,
+  };
+
+  fetch(server, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "success") {
+        console.log("Account created successfully");
+        // Redirect or perform other actions after successful registration
+      } else {
+        console.error("Error creating an account.");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});

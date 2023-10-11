@@ -3,7 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
+const cookieParser = require('cookie-parser');
 
+app.use(cookieParser());
 
 const { createConnection } = require("./database");
 
@@ -26,7 +28,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-
 async function connectToDatabase() {
   try {
     await createConnection();
@@ -39,6 +40,20 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
+
+// Check session middleware
+app.use((req, res, next) => {
+  const sessionToken = req.cookies.sessionToken;
+
+  // Verify the session token on the server
+  if (isValidSession(sessionToken)) {
+    req.user = getUserBySession(sessionToken);
+  } else {
+    req.user = null;
+  }
+
+  next();
+});
 //api end-points
 
 /* User */

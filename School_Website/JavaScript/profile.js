@@ -25,6 +25,16 @@ get user num completed courses
 get user points
 
 */
+document.getElementById('logoutButton').addEventListener('click', function() {
+  // On logout, remove the session token cookie
+  document.cookie = 'sessionToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+  // Redirect the user to a logout page or perform any other required actions
+  // (e.g., clear user data from the client-side, redirect to the login page, etc.)
+  // Example redirect:
+  window.location.href = '/logout'; // You can specify a logout page URL here
+});
+
 async function getUserID() {
     const server = "http://127.0.0.1:5000/api/user/userID";
     const query = `?gmail=${userGmail.value}`;  

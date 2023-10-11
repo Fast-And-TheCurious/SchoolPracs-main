@@ -32,6 +32,8 @@ const userPassword = document.querySelector("#Password");
           const loginError = document.getElementById("LoginError");
           loginError.style.visibility = "visible";
         } else {
+          // After a successful login, set the session cookie
+          setSessionCookie(data.sessionToken);
           getUserID();
         }
       })
@@ -40,13 +42,38 @@ const userPassword = document.querySelector("#Password");
       });
   });
   
-  async function getUserID() {
+  // Function to set the session cookie
+  function setSessionCookie(sessionToken) {
+    // Set an appropriate expiry date (e.g., session cookie will expire when the browser is closed)
+    const expiryDate = new Date(0);
+  
+    document.cookie = `sessionToken=${sessionToken}; expires=${expiryDate.toUTCString()}; path=/`;
+  }
+  
+  async function getUserID(callback) {
     const server = "http://127.0.0.1:5000/api/user/userID";
     const query = `?gmail=${userGmail.value}`;
   
-    fetch(server + query)
-      .then((response) => response.json())
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const response = await fetch(server + query);
+      const data = await response.json();
+      if (data.status === "success") {
+        // User ID fetched successfully, you can handle it here
+        const userID = data.userID;
+        if (callback) {
+          callback(userID);
+        }
+      } else {
+        console.error("User ID not found.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
+  
+  // Example usage:
+  getUserID((userID) => {
+    // Do something with the user ID
+    console.log("User ID:", userID);
+  });
+  
