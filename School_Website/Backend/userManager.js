@@ -1,15 +1,15 @@
 const { select, update } = require("./database");
 
 class userManager {
-  async updateProfile(newUserName, newProfileIcon, userID) {
+  async updateProfile(newUserName, newProfileIcon, newEmail, userID) {
     try {
-      const query = `UPDATE bryantmDB.User SET username = ?, profileIcon = ?  WHERE (UserID = ?)`;
-      await update(query, [newUserName, newProfileIcon, userID]);
+      const query = `UPDATE bryantmDB.User SET username = ?, profileIcon = ?, email = ?  WHERE (UserID = ?)`;
+      await update(query, [newUserName, newProfileIcon, newEmail, userID]);
       return "Update profile operation successful";
     } catch (error) {
       return error;
     }
-  }
+  } 
 
   async getUserID(username) {
     try {
@@ -53,13 +53,14 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username,profileIcon, FROM bryantmDB.User where UserID = ?;`;
+      const query = `SELECT username, profileIcon FROM bryantmDB.User where UserID = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
       return error;
     }
   }
+  
   async getUserProfileIcon(userID) {
     try {
       const query = `SELECT profileIcon FROM bryantmDB.User WHERE UserID = ?`;
@@ -84,7 +85,7 @@ class userManager {
     try {
       const query = `SELECT count(*) FROM bryantmDB.User where username = ? AND password = ?`;
       const [result] = await select(query, [gmail, password]);
-      return result["count(*)"] == 1;
+      return result["count(*)"] == 1;//ask
     } catch (error) {
       return error;
     }

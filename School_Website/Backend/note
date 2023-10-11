@@ -1,1 +1,101 @@
-Each managaer is the SQL queries for that specific page
+//Each managaer is the SQL queries for that specific page
+
+
+
+//Direct
+/* 
+app.get("/api/direct/permission", (req, res) => {
+  const { senderID, receiverID } = req.query;
+
+  let directMessage = new DirectMessage();
+
+  directMessage
+    .hasAbilityToSend(senderID, receiverID)
+    .then((jsonifiedResult) => {
+      res.status(200).send(jsonifiedResult);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred");
+    });
+});
+
+app.post("/api/direct/message", (req, res) => {
+  const senderID = req.body.senderID;
+  const receiverID = req.body.receiverID;
+  const message = req.body.message;
+
+  let directMessage = new DirectMessage();
+  directMessage.sendMessage(senderID, receiverID, message);
+  res.json({ message: "Data received and processed successfully" });
+});
+
+app.post("/api/direct/deleteMessage", (req, res) => {
+  const messageID = req.body.messageID;
+
+  let directMessage = new DirectMessage();
+  directMessage.deleteMessage(messageID);
+  res.json({ message: "Data received and processed successfully" });
+});
+
+app.post("/api/direct/clearMessage", (req, res) => {
+  const senderID = req.body.senderID;
+  const receiverID = req.body.receiverID;
+
+  let directMessage = new DirectMessage();
+  directMessage.clearMessage(senderID, receiverID);
+  res.json({ message: "Data received and processed successfully" });
+});
+
+app.get("/api/direct/list", (req, res) => {
+  const { userID } = req.query;
+
+  let directMessage = new DirectMessage();
+
+  directMessage
+    .getDirectList(userID)
+    .then((jsonifiedResult) => {
+      res.status(200).send(jsonifiedResult);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred");
+    });
+});
+
+app.get("/api/direct/message", (req, res) => {
+  const { senderID, receiverID, messageID } = req.query;
+
+  let directMessage = new DirectMessage();
+
+  directMessage
+    .getMessage(senderID, receiverID, messageID)
+    .then((jsonifiedResult) => {
+      res.status(200).send(jsonifiedResult);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred");
+    });
+}); */
+/* Based on the provided code, it appears that you have covered the essential user-related API endpoints. These endpoints handle user authentication, user profile information retrieval, email checking, and account creation. However, it's important to consider your project's specific requirements.
+
+Here are some additional user-related API endpoints that you might consider depending on your project needs:
+
+Update User Profile Data: If users need the ability to update their profile information (e.g., username, profile picture), you can create an endpoint for that.
+
+Change Password: If users can change their passwords, you might want an endpoint for that as well.
+
+User Deletion: Consider adding an endpoint to allow users to delete their accounts.
+
+User Permissions: If your application has roles and permissions, you might need endpoints to manage those.
+
+User Activity Logs: If you want to track user activities, consider endpoints for logging and retrieving user activity history.
+
+User Preferences: If your application has user-specific preferences (e.g., theme settings), you can create endpoints to manage those.
+
+User Notifications: For managing user notifications or alerts.
+
+User Dashboard Data: If you have a user dashboard, you might need endpoints to fetch data for the dashboard.
+
+User Search: If your application has a user search functionality, create endpoints to search for users. */

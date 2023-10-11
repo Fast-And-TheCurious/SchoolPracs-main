@@ -7,15 +7,13 @@ const cors = require("cors");
 
 const { createConnection } = require("./database");
 
-/* const lessonManager = require("./lessonManager");
-const HelpManager = require("./helpManager");
-const TopicManager = require("./topicManager");
-const SignUpManager = require("./signUpManager");
-const CourseManager = require("./courseManager");
-const LoginManager = require("./loginManager");
-*/
-
+const lessonManager = require("./lessonManager");
+const helpManager = require("./helpManager");
+const signUpManager = require("./signUpManager");
+const loginManager = require("./loginManager");
+const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
+const helpManager = require("./helpManager");
 
 app.use(bodyParser.json());
 
@@ -45,175 +43,376 @@ connectToDatabase();
 
 /* User */
 
-app.get("/api/user/login", (req, res) => {
+/* User Login */
+app.get("/api/user/login", async (req, res) => {
   const { username, password } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const isLoggedIn = await user.userLogin(username, password);
 
-  user.userLogin(username, password).then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    }).catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    if (isLoggedIn) {
+      res.status(200).json({ status: "success", message: "Login successful" });
+    } else {
+      res.status(401).json({ status: "error", message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/getGmail", (req, res) => {
+/* Get User Email by Username */
+app.get("/api/user/getGmail", async (req, res) => {
   const { username } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const email = await user.getUserEmail(username);
 
-  user
-    .getUserEmail(username)
-    .then((result) => {
-      if (result) {
-        // User found, send the email address
-        res.status(200).send({ email: result.email });
-      } else {
-        // User not found, send an appropriate response
-        res.status(404).send("User not found");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    if (email) {
+      res.status(200).json({ status: "success", email });
+    } else {
+      res.status(404).json({ status: "not found", message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/email", (req, res) => {
+/* Check If Email Exists */
+app.get("/api/user/email", async (req, res) => {
   const { email } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const emailExists = await user.doesEmailExist(email);
 
-  user
-    .doesEmailExist(email)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    res.status(200).json({ status: "success", emailExists });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/usernameExist", (req, res) => {
+/* Check If Username Exists */
+app.get("/api/user/usernameExist", async (req, res) => {
   const { username } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const usernameExists = await user.doesUsernameExist(username);
 
-  user
-    .doesUsernameExist(username)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    res.status(200).json({ status: "success", usernameExists });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/username", (req, res) => {
+/* Get Username by User ID */
+app.get("/api/user/username", async (req, res) => {
   const { userID } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const username = await user.getUsername(userID);
 
-  user
-    .getUsername(userID)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    if (username) {
+      res.status(200).json({ status: "success", username });
+    } else {
+      res.status(404).json({ status: "not found", message: "Username not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/userID", (req, res) => {
+/* Get User ID by Username */
+app.get("/api/user/userID", async (req, res) => {
   const { username } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const userID = await user.getUserID(username);
 
-  user
-    .getUserID(username)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    if (userID) {
+      res.status(200).json({ status: "success", userID });
+    } else {
+      res.status(404).json({ status: "not found", message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
-app.get("/api/user/search", (req, res) => {
+
+/* Search Users */
+app.get("/api/user/search", async (req, res) => {
   const { userID, searchUser } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const userList = await user.getListOfUsernames(userID, searchUser);
 
-  user
-    .getListOfUsernames(userID, searchUser)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    res.status(200).json({ status: "success", userList });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/profile", (req, res) => {
+/* Get User Profile */
+app.get("/api/user/profile", async (req, res) => {
   const { userID } = req.query;
 
-  let user = new userManager();
+  try {
+    const user = new userManager();
+    const userProfile = await user.getUserProfile(userID);
 
-  user
-    .getUserProfile(userID)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred");
-    });
+    if (userProfile) {
+      res.status(200).json({ status: "success", userProfile });
+    } else {
+      res.status(404).json({ status: "not found", message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
 });
 
-app.get("/api/user/profileIcon", (req, res) => {
+/* Get User Profile Icon */
+app.get("/api/user/profileIcon", async (req, res) => {
   const { userID } = req.query;
 
+  try {
+    const user = new userManager();
+    const profileIcon = await user.getUserProfileIcon(userID);
+
+    if (profileIcon.error) {
+      res.status(404).json({ status: "not found", message: profileIcon.error });
+    } else {
+      res.status(200).json({ status: "success", profileIcon });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
+});
+
+/* Update User Profile */
+app.post("/api/user/profile", async (req, res) => {
+  const { userID, newUsername, newProfileIcon } = req.body;
+
+  try {
+    const user = new userManager();
+    await user.updateProfile(userID, newUsername, newProfileIcon);
+
+    res.status(200).json({ status: "success", message: "Profile updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
+});
+
+/* Create User Account */
+app.post("/api/user/createAccount", async (req, res) => {
+  const { username, password, emailAddress } = req.body;
+
+  try {
+    const user = new userManager();
+    await user.createAccount(username, password, emailAddress);
+
+    res.status(200).json({ status: "success", message: "Account created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
+});
+//Update User Profile Data 
+app.put("/api/user/updateProfile", (req, res) => {
+  const { userID, newUsername, newProfileIcon } = req.body;
+
   let user = new userManager();
 
   user
-    .getUserProfileIcon(userID)
-    .then((jsonifiedResult) => {
-      res.status(200).send(jsonifiedResult);
+    .updateProfile(newUsername, newProfileIcon, userID)
+    .then((result) => {
+      res.status(200).send({ message: "Profile updated successfully" });
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send("Error occurred");
+      res.status(500).send("Error occurred while updating profile");
     });
 });
-app.post("/api/user/profile", (req, res) => {
-  const userID = req.body.userID;
-  const newUsername = req.body.newUsername;
-  const newProfileIcon = req.body.newProfileIcon;
+/* Change Password: */
+
+app.put("/api/user/changePassword", (req, res) => {
+  const { userID, newPassword } = req.body;
+
   let user = new userManager();
-  user.updateProfile(
-    userID,
-    newUsername,
-    newProfileIcon,
-  );
-  res.json({ message: "Data received and processed successfully" });
+
+  user
+    .changePassword(userID, newPassword)
+    .then((result) => {
+      res.status(200).send({ message: "Password changed successfully" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred while changing password");
+    });
+});
+/* User Deletion: */
+app.delete("/api/user/deleteAccount", (req, res) => {
+  const { userID } = req.body;
+
+  let user = new userManager();
+
+  user
+    .deleteAccount(userID)
+    .then((result) => {
+      res.status(200).send({ message: "Account deleted successfully" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error occurred while deleting account");
+    });
 });
 
-app.post("/api/user/createAccount", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const emailAddress = req.body.emailAddress;
+//Courses
+// Define API endpoints for courseManager
+app.get("/api/courses", async (req, res) => {
+  try {
+    const manager = new courseManager();
+    const courses = await manager.getCourses();
 
-  let user = new userManager();
-  user.createAccount(
-    username,
-    password,
-    emailAddress
-  );
-  res.json({ message: "Data received and processed successfully" });
+    if (courses.error) {
+      // If there's an error, set the appropriate status code and send an error response
+      res.status(courses.statusCode).json({ error: courses.error });
+    } else {
+      // Send the courses data as a successful response
+      res.status(200).json(courses);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
+});
+
+//Lessons
+// Define API endpoint for getting lessons
+app.get("/api/lessons", async (req, res) => {
+  try {
+    const manager = new lessonManager();
+    const lessons = await manager.getLessons();
+
+    if (lessons.error) {
+      // If there's an error, set the appropriate status code and send an error response
+      res.status(lessons.statusCode).json({ error: lessons.error });
+    } else {
+      // Send the lessons data as a successful response
+      res.status(200).json(lessons);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+//Units
+
+app.get("/api/units", async (req, res) => {
+  try {
+    const manager = new unitManager();
+    const units = await manager.getUnits();
+
+    if (units.error) {
+      // If there's an error, set the appropriate status code and send an error response
+      res.status(500).json({ error: "An error occurred while processing the request" });
+    } else {
+      // Send the units data as a successful response
+      res.status(200).json(units);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
+});
+
+
+// API endpoints for helpManager
+
+// Get all help messages
+app.get('/api/help/messages', async (req, res) => {
+  try {
+    const messages = await helpManager.getAllMessages();
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred');
+  }
+});
+
+// Get help message by ID
+app.get('/api/help/messages/:message_id', async (req, res) => {
+  const { message_id } = req.params;
+  try {
+    const message = await helpManager.getMessageById(message_id);
+    if (!message) {
+      res.status(404).send('Message not found');
+    } else {
+      res.status(200).json(message);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred');
+  }
+});
+
+// Create a new help message
+app.post('/api/help/messages', async (req, res) => {
+  const { user_id, message_text } = req.body;
+  try {
+    const newMessage = await helpManager.createMessage(user_id, message_text);
+    res.status(201).json(newMessage);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred');
+  }
+});
+
+// Update help message by ID
+app.put('/api/help/messages/:message_id', async (req, res) => {
+  const { message_id } = req.params;
+  const { message_text } = req.body;
+  try {
+    const updatedMessage = await helpManager.updateMessage(message_id, message_text);
+    if (!updatedMessage) {
+      res.status(404).send('Message not found');
+    } else {
+      res.status(200).json(updatedMessage);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred');
+  }
+});
+
+// Delete help message by ID
+app.delete('/api/help/messages/:message_id', async (req, res) => {
+  const { message_id } = req.params;
+  try {
+    const deletedMessage = await helpManager.deleteMessage(message_id);
+    if (!deletedMessage) {
+      res.status(404).send('Message not found');
+    } else {
+      res.status(200).json(deletedMessage);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred');
+  }
+});

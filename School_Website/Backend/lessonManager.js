@@ -56,7 +56,7 @@ class lessonManager {
   async getLessons() {
     try {
       const query = "SELECT * FROM Lesson";
-      const [result] = await select(query);
+      const result = await select(query);
 
       if (!result || result.length === 0) {
         return { error: "No lessons found", statusCode: 404 };
@@ -70,6 +70,7 @@ class lessonManager {
 }
 
 module.exports = lessonManager;
+
 
 
 /* let lessonArray=[]; 

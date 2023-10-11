@@ -39,7 +39,7 @@ const userPassword = document.querySelector("#Password");
         console.error(error);
       });
   });
-
+  
   async function getUserID() {
     const server = "http://127.0.0.1:5000/api/user/userID";
     const query = `?gmail=${userGmail.value}`;
@@ -50,5 +50,3 @@ const userPassword = document.querySelector("#Password");
         console.error(error);
       });
   }
-
-  

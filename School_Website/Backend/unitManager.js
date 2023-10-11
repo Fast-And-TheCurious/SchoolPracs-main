@@ -1,16 +1,19 @@
 const { select, update } = require("./database");
 
-class unitManager{
-    async getUnits(){
-        try{
-            const query = "SELECT * FROM bryantmDB.Unit"
-            const [result] = await select(query);
-            return result;
-        }catch(error){
-            return error;
-        }
+class unitManager {
+  async getUnits() {
+    try {
+      const query = "SELECT * FROM bryantmDB.Unit";
+      const result = await select(query);
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching units:", error);
+      return error;
     }
+  }
 }
+
+module.exports = unitManager;
 /* const unitArray = [];
 
 async function fetchUnits() {
@@ -34,4 +37,3 @@ async function fetchUnits() {
 }
 module.exports.unitArray= unitArray;
 fetchUnits(); */
-module.exports = unitManager;
