@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }); 
  */
 document.addEventListener('DOMContentLoaded', function() {
-    getCourses(); 
+  getCourses(); 
   getLessonsByCourse();
   getUnitsByCourse();
 });

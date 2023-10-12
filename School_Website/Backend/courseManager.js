@@ -49,7 +49,7 @@ class courseManager {
 
   async getLessonsByCourse(courseId) {
     try {
-      const query = "SELECT * FROM Lessons WHERE courseId = ?";
+      const query = "SELECT * FROM Lesson WHERE courseId = ?";
       const result = await select(query, [courseId]);
 
       if (!result || result.length === 0) {
@@ -64,7 +64,7 @@ class courseManager {
 
   async getUnitsByCourse(courseId) {
     try {
-      const query = "SELECT * FROM Units WHERE courseId = ?";
+      const query = "SELECT * FROM Unit WHERE courseId = ?";
       const result = await select(query, [courseId]);
 
       if (!result || result.length === 0) {
