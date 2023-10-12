@@ -1,4 +1,4 @@
-const { select } = require("./database");
+
 /* const courseFormattedArray = []; 
 
 async function storeCoursesInArray() {

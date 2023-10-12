@@ -75,6 +75,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 }); 
  */
+document.addEventListener('DOMContentLoaded', function() {
+    getCourses(); 
+  getLessonsByCourse();
+  getUnitsByCourse();
+});
+// Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+
+// Get the value of the 'course' parameter from the URL
+const courseName = urlParams.get('course');
+
+// Now you can use the 'courseName' variable to load the specific course content
+
+
 // Function to fetch courses
 function getCourses() {
   fetch("/api/courses")
