@@ -75,10 +75,22 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 }); 
  */
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
-  getCourses(); 
-  getLessonsByCourse();
-  getUnitsByCourse();
+
+  getCourses(1); 
+  getLessonsByCourse(1);
+  getUnitsByCourse(1);
+  numCourses();
 });
 // Get the URL parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -87,11 +99,29 @@ const urlParams = new URLSearchParams(window.location.search);
 const courseName = urlParams.get('course');
 
 // Now you can use the 'courseName' variable to load the specific course content
+//see if works
+//display each course with their specific information
+function numCourses(){
+  try{
+  const courseLength = getCourses.length-1;
+    let numCourses = 0;
+  for (let i = 0; i <= courseLength; i++) {
+    numCourses++;
+    const course = getCourses[i]; 
+    console.log(`Course ${i}: ${course.title}`);
+    console.log(`Number of Courses: ${numCourses}`);
+
+  }
+}catch (error) {
+  console.error('An error occurred counting num Courses:', error);
+}
+}
+
 
 
 // Function to fetch courses
 function getCourses() {
-  fetch("/api/courses")
+  fetch("http://127.0.0.1:5000/api/courses")
     .then((response) => response.json())
     .then((data) => {
       if (data.error) {
@@ -110,7 +140,7 @@ function getCourses() {
 
 // Function to fetch lessons by course
 function getLessonsByCourse(courseId) {
-  fetch(`/api/lessons/${courseId}`)
+  fetch(`http://127.0.0.1:5000/api/lessons/${courseId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.error) {
@@ -129,7 +159,7 @@ function getLessonsByCourse(courseId) {
 
 // Function fetch units by course
 function getUnitsByCourse(courseId) {
-  fetch(`/api/units/${courseId}`)
+  fetch(`http://127.0.0.1:5000/api/units/${courseId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.error) {
