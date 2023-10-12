@@ -38,6 +38,7 @@ const userPassword = document.querySelector("#Password");
           // After a successful login, set the session cookie
           setSessionCookie(data.sessionToken);
           getUserID();
+
         }
       })
       .catch((error) => {
@@ -46,10 +47,8 @@ const userPassword = document.querySelector("#Password");
   });
   
   // Function to set the session cookie
-  function setSessionCookie(sessionToken) {
-    // Set an appropriate expiry date (e.g., session cookie will expire when the browser is closed)
-    const expiryDate = new Date(0);
-  
+  function setSessionCookie(sessionToken) {   
+    const expiryDate = new Date(0);  
     document.cookie = `sessionToken=${sessionToken}; expires=${expiryDate.toUTCString()}; path=/`;
   }
   
@@ -61,7 +60,7 @@ const userPassword = document.querySelector("#Password");
       const response = await fetch(server + query);
       const data = await response.json();
       if (data.status === "success") {
-        // User ID fetched successfully, you can handle it here
+        // User ID fetched successfully, handle here
         const userID = data.userID;
         if (callback) {
           callback(userID);

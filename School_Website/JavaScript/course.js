@@ -31,27 +31,17 @@ function renderCourses(formattedLessons) {
   });
 }
  */
+/* const { courseFormattedArray } = require('../Backend/server'); // Adjust the relative path as needed
 
-const arrayOfObjects = require('../Backend/server');
-
-console.log(arrayOfObjects);
-
-
-
-/* console.log("IN COURSE FILE"+courseFormattedArray); */
-const { courseFormattedArray } = require('../Backend/server'); // Adjust the relative path as needed
-
-// Check if courseFormattedArray is populated
 if (courseFormattedArray.length === 0) {
   console.log('courseFormattedArray is empty or not yet populated.');
 } else {
-  // Iterate through and print the contents
   courseFormattedArray.forEach((course) => {
     console.log("\nCourse file\n");
     console.log(course.id, course.name, course.title, course.about_description);
   });
 }
-
+ */
 
 /* 
 const coursesData = [
@@ -85,3 +75,59 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 }); 
  */
+// Function to fetch courses
+function getCourses() {
+  fetch("/api/courses")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error fetching courses:", data.error);
+      } else {
+        // Courses retrieved successfully, handle here
+        const courses = data;
+        //  Place to do with something with the courses
+        console.log("Courses:", courses);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+}
+
+// Function to fetch lessons by course
+function getLessonsByCourse(courseId) {
+  fetch(`/api/lessons/${courseId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error fetching lessons:", data.error);
+      } else {
+        // Lessons retrieved successfully, handle here
+        const lessons = data;
+        // Place to do with something with the lessons
+        console.log("Lessons:", lessons);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+}
+
+// Function fetch units by course
+function getUnitsByCourse(courseId) {
+  fetch(`/api/units/${courseId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error fetching units:", data.error);
+      } else {
+        // Units retrieved successfully, handle here
+        const units = data;
+        //  Place to do with something with the units
+        console.log("Units:", units);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+}

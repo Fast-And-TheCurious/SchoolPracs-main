@@ -29,22 +29,51 @@ async function storeCoursesInArray() {
 
 module.exports.courseFormattedArray = courseFormattedArray; 
 storeCoursesInArray(); */
+const { select } = require("./database");
 
 class courseManager {
   async getCourses() {
     try {
-      const query = "SELECT * FROM bryantmDB.Courses";
+      const query = "SELECT * FROM Courses";
       const result = await select(query);
+
       if (!result || result.length === 0) {
         return { error: "No courses found", statusCode: 404 };
       }
       return result;
     } catch (error) {
       console.error("An error occurred while fetching courses:", error);
-      return {
-        error: "An error occurred while processing the request",
-        statusCode: 500,
-      };
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
+
+  async getLessonsByCourse(courseId) {
+    try {
+      const query = "SELECT * FROM Lessons WHERE courseId = ?";
+      const result = await select(query, [courseId]);
+
+      if (!result || result.length === 0) {
+        return { error: "No lessons found for this course", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching lessons:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
+
+  async getUnitsByCourse(courseId) {
+    try {
+      const query = "SELECT * FROM Units WHERE courseId = ?";
+      const result = await select(query, [courseId]);
+
+      if (!result || result.length === 0) {
+        return { error: "No units found for this course", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching units:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
 }

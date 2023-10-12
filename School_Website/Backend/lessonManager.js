@@ -50,16 +50,32 @@ getLessonData((error, results) => {
   console.log(JSON.stringify(lessonData, null, 2));
 }); */
 
-/* Lesson */const { select } = require("./database");
+/* Lesson */
+const { select } = require("./database");
 
 class lessonManager {
-  async getLessons() {
+  async getCourses() {
     try {
-      const query = "SELECT * FROM Lesson";
+      const query = "SELECT * FROM Courses";
       const result = await select(query);
 
       if (!result || result.length === 0) {
-        return { error: "No lessons found", statusCode: 404 };
+        return { error: "No courses found", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching courses:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
+
+  async getLessonsByCourse(courseId) {
+    try {
+      const query = "SELECT * FROM Lessons WHERE courseId = ?";
+      const result = await select(query, [courseId]);
+
+      if (!result || result.length === 0) {
+        return { error: "No lessons found for this course", statusCode: 404 };
       }
       return result;
     } catch (error) {
@@ -67,7 +83,23 @@ class lessonManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
+
+  async getUnitsByCourse(courseId) {
+    try {
+      const query = "SELECT * FROM Units WHERE courseId = ?";
+      const result = await select(query, [courseId]);
+
+      if (!result || result.length === 0) {
+        return { error: "No units found for this course", statusCode: 404 };
+      }
+      return result;
+    } catch (error) {
+      console.error("An error occurred while fetching units:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
 }
+
 
 module.exports = lessonManager;
 

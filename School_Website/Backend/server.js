@@ -295,7 +295,8 @@ app.delete("/api/user/deleteAccount", (req, res) => {
 });
 
 //Courses
-// Define API endpoints for courseManager
+
+//endpoints for courseManager
 app.get("/api/courses", async (req, res) => {
   try {
     const manager = new courseManager();
@@ -313,17 +314,15 @@ app.get("/api/courses", async (req, res) => {
     res.status(500).json({ error: "An internal server error occurred" });
   }
 });
-
 //Lessons
-// Define API endpoint for getting lessons
+//endpoint for getting lessons
 app.get("/api/lessons", async (req, res) => {
   try {
     const manager = new lessonManager();
     const lessons = await manager.getLessons();
 
     if (lessons.error) {
-      // If there's an error, set the appropriate status code and send an error response
-      res.status(lessons.statusCode).json({ error: lessons.error });
+     res.status(lessons.statusCode).json({ error: lessons.error });
     } else {
       // Send the lessons data as a successful response
       res.status(200).json(lessons);
@@ -336,14 +335,12 @@ app.get("/api/lessons", async (req, res) => {
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 //Units
-
 app.get("/api/units", async (req, res) => {
   try {
     const manager = new unitManager();
     const units = await manager.getUnits();
 
     if (units.error) {
-      // If there's an error, set the appropriate status code and send an error response
       res.status(500).json({ error: "An error occurred while processing the request" });
     } else {
       // Send the units data as a successful response
@@ -355,6 +352,41 @@ app.get("/api/units", async (req, res) => {
   }
 });
 
+// Lessons by Course
+app.get("/api/lessons/:courseId", async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const manager = new courseManager();
+    const lessons = await manager.getLessonsByCourse(courseId);
+
+    if (lessons.error) {
+      res.status(lessons.statusCode).json(lessons);
+    } else {
+      res.status(200).json(lessons);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
+});
+
+// Units by Course
+app.get("/api/units/:courseId", async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const manager = new courseManager();
+    const units = await manager.getUnitsByCourse(courseId);
+
+    if (units.error) {
+      res.status(units.statusCode).json(units);
+    } else {
+      res.status(200).json(units);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
+});
 
 // API endpoints for helpManager
 
