@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   async function getUserID() {
     const server = "http://127.0.0.1:5000/api/user/userID";
-    const query = `?gmail=${userGmail.value}`;
+    const query = `?email=${userGmail.value}`;
   
     fetch(server + query)
       .then((response) => response.json())

@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
@@ -15,9 +15,8 @@ const signUpManager = require("./signUpManager");
 const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
-const helpManager = require("./helpManager");
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.json());
@@ -42,10 +41,9 @@ connectToDatabase();
 
 
 // Check session middleware
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   const sessionToken = req.cookies.sessionToken;
 
-  // Verify the session token on the server
   if (isValidSession(sessionToken)) {
     req.user = getUserBySession(sessionToken);
   } else {
@@ -53,18 +51,18 @@ app.use((req, res, next) => {
   }
 
   next();
-});
+}); */
 //api end-points
 
 /* User */
 
 /* User Login */
 app.get("/api/user/login", async (req, res) => {
-  const { username, password } = req.query;
+  const { email, password } = req.query;
 
   try {
     const user = new userManager();
-    const isLoggedIn = await user.userLogin(username, password);
+    const isLoggedIn = await user.userLogin(email, password);
 
     if (isLoggedIn) {
       res.status(200).json({ status: "success", message: "Login successful" });
@@ -147,11 +145,11 @@ app.get("/api/user/username", async (req, res) => {
 
 /* Get User ID by Username */
 app.get("/api/user/userID", async (req, res) => {
-  const { username } = req.query;
+  const { email } = req.query;
 
   try {
     const user = new userManager();
-    const userID = await user.getUserID(username);
+    const userID = await user.getUserID(email);
 
     if (userID) {
       res.status(200).json({ status: "success", userID });

@@ -37,7 +37,7 @@ document.getElementById('logoutButton').addEventListener('click', function() {
 
 async function getUserID() {
     const server = "http://127.0.0.1:5000/api/user/userID";
-    const query = `?gmail=${userGmail.value}`;  
+    const query = `?email=${userGmail.value}`;  
     return fetch(server + query)
       .then((response) => {
         if (response.ok) {
@@ -74,7 +74,7 @@ getUserID()
   async function getUsername(userID) {
     try {
       const server = "http://127.0.0.1:5000/api/user/username";
-      const query = `?userID=${userID}`;
+      const query = `?id=${userID}`;
       const response = await fetch(server + query);
   
       if (response.ok) {

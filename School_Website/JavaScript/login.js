@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
+/* document.addEventListener('DOMContentLoaded', function () {
   fetch('http://localhost:5000/getAll')
   .then(response => response.json())
   .then(data => loadHTMLTable(data['data']));  
 });
-
+ */
 const loginButton = document.querySelector("#loginButton");
-const userGmail = document.querySelector("#Gmail");
+const userEmail = document.querySelector("#Gmail");
 const userPassword = document.querySelector("#Password");
 
 // add hiding and viewing of function later
@@ -22,16 +22,19 @@ const userPassword = document.querySelector("#Password");
   }); */
 
   loginButton.addEventListener("click", function () {
+
     const server = "http://127.0.0.1:5000/api/user/login";
-    const query = `?gmail=${userGmail.value}&password=${userPassword.value}`;
+    const query = `?email=${userEmail.value}&password=${userPassword.value}`;
   
     fetch(server + query)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         if (!data) {
           const loginError = document.getElementById("LoginError");
           loginError.style.visibility = "visible";
         } else {
+          
           // After a successful login, set the session cookie
           setSessionCookie(data.sessionToken);
           getUserID();
@@ -52,7 +55,7 @@ const userPassword = document.querySelector("#Password");
   
   async function getUserID(callback) {
     const server = "http://127.0.0.1:5000/api/user/userID";
-    const query = `?gmail=${userGmail.value}`;
+    const query = `?email=${userEmail.value}`;
   
     try {
       const response = await fetch(server + query);
@@ -72,8 +75,9 @@ const userPassword = document.querySelector("#Password");
   }
   
   // Example usage:
-  getUserID((userID) => {
-    // Do something with the user ID
+  //Do something with the user ID
+ /*  getUserID((userID) => {
+    
     console.log("User ID:", userID);
   });
-  
+   */

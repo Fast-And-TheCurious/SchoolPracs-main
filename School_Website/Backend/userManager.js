@@ -11,10 +11,10 @@ class userManager {
     }
   } 
 
-  async getUserID(username) {
+  async getUserID(email) {
     try {
-      const query = `SELECT UserID FROM bryantmDB.User where username = ?`;
-      const [result] = await select(query, [username]);
+      const query = `SELECT id FROM bryantmDB.User where email = ?`;
+      const [result] = await select(query, [email]);
       return result;
     } catch (error) {
       return error;
@@ -22,9 +22,9 @@ class userManager {
   }
   async getUserEmail(userID) {
     try {
-      const query = `SELECT gmail FROM bryantmDB.User WHERE userID = ?`;
+      const query = `SELECT email FROM bryantmDB.User WHERE id = ?`;
       const [result] = await select(query, [userID]);
-      return result ? result.gmail : null; // Return the Gmail address or null if not found
+      return result ? result.email : null; // Return the email address or null if not found
     } catch (error) {
       return error;
     }
@@ -53,7 +53,7 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username, profileIcon FROM bryantmDB.User where UserID = ?;`;
+      const query = `SELECT username, profileIcon FROM bryantmDB.User where id = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
@@ -63,7 +63,7 @@ class userManager {
   
   async getUserProfileIcon(userID) {
     try {
-      const query = `SELECT profileIcon FROM bryantmDB.User WHERE UserID = ?`;
+      const query = `SELECT profileIcon FROM bryantmDB.User WHERE id = ?`;
       const [result] = await select(query, [userID]);
 
       if (result && result.length > 0) {
@@ -81,10 +81,10 @@ class userManager {
     }
   }
   //Check if the user's login credential is correct
-  async userLogin(gmail, password) {
+  async userLogin(email, password) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.User where username = ? AND password = ?`;
-      const [result] = await select(query, [gmail, password]);
+      const query = `SELECT count(*) FROM bryantmDB.User where email = ? AND password = ?`;
+      const [result] = await select(query, [email, password]);
       return result["count(*)"] == 1;//ask
     } catch (error) {
       return error;
