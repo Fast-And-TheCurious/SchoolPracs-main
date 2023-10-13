@@ -139,10 +139,13 @@ header{
 .recent-content{
     margin: 2rem 0;
 }
-.recent-item{
+.recent-item a{
     cursor: pointer;
     margin: 1.5rem 0;
 }
+/* .art_Link{
+    text-decoration: none;
+} */
 .recent-img{
     position: relative;
     overflow: hidden;

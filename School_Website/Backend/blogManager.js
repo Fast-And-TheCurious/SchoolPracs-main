@@ -1,0 +1,1 @@
+// get article contents from a database a display it when the user clicks in the Read More button in blog screen
