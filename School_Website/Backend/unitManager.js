@@ -3,7 +3,7 @@ const { select } = require("./database");
 class unitManager {
   async getUnits() {
     try {
-      const query = "SELECT * FROM Units"; // Adjust the SQL query as per your database schema
+      const query = "SELECT * FROM Unit"; 
       const result = await select(query);
 
       if (!result || result.length === 0) {

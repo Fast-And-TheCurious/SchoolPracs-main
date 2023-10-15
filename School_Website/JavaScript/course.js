@@ -1,19 +1,4 @@
-// In the course.js file
-/* const formattedLessons = require('../Backend/server');
-
-console.log(`In course.js FILE: ${formattedLessons}`); 
-
-document.addEventListener('DOMContentLoaded', function () {
-  fetch('/api/courses') 
-    .then((response) => response.json())
-    .then((data) => {
-      renderCourses(data); 
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-});
-
+/*
 function renderCourses(formattedLessons) {
   const courseTemplateSource = document.getElementById('course-template').innerHTML;
   const courseTemplate = Handlebars.compile(courseTemplateSource);
@@ -28,17 +13,6 @@ function renderCourses(formattedLessons) {
     courseElement.innerHTML = courseHtml;
 
     coursesContainer.appendChild(courseElement);
-  });
-}
- */
-/* const { courseFormattedArray } = require('../Backend/server'); // Adjust the relative path as needed
-
-if (courseFormattedArray.length === 0) {
-  console.log('courseFormattedArray is empty or not yet populated.');
-} else {
-  courseFormattedArray.forEach((course) => {
-    console.log("\nCourse file\n");
-    console.log(course.id, course.name, course.title, course.about_description);
   });
 }
  */
@@ -87,38 +61,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  getCourses(1); 
-  getLessonsByCourse(1);
-  getUnitsByCourse(1);
-  numCourses();
+  getCourses(); 
+ /*  getAllUnits();
+  getAllLessons(); */
+  /* getLessonsByCourse(1);
+  getUnitsByCourse(1); */
+ // numCourses();
 });
-// Get the URL parameters
+
+//  URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 
-// Get the value of the 'course' parameter from the URL
+// Get value of'course' parameter from URL
 const courseName = urlParams.get('course');
 
-// Now you can use the 'courseName' variable to load the specific course content
-//see if works
+// Now you can use 'courseName' variable to load specific course content
+//see if works?
 //display each course with their specific information
-function numCourses(){
-  try{
-  const courseLength = getCourses.length-1;
-    let numCourses = 0;
-  for (let i = 0; i <= courseLength; i++) {
-    numCourses++;
-    const course = getCourses[i]; 
-    console.log(`Course ${i}: ${course.title}`);
-    console.log(`Number of Courses: ${numCourses}`);
-
+function numCourses() {
+  try {
+    const courseManager = new lessonManager();
+    courseManager.getCourses()
+      .then((courses) => {
+        let numCourses = courses.length;
+        console.log("Number of Courses: " + numCourses);
+      })
+      .catch((error) => {
+        console.error('An error occurred counting num Courses:', error);
+      });
+  } catch (error) {
+    console.error('An error occurred counting num Courses:', error);
   }
-}catch (error) {
-  console.error('An error occurred counting num Courses:', error);
 }
-}
-
-
-
 // Function to fetch courses
 function getCourses() {
   fetch("http://127.0.0.1:5000/api/courses")
@@ -128,16 +102,68 @@ function getCourses() {
         console.error("Error fetching courses:", data.error);
       } else {
         // Courses retrieved successfully, handle here
-        const courses = data;
-        //  Place to do with something with the courses
-        console.log("Courses:", courses);
+        const coursesData = data.map((course) => ({
+          title: `Course ${course.id}: ${course.title}`,
+          description: course.about_description,
+          link: course.link,
+        }));
+
+        // Now, the 'coursesData' array contains your formatted data
+        console.log("Formatted Courses:", coursesData);
+
+        // Get the Handlebars template from the script tag
+        const source = document.getElementById("course-template").innerHTML;
+        const template = Handlebars.compile(source);
+
+        // Get the container where you want to insert the courses
+        const coursesContainer = document.getElementById("courses-container");
+
+        // Loop through the courses and insert them into the container
+        coursesData.forEach((course) => {
+          const html = template(course);
+          const div = document.createElement("div");
+          div.innerHTML = html;
+          coursesContainer.appendChild(div);
+        });
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
     });
 }
+/* 
+function getAllUnits() {
+  fetch("http://127.0.0.1:5000/api/units")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error fetching units:", data.error);
+      } else {
 
+        const units = data;
+        console.log("All Units:", units);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+}
+// Function to fetch all lessons
+function getAllLessons() {
+  fetch("http://127.0.0.1:5000/api/lessons")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error fetching lessons:", data.error);
+      } else {
+        const lessons = data;
+        console.log("Lessons:", lessons);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+}
 // Function to fetch lessons by course
 function getLessonsByCourse(courseId) {
   fetch(`http://127.0.0.1:5000/api/lessons/${courseId}`)
@@ -156,7 +182,6 @@ function getLessonsByCourse(courseId) {
       console.error("An error occurred:", error);
     });
 }
-
 // Function fetch units by course
 function getUnitsByCourse(courseId) {
   fetch(`http://127.0.0.1:5000/api/units/${courseId}`)
@@ -175,3 +200,4 @@ function getUnitsByCourse(courseId) {
       console.error("An error occurred:", error);
     });
 }
+ */

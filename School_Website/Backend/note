@@ -99,3 +99,21 @@ User Notifications: For managing user notifications or alerts.
 User Dashboard Data: If you have a user dashboard, you might need endpoints to fetch data for the dashboard.
 
 User Search: If your application has a user search functionality, create endpoints to search for users. */
+
+/* 
+function getUnits(){
+  fetch("http://127.0.0.1:5000/api/units")
+  .then((response)=> response.json())
+  .then((data)=>{
+    if (data.error){
+      console.error("Error fetching Units:", data.error);
+    }else{
+      const units= data;
+      console.log("Units:",units);
+
+    }
+  })
+}
+function getLessons(){
+
+} */

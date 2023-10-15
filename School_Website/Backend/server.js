@@ -4,11 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
-
+//oim
 app.use(cookieParser());
 
 const { createConnection } = require("./database");
-
+const unitManager = require("./unitManager")
 const lessonManager = require("./lessonManager");
 const helpManager = require("./helpManager");
 const signUpManager = require("./signUpManager");
@@ -320,12 +320,11 @@ app.get("/api/courses", async (req, res) => {
 app.get("/api/lessons", async (req, res) => {
   try {
     const manager = new lessonManager();
-    const lessons = await manager.getLessons();
+    const lessons = await manager.getAllLessons();
 
     if (lessons.error) {
      res.status(lessons.statusCode).json({ error: lessons.error });
     } else {
-      // Send the lessons data as a successful response
       res.status(200).json(lessons);
     }
   } catch (error) {

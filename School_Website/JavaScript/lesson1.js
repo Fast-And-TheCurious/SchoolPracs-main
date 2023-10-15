@@ -1,4 +1,4 @@
-const { response, query } = require("express");
+//const { response, query } = require("express");
 
 const lessonDataExport = {
   lessons: [
@@ -12,7 +12,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Course Overview",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Getting Started",
@@ -22,7 +22,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Importance of the Subject",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Course Objectives",
@@ -41,7 +41,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Exploring Cool Concepts",
           lessonLink: "lesson1.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Advanced Cool Techniques",
@@ -51,7 +51,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Real-life Applications",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Cool Case Studies",
@@ -70,7 +70,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Introduction to Equations",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Solving Linear Equations",
@@ -80,7 +80,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Inequalities and Their Solutions",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Equations in Real-life Problems",
@@ -99,7 +99,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Complex Numbers",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Trigonometry and Calculus",
@@ -109,7 +109,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Vectors and Matrices",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Advanced Problem Solving",
@@ -128,7 +128,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Introduction to Statistics",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Data Collection and Analysis",
@@ -138,7 +138,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Probability and Distributions",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Statistical Inference",
@@ -157,7 +157,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Basic Geometric Shapes",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Euclidean Geometry",
@@ -167,7 +167,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Geometry in the Real World",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Non-Euclidean Geometry",
@@ -186,7 +186,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Groups and Rings",
           lessonLink: "lessonpage.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Fields and Vector Spaces",
@@ -196,7 +196,7 @@ const lessonDataExport = {
         {
           lessonTitle: "Applications of Abstract Algebra",
           lessonLink: "lesson3.html",
-          youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+          youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
           lessonTitle: "Algebraic Structures in Cryptography",
@@ -215,7 +215,7 @@ const lessonDataExport = {
         {
             lessonTitle: "Introduction to Systems of Equations",
             lessonLink: "lessonpage.html",
-            youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+            youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
           },
           {
             lessonTitle: "Solving Linear Systems",
@@ -225,7 +225,7 @@ const lessonDataExport = {
           {
             lessonTitle: "Non-Linear Systems and Applications",
             lessonLink: "lesson3.html",
-            youTubeVideo: "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
+            youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
           },
           {
             lessonTitle: "Matrix Methods for Solving Systems",
@@ -265,31 +265,25 @@ function populateSidebar(unitIndex) {
 
 function updateVideo() {
   const youtubeVideo = document.getElementById("youtubeVideo");
-  const lessonTitleElement = document.getElementById("lessonTitle"); // Get the lesson title element
+  const lessonTitleElement = document.getElementById("lessonTitle"); 
   const sidebarLessons = document.querySelectorAll(".sidebar_lessonBox");
 
-  // Remove the active-lesson class from all sidebar lessons
   sidebarLessons.forEach((lesson) => {
     lesson.classList.remove("active-lesson");
   });
 
-  // Add the active-lesson class to the currently displayed lesson in the sidebar
   sidebarLessons[currentLessonIndex].classList.add("active-lesson");
 
-  // Update the lesson title based on the selected lesson
   lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
-  // Update the YouTube video URL
   youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;
 }
 
 
 
-// Initialize the sidebar with the first unit and first lesson
 populateSidebar(currentUnitIndex);
 updateVideo();
 
-// Function to handle the "Next Unit" button click
 function onNextUnitClick() {
   if (currentUnitIndex < lessonDataExport.lessons.length - 1) {
     currentUnitIndex++;
@@ -299,7 +293,6 @@ function onNextUnitClick() {
   }
 }
 
-// Function to handle the "Previous Unit" button click
 function onPreviousUnitClick() {
   if (currentUnitIndex > 0) {
     currentUnitIndex--;
@@ -309,14 +302,12 @@ function onPreviousUnitClick() {
   }
 }
 
-// Add event listeners to the unit navigation buttons
 const nextUnitButton = document.getElementById("nextUnitButton");
 nextUnitButton.addEventListener("click", onNextUnitClick);
 
 const previousUnitButton = document.getElementById("previousUnitButton");
 previousUnitButton.addEventListener("click", onPreviousUnitClick);
 
-// Function to handle the "Next Lesson" button click
 function onNextLessonClick() {
   if (currentLessonIndex < lessonDataExport.lessons[currentUnitIndex].unitlessonContent.length - 1) {
     currentLessonIndex++;
@@ -324,7 +315,6 @@ function onNextLessonClick() {
   }
 }
 
-// Function to handle the "Previous Lesson" button click
 function onPreviousLessonClick() {
   if (currentLessonIndex > 0) {
     currentLessonIndex--;
@@ -332,7 +322,6 @@ function onPreviousLessonClick() {
   }
 }
 
-// Add event listeners to the lesson navigation buttons
 const nextLessonButton = document.getElementById("nextLessonButton");
 nextLessonButton.addEventListener("click", onNextLessonClick);
 
