@@ -1,5 +1,4 @@
 /* const connection = require('./database'); 
-
 function getLessonData(callback) {
   connection.query('SELECT * FROM lessons', (error, results) => {
     if (error) {
@@ -120,26 +119,3 @@ module.exports = lessonManager;
 
 
 
-/* let lessonArray=[]; 
-
-async function fetchLessons() {
-  let connection;
-  try {
-    connection = await pool.getConnection();
-
-    const [rows, fields] = await connection.query("SELECT * FROM Lesson");
-
-    lessonArray = rows;
-
-    console.log("\nLessons:\n");
-    console.log(lessonArray);
-  } catch (error) {
-    console.error("Error:", error);
-  } finally {
-    if (connection) {
-      connection.release();
-    }
-  }
-}
-module.exports.lessonArray= lessonArray;
-fetchLessons(); */

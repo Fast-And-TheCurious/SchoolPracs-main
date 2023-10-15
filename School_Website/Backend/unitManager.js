@@ -1,5 +1,4 @@
 const { select } = require("./database");
-
 class unitManager {
   async getUnits() {
     try {

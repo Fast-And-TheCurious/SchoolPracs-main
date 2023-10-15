@@ -15,7 +15,7 @@ const signUpManager = require("./signUpManager");
 const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
-
+const topicManager = require("./topicManager");
 
 //app.use(bodyParser.json());
 
@@ -262,7 +262,6 @@ app.put("/api/user/updateProfile", (req, res) => {
     });
 });
 /* Change Password: */
-
 app.put("/api/user/changePassword", (req, res) => {
   const { userID, newPassword } = req.body;
 
