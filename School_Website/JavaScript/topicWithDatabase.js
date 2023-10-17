@@ -277,3 +277,111 @@ const coursesData = [
         });
     }
   });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const data = {
+      lessons: [],
+    };
+  
+    getCourses();
+    getAllUnits();
+    getAllLessons();
+
+
+
+
+    function addUnitsToData(units) {
+      data.lessons = units.map(unit => {
+        return {
+          unit: unit.name,
+          title: unit.title,
+          description: unit.about,
+          unitLink: unit.link,
+          worksheet: unit.notes || null,
+          unitDescription: unit.unitDescription,
+          masteryPoints: unit.masteryPoints,
+          unitLessons: [],
+        };
+      });
+    }
+  
+    function addLessonsToData(lessons) {
+      lessons.forEach(lesson => {
+        const unitIndex = data.lessons.findIndex(unit => unit.unit === lesson.unitID);
+    
+        if (unitIndex !== -1) {
+          data.lessons[unitIndex].unitLessons.push({
+            lessonTitle: lesson.title,
+            lessonLink: lesson.link,
+            unitPracticeTitle: lesson.unitPracticeTitle,
+            unitPracticeLink: lesson.unitPracticeLink || null,
+            lessonDescriptions: lesson.video,
+          });
+        } else {
+          console.log("Lesson not matched to any unit:", lesson);
+        }
+      });
+          // Log the data.lessons array after populating
+   // console.log("data.lessons array:", data.lessons);
+   // console.log("data.lessons.unitLessons:", data.lessons.map(lesson => lesson.unitLessons));
+    //const lessonIndex = 0; // Replace with the index of the lesson you want to access
+    //const unitLessons = data.lessons[lessonIndex].unitLessons;
+    //console.log("unitLessons for lesson", lessonIndex, ":", unitLessons); 
+    //console.log("Lesson unit IDs:", lessons.map(lesson => lesson.unitID));
+//console.log("Unit property values in data.lessons:", data.lessons.map(unit => unit.unit));
+//console.log("Data type of lesson.unitID:", typeof lessons[0].unitID);
+//console.log("Data type of unit:", typeof data.lessons[0].unit);
+
+
+    }
+  
+    function getCourses() {
+      fetch("http://127.0.0.1:5000/api/courses")
+        .then(response => response.json())
+        .then(coursesData => {
+          if (coursesData.error) {
+            console.error("Error fetching courses:", coursesData.error);
+          } else {
+            // Handle courses data if needed
+            // For example: data.courses = coursesData;
+           //console.log("All Courses: ", coursesData);
+          }
+        })
+        .catch(error => {
+          console.log("An error occurred:", error);
+        });
+    }
+  
+    function getAllUnits() {
+      fetch("http://127.0.0.1:5000/api/units")
+        .then(response => response.json())
+        .then(unitsData => {
+          if (unitsData.error) {
+            console.error("Error fetching units:", unitsData.error);
+          } else {
+            addUnitsToData(unitsData);
+          //  console.log("All Units: ", unitsData);
+          }
+        })
+        .catch(error => {
+          console.error("An error occurred:", error);
+        });
+    }
+  
+    function getAllLessons() {
+      fetch("http://127.0.0.1:5000/api/lessons")
+        .then(response => response.json())
+        .then(lessonsData => {
+          if (lessonsData.error) {
+            console.error("Error fetching lessons:", lessonsData.error);
+          } else {
+            addLessonsToData(lessonsData);
+           // console.log("All Lessons:", lessonsData);
+          }
+        })
+        .catch(error => {
+          console.error("An error occurred:", error);
+        });
+    }
+  });
+  
