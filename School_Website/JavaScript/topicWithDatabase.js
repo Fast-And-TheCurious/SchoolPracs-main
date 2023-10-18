@@ -1,387 +1,99 @@
-
-/* document.addEventListener('DOMContentLoaded', function() {
-
-    getCourses(); 
-    getAllUnits();
-    getAllLessons(); 
-    //getLessonsByCourse(1);
-    //getUnitsByCourse(1); 
-   // numCourses();
-  }); 
-  //display each course with their specific information
-function numCourses() {
-try {
-  const courseManager = new lessonManager();
-  courseManager.getCourses()
-    .then((courses) => {
-      let numCourses = courses.length;
-      console.log("Number of Courses: " + numCourses);
-    })
-    .catch((error) => {
-      console.error('An error occurred counting num Courses:', error);
-    });
-} catch (error) {
-  console.error('An error occurred counting num Courses:', error);
-}
-}
-function getCourses() {
-    fetch("http://127.0.0.1:5000/api/courses")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          console.error("Error fetching courses:", data.error);
-        } else {
-            console.log("All Courses: ",data);
-        }
-    })
-    .catch((error)=>{
-        console.log("An error occurred:",error)
-    });
-}
-function getAllUnits() {
-fetch("http://127.0.0.1:5000/api/units")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.error) {
-      console.error("Error fetching units:", data.error);
+ // Define functions to fetch data asynchronously
+async function getCourses() {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/api/courses");
+    const coursesData = await response.json();
+    if (coursesData.error) {
+      console.error("Error fetching courses:", coursesData.error);
     } else {
-
-      const units = data;
-      console.log("All Units:", units);
+      return coursesData;
     }
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error("An error occurred:", error);
-  });
-}
-// Function to fetch all lessons
-function getAllLessons() {
-fetch("http://127.0.0.1:5000/api/lessons")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.error) {
-      console.error("Error fetching lessons:", data.error);
-    } else {
-      const lessons = data;
-      console.log("All Lessons:", lessons);
-    }
-  })
-  .catch((error) => {
-    console.error("An error occurred:", error);
-  });
+  }
 }
 
-// Function to fetch lessons by course
-function getLessonsByCourse(courseId) {
-fetch(`http://127.0.0.1:5000/api/lessons/${courseId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.error) {
-      console.error("Error fetching lessons:", data.error);
+async function getUnits() {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/api/units");
+    const unitsData = await response.json();
+    if (unitsData.error) {
+      console.error("Error fetching units:", unitsData.error);
     } else {
-      // Lessons retrieved successfully, handle here
-      const lessons = data;
-      // Place to do with something with the lessons
-      console.log("Lessons:", lessons);
+      return unitsData;
     }
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error("An error occurred:", error);
-  });
+  }
 }
-// Function fetch units by course
-function getUnitsByCourse(courseId) {
-fetch(`http://127.0.0.1:5000/api/units/${courseId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.error) {
-      console.error("Error fetching units:", data.error);
-    } else {
-      // Units retrieved successfully, handle here
-      const units = data;
-      //  Place to do with something with the units
-      console.log("Units:", units);
-    }
-  })
-  .catch((error) => {
-    console.error("An error occurred:", error);
-  });
-}
- 
 
-const coursesData = [
-    // ... Your course data here
-  ];
-  
-  const unitsData = [
-    // ... Your unit data here
-  ];
-  
-  const lessonsData = [
-    // ... Your lesson data here
-  ];
-  
+async function getLessons() {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/api/lessons");
+    const lessonsData = await response.json();
+    if (lessonsData.error) {
+      console.error("Error fetching lessons:", lessonsData.error);
+    } else {
+      return lessonsData;
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
   const data = {
     lessons: [],
   };
-  
-  // Group units by courseID
-  const unitsByCourse = unitsData.reduce((result, unit) => {
-    if (!result[unit.courseID]) {
-      result[unit.courseID] = [];
-    }
-    result[unit.courseID].push(unit);
-    return result;
-  }, {});
-  
-  // Group lessons by unitID
-  const lessonsByUnit = lessonsData.reduce((result, lesson) => {
-    if (!result[lesson.unitID]) {
-      result[lesson.unitID] = [];
-    }
-    result[lesson.unitID].push(lesson);
-    return result;
-  }, {});
-  
-  // Loop through courses and create the desired structure
-  coursesData.forEach((course) => {
-    const courseUnits = unitsByCourse[course.id] || [];
-    const formattedUnits = courseUnits.map((unit) => {
-      const unitLessons = lessonsByUnit[unit.id] || [];
-      const formattedLessons = unitLessons.map((lesson) => ({
-        lessonTitle: lesson.title,
-        lessonLink: lesson.link,
-        unitPracticeTitle: `Lesson ${lesson.id} Practice`,
-        unitPracticeLink: `practice${lesson.id}.html`,
-        lessonDescriptions: lesson.video,
-      }));
-  
-      return {
-        unit: `UNIT ${unit.id}`,
-        title: unit.title,
-        description: unit.unitDescription,
-        unitLink: unit.link,
-        worksheet: 'example.txt',
-        unitDescription: unit.unitDescription,
-        masteryPoints: unit.masteryPoints,
-        unitLessons: formattedLessons,
-      };
-    });
-  
-    data.lessons.push(...formattedUnits);
-  });
-  
-  console.log(data);
-   */
+
+  const courses = await getCourses();
+  const units = await getUnits();
+  const lessons = await getLessons();
+
+  // Now you have the data, you can populate the arrays
+  const coursesArray = courses || [];
+  const unitsArray = units || [];
+  const lessonsArray = lessons || [];
+
+/*   console.log("Courses Array: ", coursesArray);
+  console.log("Units Array: ", unitsArray);
+  console.log("Lessons Array: ", lessonsArray); */
+
+  // Define the courses, units, and lessons as provided
+
+// Helper to format lessons
+function formatLesson(lesson) {
+  return {
+    lessonTitle: lesson.title,
+    lessonLink: lesson.link,
+    unitPracticeTitle: `Lesson ${lesson.id} Practice`,
+    unitPracticeLink: `practice${lesson.id}.html`,
+    lessonDescriptions: lesson.video,
+  };
+}
+
+// Helper to format units
+function formatUnit(unit) {
+  const unitLessons = lessons.filter((lesson) => lesson.unitID === unit.id);
+  return {
+    unit: `UNIT ${unit.id}`,
+    title: unit.title,
+    description: unit.about,
+    unitLink: unit.title.toLowerCase().replace(/\s/g, '') + '.html',
+    worksheet: `example.txt`,
+    unitDescription: unit.unitDescription,
+    masteryPoints: unit.masteryPoints,
+    unitLessons: unitLessons.map(formatLesson),
+  };
+}
+
+// Main code to format courses and their units
+const formattedCourses = courses.map((course) => {
+  const courseUnits = units.filter((unit) => unit.courseID === course.id);
+  return courseUnits.map(formatUnit);
+});
 
 
+console.log(formattedCourses);
 
-
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const data = {
-      lessons: [],      
-    };  
-    getCourses();
-    getAllUnits();
-    getAllLessons();
-  
-    function addUnitsToData(units) {
-      data.lessons = units.map(unit => {
-        return {
-            unit: unit.name, 
-            title: unit.title,
-            description: unit.about,
-            unitLink: unit.link,
-            worksheet: unit.notes || null,
-            unitDescription: unit.unitDescription,
-            masteryPoints: unit.masteryPoints,
-            unitLessons: [],
-        };
-      });
-    }  
-    function addLessonsToData(lessons) {
-      lessons.forEach(lesson => {
-        const unitIndex = data.lessons.findIndex(unit => unit.unit === lesson.unitID);
-        
-        if (unitIndex !== -1) {
-          data.lessons[unitIndex].unitLessons.push({
-            lessonTitle: lesson.title,
-            lessonLink: lesson.link,
-            unitPracticeTitle: lesson.unitPracticeTitle,
-            unitPracticeLink: lesson.unitPracticeLink || null,
-            lessonDescriptions: lesson.video,
-          });
-        }
-      });  
-      const flatData = data.lessons.map(unit => ({
-        unit: unit.unit,
-        title: unit.title,
-        description: unit.description,
-        unitLink: unit.unitLink,
-        worksheet: unit.worksheet,
-        unitDescription: unit.unitDescription,
-        masteryPoints: unit.masteryPoints,
-        unitLessons: unit.unitLessons,
-      }));
-      console.log("woowjwo: ",flatData);
-    }
-  
-    function getCourses() {
-      fetch("http://127.0.0.1:5000/api/courses")
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            console.error("Error fetching courses:", data.error);
-          } else {
-            // Add courses to the data object (if needed)
-            // data.courses = data; // Example, replace 'courses' with the correct key
-          
-            console.log("All Courses: ",data);
-        }
-        })
-        .catch(error => {
-          console.log("An error occurred:", error);
-        });
-    }
-  
-    function getAllUnits() {
-      fetch("http://127.0.0.1:5000/api/units")
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            console.error("Error fetching units:", data.error);
-          } else {
-            addUnitsToData(data);
-            console.log("All Units: ",data);
-          }
-        })
-        .catch(error => {
-          console.error("An error occurred:", error);
-        });
-    }
-  
-    function getAllLessons() {
-      fetch("http://127.0.0.1:5000/api/lessons")
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            console.error("Error fetching lessons:", data.error);
-          } else {
-            addLessonsToData(data);
-            console.log("All Lessons:", data);
-          }
-        })
-        .catch(error => {
-          console.error("An error occurred:", error);
-        });
-    }
-  });
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const data = {
-      lessons: [],
-    };
-  
-    getCourses();
-    getAllUnits();
-    getAllLessons();
-
-
-
-
-    function addUnitsToData(units) {
-      data.lessons = units.map(unit => {
-        return {
-          unit: unit.name,
-          title: unit.title,
-          description: unit.about,
-          unitLink: unit.link,
-          worksheet: unit.notes || null,
-          unitDescription: unit.unitDescription,
-          masteryPoints: unit.masteryPoints,
-          unitLessons: [],
-        };
-      });
-    }
-  
-    function addLessonsToData(lessons) {
-      lessons.forEach(lesson => {
-        const unitIndex = data.lessons.findIndex(unit => unit.unit === lesson.unitID);
-    
-        if (unitIndex !== -1) {
-          data.lessons[unitIndex].unitLessons.push({
-            lessonTitle: lesson.title,
-            lessonLink: lesson.link,
-            unitPracticeTitle: lesson.unitPracticeTitle,
-            unitPracticeLink: lesson.unitPracticeLink || null,
-            lessonDescriptions: lesson.video,
-          });
-        } else {
-          console.log("Lesson not matched to any unit:", lesson);
-        }
-      });
-          // Log the data.lessons array after populating
-   // console.log("data.lessons array:", data.lessons);
-   // console.log("data.lessons.unitLessons:", data.lessons.map(lesson => lesson.unitLessons));
-    //const lessonIndex = 0; // Replace with the index of the lesson you want to access
-    //const unitLessons = data.lessons[lessonIndex].unitLessons;
-    //console.log("unitLessons for lesson", lessonIndex, ":", unitLessons); 
-    //console.log("Lesson unit IDs:", lessons.map(lesson => lesson.unitID));
-//console.log("Unit property values in data.lessons:", data.lessons.map(unit => unit.unit));
-//console.log("Data type of lesson.unitID:", typeof lessons[0].unitID);
-//console.log("Data type of unit:", typeof data.lessons[0].unit);
-
-
-    }
-  
-    function getCourses() {
-      fetch("http://127.0.0.1:5000/api/courses")
-        .then(response => response.json())
-        .then(coursesData => {
-          if (coursesData.error) {
-            console.error("Error fetching courses:", coursesData.error);
-          } else {
-            // Handle courses data if needed
-            // For example: data.courses = coursesData;
-           //console.log("All Courses: ", coursesData);
-          }
-        })
-        .catch(error => {
-          console.log("An error occurred:", error);
-        });
-    }
-  
-    function getAllUnits() {
-      fetch("http://127.0.0.1:5000/api/units")
-        .then(response => response.json())
-        .then(unitsData => {
-          if (unitsData.error) {
-            console.error("Error fetching units:", unitsData.error);
-          } else {
-            addUnitsToData(unitsData);
-          //  console.log("All Units: ", unitsData);
-          }
-        })
-        .catch(error => {
-          console.error("An error occurred:", error);
-        });
-    }
-  
-    function getAllLessons() {
-      fetch("http://127.0.0.1:5000/api/lessons")
-        .then(response => response.json())
-        .then(lessonsData => {
-          if (lessonsData.error) {
-            console.error("Error fetching lessons:", lessonsData.error);
-          } else {
-            addLessonsToData(lessonsData);
-           // console.log("All Lessons:", lessonsData);
-          }
-        })
-        .catch(error => {
-          console.error("An error occurred:", error);
-        });
-    }
-  });
-  
+});
