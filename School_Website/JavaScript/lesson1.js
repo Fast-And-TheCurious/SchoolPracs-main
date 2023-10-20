@@ -5,19 +5,19 @@ const lessonDataExport = {
     {
       id: 1,
       unit: "UNIT 1",
-      unitTitle: "Introduction",
+      unitTitle: "Algebra foundations",
       note: "example.txt",
       aboutUnit: "good description",
       unitlessonContent: [
         {
-          lessonTitle: "Course Overview",
+          lessonTitle: "introduction",
           lessonLink: "lessonpage.html",
           youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
-          lessonTitle: "Getting Started",
+          lessonTitle: "Algebra - How To Solve Equations Quickly!",
           lessonLink: "lesson2.html",
-          youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
+          youTubeVideo: "https://www.youtube.com/embed/Z-ZkmpQBIFo?si=VbFL4z-MmYD0qrFk",
         },
         {
           lessonTitle: "Importance of the Subject",
@@ -34,12 +34,12 @@ const lessonDataExport = {
     {
       id: 2,
       unit: "UNIT 2",
-      unitTitle: "Cool Stuff",
+      unitTitle: "Solvin equations & inequalities",
       note: "example.txt",
       aboutUnit: "good description",
       unitlessonContent: [
         {
-          lessonTitle: "Exploring Cool Concepts",
+          lessonTitle: "introduction",
           lessonLink: "lesson1.html",
           youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
@@ -92,12 +92,12 @@ const lessonDataExport = {
     {
       id: 4,
       unit: "UNIT 4",
-      unitTitle: "Advanced Topics in Math",
+      unitTitle: "Linear equations % grpahs",
       notes: "example.txt",
       aboutUnit: "good description",
       unitlessonContent: [
         {
-          lessonTitle: "Complex Numbers",
+          lessonTitle: "introduction",
           lessonLink: "lessonpage.html",
           youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
@@ -121,12 +121,12 @@ const lessonDataExport = {
     {
       id: 5,
       unit: "UNIT 5",
-      unitTitle: "Statistics and Data Analysis",
+      unitTitle: "Solving equations",
       notes: "example.txt",
       aboutUnit: "good description",
       unitlessonContent: [
         {
-          lessonTitle: "Introduction to Statistics",
+          lessonTitle: "Introduction to equations",
           lessonLink: "lessonpage.html",
           youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
@@ -150,17 +150,17 @@ const lessonDataExport = {
     {
       id: 6,
       unit: "UNIT 6",
-      unitTitle: "Geometry and Geometric Figures",
+      unitTitle: "Exponents % radicals",
       notes: "example.txt",
       aboutUnit: "good description",
       unitlessonContent: [
         {
-          lessonTitle: "Basic Geometric Shapes",
+          lessonTitle: "Introduction Exponents % radicals",
           lessonLink: "lessonpage.html",
           youTubeVideo: "https://www.youtube.com/embed/YhZZZM8IK7c?si=7L7X-X7ikpjhLxYH",
         },
         {
-          lessonTitle: "Euclidean Geometry",
+          lessonTitle: "Further understanding",
           lessonLink: "lesson2.html",
           youTubeVideo: "https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v",
         },

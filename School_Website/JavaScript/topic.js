@@ -529,8 +529,8 @@ const titleData = {
     lessons: [
       {
         unit: "UNIT 1",
-        title: "Introduction",
-        description: "good description",
+        title: "Algebra foundations",
+        description: "",
         unitLink: "lesson1.html",
         worksheet: "example.txt",
         unitDescription:
@@ -539,15 +539,15 @@ const titleData = {
         unitLessons: [
           {
             lessonTitle: "Course Overview",
-            lessonLink: "lessonpage.html",
+            lessonLink: "lesson.html",
             unitPracticeTitle: "Lesson 1 Practice",
-            unitPracticeLink: "practice1.html",
+            unitPracticeLink: "lesson.html",
             lessonDescriptions:
               "https://www.youtube.com/embed/Nko_X2CU10I?si=OSPZ39ZyLBD5OiNI",
           },
           {
             lessonTitle: "Getting Started",
-            lessonLink: "lesson2.html",
+            lessonLink: "lesson.html",
             unitPracticeTitle: "Lesson 2 Practice",
             unitPracticeLink: "practice2.html",
             lessonDescriptions:
@@ -555,7 +555,7 @@ const titleData = {
           },
           {
             lessonTitle: "Importance of the Subject",
-            lessonLink: "lesson3.html",
+            lessonLink: "lesson.html",
             unitPracticeTitle: "Lesson 3 Practice",
             unitPracticeLink: "practice3.html",
             lessonDescriptions:
@@ -563,7 +563,7 @@ const titleData = {
           },
           {
             lessonTitle: "Course Objectives",
-            lessonLink: "lesson4.html",
+            lessonLink: "lesson.html",
             unitPracticeTitle: "Lesson 4 Practice",
             unitPracticeLink: "practice4.html",
             lessonDescriptions:
@@ -573,8 +573,8 @@ const titleData = {
       },
       {
         unit: "UNIT 2",
-        title: "Cool Stuff",
-        description: "good description",
+        title: "Solvin equations & inequalities ",
+        description: "",
         unitLink: "lesson1.html",
         worksheet: "example.txt",
         unitDescription:
@@ -618,7 +618,7 @@ const titleData = {
       {
         unit: "UNIT 3",
         title: "Solving Equations & Inequalities",
-        description: "good description",
+        description: "",
         unitLink: "lesson1.html",
         worksheet: "example.txt",
         unitDescription:
@@ -661,8 +661,8 @@ const titleData = {
       },
       {
         unit: "UNIT 4",
-        title: "Advanced Topics in Math",
-        description: "good description",
+        title: "Linear equations % grpahs",
+        description: "",
         worksheet: "example.txt",
         unitDescription:
           "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
@@ -704,8 +704,8 @@ const titleData = {
       },
       {
         unit: "UNIT 5",
-        title: "Statistics and Data Analysis",
-        unitDescription: "good description",
+        title: "Solving equations",
+        unitDescription: "",
         worksheet: "example.txt",
         unitDescription:
           "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
@@ -747,8 +747,8 @@ const titleData = {
       },
       {
         unit: "UNIT 6",
-        title: "Geometry and Geometric Figures",
-        unitDescription: "good description",
+        title: "Exponents % radicals",
+        unitDescription: "",
         worksheet: "example.txt",
         unitDescription:
           "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
@@ -791,7 +791,7 @@ const titleData = {
       {
         unit: "UNIT 7",
         title: "Algebraic Structures and Abstract Algebra",
-        unitDescription: "good description",
+        unitDescription: "",
         worksheet: "example.txt",
         unitDescription:
           "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",
@@ -834,7 +834,7 @@ const titleData = {
       {
         unit: "UNIT 8",
         title: "Systems of Equations",
-        unitDescription: "good description",
+        unitDescription: "",
         worksheet: "example.txt",
         unitDescription:
           "This unit covers a wide range of topics related to the course. You will gain a comprehensive understanding of the subject matter.",

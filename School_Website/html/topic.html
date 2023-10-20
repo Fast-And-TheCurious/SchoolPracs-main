@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<!--     <link rel="stylesheet" href="/School_Website/css/theme.css"> -->
+    <!--     <link rel="stylesheet" href="/School_Website/css/theme.css"> -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +34,71 @@
         </section>
     </script>
 
-    <div class="split-container">
+ <!--    <div class="split-container">
+        <div>
+            <div class="main-container">
+                <aside class="sidebar">
+                    <script id="lesson-sidebar-template" type="text/x-handlebars-template">
+                        <div class="sidebar-content">
+                          <div class="headings">
+                            <div class="back_button">
+                              <a href="/School_Website/html/course.html">Courses</a>
+                            </div>
+                            <div class="main_heading">
+                              {{#if showAllUnits}}
+                              {{#each unitInfo}}
+                                <a href="{{this.unitLink}}">{{this.unit}}: {{this.title}}</a>
+                              {{/each}}
+                              {{/if}}
+                            </div>
+                            <div class="sub_sub-heading">
+                              {{uniqueUnitCount}} UNITS
+                            </div>
+                          </div>
+                          <div class="line-separation"></div>
+                          <ul>
+                            {{#each unitInfo}}
+                            <li class="sidebar_lessonBox" id="unit_{{id}}">
+                              <div class="sub_heading">{{this.unit}}: {{this.title}}</div>
+                              <div class="mastery-points sub_sub-heading">Mastery Points: {{this.masteryPoints}}</div>
+                            </li>
+                            <div class="line-separation"></div>
+                            {{/each}}
+                          </ul>
+                        </div>
+                      </script>
+                    <div id="lesson-sidebar"></div>
+                </aside>
+            </div>
+        </div>
+        <div>
+            <section class="content_area2">
+                <div class="title-container" id="title-container"></div>
+                <section class="content_area2">
+                    <div id="main-container" class="main-container">
+                        <script id="title-template" type="text/x-handlebars-template">
+                            <h2>{{unit}}: {{title}}</h2>
+                            <div class="sub_sub-heading">{{masteryPoints}} Mastery Points</div>
+                        </script>
+                    </div>
+                    <script id="unit-description-template" type="text/x-handlebars-template">
+                        <div class="unit_description">
+                            <h2>About This Unit</h2>
+                            <p>{{unitDescription}}</p>
+                        </div>
+                    </script>
+                    <div id="unit-lessons" class="unit-lessons-container"></div>
+                </section>
+            </section>
+            
+
+            
+              
+        </div>
+    </div>
+     -->
+
+     <div class="split-container">
         <div>
             <div class="main-container">
                 <aside class="sidebar">
@@ -153,9 +217,10 @@
         </footer>
     </script>
 </body>
-<script src="/School_Website/JavaScript/topicWithDatabase.js"></script>
-<!-- <script src="/School_Website/JavaScript/topic.js"></script> -->
+<!-- <script src="/School_Website/JavaScript/topicWithDatabase.js"></script> -->
+<script src="/School_Website/JavaScript/topic.js"></script>
 <script src="/School_Website/JavaScript/headerAndFooter.js"></script>
 <!-- <script src="../JavaScript/theme.js"></script> -->
 <script src="/School_Website/JavaScript/testData.js"></script>
+
 </html>
