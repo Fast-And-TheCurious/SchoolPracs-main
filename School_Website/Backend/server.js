@@ -6,6 +6,10 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 //oim
 app.use(cookieParser());
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
@@ -40,19 +44,6 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-
-// Check session middleware
-/* app.use((req, res, next) => {
-  const sessionToken = req.cookies.sessionToken;
-
-  if (isValidSession(sessionToken)) {
-    req.user = getUserBySession(sessionToken);
-  } else {
-    req.user = null;
-  }
-
-  next();
-}); */
 //api end-points
 
 /* User */
@@ -303,7 +294,6 @@ app.get("/api/courses", async (req, res) => {
     const courses = await manager.getCourses();
 
     if (courses.error) {
-      // If there's an error, set the appropriate status code and send an error response
       res.status(courses.statusCode).json({ error: courses.error });
     } else {
       // Send the courses data as a successful response
@@ -342,7 +332,6 @@ app.get("/api/units", async (req, res) => {
     if (units.error) {
       res.status(500).json({ error: "An error occurred while processing the request" });
     } else {
-      // Send the units data as a successful response
       res.status(200).json(units);
     }
   } catch (error) {
@@ -389,8 +378,25 @@ app.get("/api/units/:courseId", async (req, res) => {
 
 // API endpoints for helpManager
 
-// Get all help messages
-app.get('/api/help/messages', async (req, res) => {
+app.post('/api/userMessages', async (req, res) => {
+  const { message } = req.body; 
+
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required' });
+  }
+
+  const manager = new helpManager();
+
+  const result = await manager.setUserMessage(message);
+
+  if (result.error) {
+    res.status(result.statusCode || 500).json({ error: result.error });
+  } else {
+    res.status(200).json({ message: 'User message inserted successfully' });
+  }
+});
+
+/* app.get('/api/help/messages', async (req, res) => {
   try {
     const messages = await helpManager.getAllMessages();
     res.status(200).json(messages);
@@ -459,4 +465,4 @@ app.delete('/api/help/messages/:message_id', async (req, res) => {
     console.error(error);
     res.status(500).send('Error occurred');
   }
-});
+}); */
