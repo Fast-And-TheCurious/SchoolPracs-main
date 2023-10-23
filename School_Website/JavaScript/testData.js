@@ -124,4 +124,5 @@ units.forEach(unit => {
   formattedData.push(formattedUnit);
 });
 
-console.log(formattedData);
+/* console.log(formattedData);
+ */

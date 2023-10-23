@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   const units = await getUnits();
   const lessons = await getLessons();
 
-  // Now you have the data, you can populate the arrays
   const coursesArray = courses || [];
   const unitsArray = units || [];
   const lessonsArray = lessons || [];
@@ -58,10 +57,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   console.log("Units Array: ", unitsArray);
   console.log("Lessons Array: ", lessonsArray); */
 
-  // Define the courses, units, and lessons as provided
-
-// Helper to format lessons
-// Helper to format lessons
 function formatLesson(lesson) {
   return {
     lessonTitle: lesson.title,
@@ -72,11 +67,12 @@ function formatLesson(lesson) {
   };
 }
 
-// Helper to format units
 function formatUnit(unit) {
   const unitLessons = lessons.filter((lesson) => lesson.unitID === unit.id);
   return {
+    unitID: unit.id,
     unit: `UNIT ${unit.id}`,
+    courseID: unit.courseID,
     title: unit.title,
     description: unit.about,
     unitLink: unit.title.toLowerCase().replace(/\s/g, '') + '.html',
@@ -87,16 +83,13 @@ function formatUnit(unit) {
   };
 }
 
-// Main code to format courses and their units
 const formattedCourses = courses.map((course) => {
   const courseUnits = units.filter((unit) => unit.courseID === course.id);
   return courseUnits.map(formatUnit);
 });
 
-// Assuming formattedCourses is your 2D array
 flattenedArray = formattedCourses.flat();
-console.log("flattenedArray: ", flattenedArray);
-// Now you have the data in the desired format stored in 'flattenedArray'
+/* console.log("flattenedArray: ", flattenedArray); */
 const data = {
   lessons: flattenedArray, 
 };
@@ -117,7 +110,6 @@ console.log(`Total Mastery Points: ${totalMasteryPoints}`);
 function calculateUniqueUnits(data) {
   const uniqueUnits = new Set();
 
-  // Iterate through the lessons and add the unit name to the Set
   data.lessons.forEach((lesson) => {
     uniqueUnits.add(lesson.unit);
   });
@@ -134,7 +126,7 @@ const unitInformation = {
 function changeTitle(newTitle) {
   // Update the title in the data object
   data.lessons[0].title = newTitle;  
-  // Update the rendered HTML to reflect the new title
+
   const updatedLessonSidebarHtml = lessonSidebarTemplate({
     unitInfo: data.lessons[0],
     showAllUnits: showAllUnits,
@@ -144,24 +136,19 @@ function changeTitle(newTitle) {
     updatedLessonSidebarHtml;
 }
 let showAllUnits = true;
-// Get the Handlebars template for the lesson sidebar
 const lessonSidebarTemplateSource = document.getElementById(
   "lesson-sidebar-template"
 ).innerHTML;
 
-// Compile the template with data
 const lessonSidebarTemplate = Handlebars.compile(lessonSidebarTemplateSource);
 
-// Render the template with data
 const updatedLessonSidebarHtml = lessonSidebarTemplate({
   unitInfo: data.lessons,
   showAllUnits: showAllUnits,
 });
 
-// Update the rendered HTML in the "lesson-sidebar" element
 document.getElementById("lesson-sidebar").innerHTML = updatedLessonSidebarHtml;
 
-// Render sidebar with combined data and insert it into the page
 const lessonSidebarHtml = lessonSidebarTemplate({
   unitInfo: unitInformation.unitInfo,
   lessons: data.lessons,
@@ -228,41 +215,41 @@ function updateContent(unit) {
 
     const titleHtml = titleTemplate(titleData);
     document.getElementById("title-container").innerHTML = titleHtml;
-
+  
     const titlesAndInfo = [
       {
         title: "Lesson 1",
-        info: selectedLesson.unitLessons[0].lessonTitle,
+        info: selectedLesson.unitLessons[0],
       },
       {
         title: "Lesson 2",
-        info: selectedLesson.unitLessons[1].lessonTitle,
+        info: selectedLesson.unitLessons[1],
       },
       {
         title: "Lesson 3",
-        info: selectedLesson.unitLessons[2].lessonTitle,
+        info: selectedLesson.unitLessons[2],
       },
       {
         title: "Lesson 4",
-        info: selectedLesson.unitLessons[3].lessonTitle,
+        info: selectedLesson.unitLessons[3],
       },
       {
         title: "Worksheets",
-        info: "Practice what you have learned",
+        identifier: "worksheets", // Unique identifier for worksheets
       },
     ];
-
+    
     const boxesHtml = titlesAndInfo
-      .map(
-        (item) => `
-      <div class="info-box"><a href="${item.info.lessonLink}">
+  .map((item) => `
+    <div class="info-box">
+      <a href="${item.identifier === 'worksheets' ? `/School_Website/pdfs/${selectedLesson.worksheet}` : 'lesson.html'}">
         <h2>${item.title}</h2>
-        <p>${item.info.lessonTitle}</p>
-        </a>
-      </div>
-    `
-      )
-      .join("");
+        <p>${item.title}</p>
+      </a>
+    </div>
+  `)
+  .join("");
+
 
     const aboutHtml = `
       <div class="about-section">
@@ -302,7 +289,6 @@ function attachEventListeners() {
   });
 }
 
-// Call this function after rendering the content
 attachEventListeners();
 
 document.querySelector(".main_heading").addEventListener("click", () => {
@@ -316,15 +302,12 @@ document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
     updateContent(unit);
   });
 });
-// Function to update the worksheet download button based on the selected unit
 function updateWorksheetDownloadButton(unit) {
-  // Find the lesson object corresponding to the selected unit
   const selectedLesson = lessonData.lessons.find((lesson) => lesson.unit === unit);
 
   const dt = document.getElementById("worksheetDownloadButton");
 
   if (selectedLesson && selectedLesson.worksheet) {
-    // Set the href and download attributes based on the worksheet information
     dt.href = `/School_Website/pdfs/${selectedLesson.worksheet}`;
     dt.download = `${selectedLesson.worksheet}`;
     // Enable the download button
@@ -334,8 +317,43 @@ function updateWorksheetDownloadButton(unit) {
     dt.setAttribute("disabled", "true");
   }
 }
+// Define a variable to store the currently selected unit (initialize it to "Worksheets")
+let selectedUnit = "Worksheets";
 
-// Event listener for clicking on a unit in the sidebar
+// Function to update the "Download Worksheet" link based on the selected unit
+function updateDownloadLink() {
+  const downloadLink = document.getElementById("worksheetDownloadButton");
+
+  // Find the selected lesson based on the selected unit
+  const selectedLesson = data.lessons.find((lesson) => lesson.unit === selectedUnit);
+
+  if (selectedUnit === "Worksheets" && selectedLesson && selectedLesson.worksheet) {
+    // If "Worksheets" is selected and a worksheet exists, set the link to download the worksheet
+    downloadLink.href = `/School_Website/pdfs/${selectedLesson.worksheet}`;
+    downloadLink.download = selectedLesson.worksheet;
+    downloadLink.removeAttribute("disabled");
+  } else {
+    // In other cases, disable the link
+    downloadLink.setAttribute("disabled", "true");
+  }
+}
+
+// Attach event listeners to the units in the sidebar to update the selected unit
+document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    selectedUnit = event.currentTarget.querySelector(".sub_sub-heading").textContent;
+
+    // Update the "Download Worksheet" link
+    updateDownloadLink();
+
+    // Call your existing function to update the content based on the selected unit
+    updateContent(selectedUnit);
+  });
+});
+
+// Initialize the "Download Worksheet" link
+updateDownloadLink();
+
 document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
   item.addEventListener("click", (event) => {
     const unit = event.currentTarget.querySelector(".sub_sub-heading").textContent;
@@ -343,8 +361,5 @@ document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
     updateWorksheetDownloadButton(unit); // Update the worksheet download button
   });
 });
-
-
-
 });
  

@@ -1,5 +1,38 @@
 //const { response, query } = require("express");
+/* 
+  let lessonsArray = [];
+  
+  function formatLesson(lesson) {
+    return {     
+      lessonTitle: lesson.title,
+      lessonLink: lesson.link,
+      youTubeVideo: lesson.video,
+    };
+  }
+  
+  function formatUnit(unit) {
+    const unitLessons = lessonsArray.filter((lesson) => lesson.unitID === unit.id);
+    return {
+      id: unit.id,
+      unit: `UNIT ${unit.id}`,
+      unitTitle: unit.title,
+      aboutUnit: "good description",  
+      note: "example.txt",
+      unitlessonContent: unitLessons.map(formatLesson),
+    };
+  }
+  
+  const formattedCourses = coursesArray.map((course) => {
+    const courseUnits = unitsArray.filter((unit) => unit.courseID === course.id);
+    return courseUnits.map(formatUnit);
+  });
+  
+  lessonsArray = formattedCourses.flat();
 
+  const lessonDataExport = {
+    lessons: lessonsArray,
+  };
+ */
 const lessonDataExport = {
   lessons: [
     {

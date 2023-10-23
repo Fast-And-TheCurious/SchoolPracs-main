@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    
+<head>    
   <title>Course Display</title>
   <link rel="stylesheet" href="/School_Website/css/course.css" />
   <link rel="stylesheet" href="/School_Website/css/unistyling.css">
@@ -34,16 +32,7 @@
         </nav>
     </section>
 </script>
-  <!-- <div class="banner">
-    <form>
-      <input type="text" class="search-input" placeholder="find the course for you!" />
-      <button type="submit" class="search-btn">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </div> -->
-  <!-- Use https://www.khanacademy.org/math/algebra2 as inspiration -->
-  <div class="container"> <!-- css->unisytling -->
+   <div class="container"> 
     <div class="main_heading">Courses</div>
     <div class="line-separation"></div>
     <section class="courses" id="courses-container">
@@ -52,7 +41,12 @@
             <div class="course">
                 <h2 class="course-title">{{title}}</h2>
                 <p class="description">{{description}}</p>
-                <p class="directbtn"><a href="{{link}}">Start</a></p>
+                <p class="directbtn">
+                    <a href="{{link}}">Start</a>
+                </p>
+                <!-- <p class="directbtn">
+                    <a href="/path-to-topic-screen.html?course=courseID">Start</a>
+                </p>   -->              
             </div>
         </div>
     </script>
@@ -88,11 +82,7 @@
          </div>
      </footer>
  </script>   
- <!-- <script src="/School_Website/JavaScript/courseDemo.js"></script> -->
- 
     <script src="/School_Website/JavaScript/course.js"></script>
     <script src="/School_Website/JavaScript/headerAndFooter.js"></script>    
- <!--    <script src="/js/theme.js"></script> -->
 </body>
-
 </html>
