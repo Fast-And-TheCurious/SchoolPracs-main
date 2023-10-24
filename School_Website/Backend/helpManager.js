@@ -1,11 +1,11 @@
 const { update } = require('./database');
 
-class helpManager {
-  async setUserMessage(messageText) {
+class HelpManager {
+  async setUserMessage(messageText, userGmail) {
     try {
-      const query = "INSERT INTO bryantmDB.userMessages (message_text, message_timestamp) VALUES (?, NOW())";
-      await update(query, [messageText]);
-  
+      const query = "INSERT INTO bryantmDB.userMessages (user_gmail, message_text, message_timestamp) VALUES (?, ?, NOW())";
+      await update(query, [userGmail, messageText]);
+
       return "User message inserted successfully";
     } catch (error) {
       console.error("An error occurred while setting user message:", error);
@@ -15,8 +15,6 @@ class helpManager {
       };
     }
   }
-  
 }
 
-module.exports = helpManager;
-/* Add user id to help reply */
+module.exports = HelpManager;

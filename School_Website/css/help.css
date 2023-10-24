@@ -74,6 +74,8 @@ body{
     padding-bottom: 20px;
 }
 .help-form_input{   
+    border: #000 1px solid;
+    margin-bottom: 1rem;
     resize: none;
     display: block;
     width: 100%;

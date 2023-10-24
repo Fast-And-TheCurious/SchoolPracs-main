@@ -377,17 +377,16 @@ app.get("/api/units/:courseId", async (req, res) => {
 });
 
 // API endpoints for helpManager
-
 app.post('/api/userMessages', async (req, res) => {
-  const { message } = req.body; 
+  const { message, user_gmail } = req.body;
 
-  if (!message) {
-    return res.status(400).json({ error: 'Message is required' });
+  if (!message || !user_gmail) {
+    return res.status(400).json({ error: 'Message and user_gmail are required' });
   }
 
-  const manager = new helpManager();
+  const manager = new helpManager(); // Note the class name is capitalized (HelpManager)
 
-  const result = await manager.setUserMessage(message);
+  const result = await manager.setUserMessage(message, user_gmail);
 
   if (result.error) {
     res.status(result.statusCode || 500).json({ error: result.error });
