@@ -60,7 +60,7 @@ class userManager {
       return error;
     }
   }
-  
+  /* Update the column names here to match database */
   async getUserProfileIcon(userID) {
     try {
       const query = `SELECT profileIcon FROM bryantmDB.User WHERE id = ?`;
