@@ -111,10 +111,10 @@ class userManager {
     }
   }
 
-  async doesEmailExist(email) {
+  async doesGmailExist(gmail) {
     try {
       const query = `SELECT count(*) FROM bryantmDB.User where email = ?;`;
-      const [result] = await select(query, [email]);
+      const [result] = await select(query, [gmail]);
       return result["count(*)"] == 1;
     } catch (error) {
       return error;

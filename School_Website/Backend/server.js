@@ -57,7 +57,7 @@ app.get("/api/images", async (req, res) => {
   }
 });
 
-// Example server-side code in your signup route
+// See if need to delete?
 app.post("/api/signup", (req, res) => {
   const { username, gmail, password } = req.body;
 
@@ -112,22 +112,22 @@ app.get("/api/user/getGmail", async (req, res) => {
   }
 });
 
-/* Check If Email Exists */
-app.get("/api/user/email", async (req, res) => {
-  const { email } = req.query;
+// Check if Gmail Exist
+app.get("/api/user/gmailExist", async (req, res) => {
+  const { gmail } = req.query;
 
   try {
     const user = new userManager();
-    const emailExists = await user.doesEmailExist(email);
+    const gmailExists = await user.doesGmailExist(gmail);
 
-    res.status(200).json({ status: "success", emailExists });
+    res.status(200).json({ status: "success", gmailExists });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
 
-/* Check If Username Exists */
+// Check If Username Exists
 app.get("/api/user/usernameExist", async (req, res) => {
   const { username } = req.query;
 

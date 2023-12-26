@@ -1,19 +1,14 @@
-/* document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:5000/getAll')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));  
-  });
- */
- 
-/* methods:
+/* Methods Check List:
  does email entered exist in database
  does username already exist
  */
 // signup.js
 //change code
 
+// user1@example.com user1
+
 // Check if fields have values
-function validateAndSubmit() {
+async function validateAndSubmit() {
   // Get input values
   const username = document.getElementById("username").value;
   const gmail = document.getElementById("gmail").value;
@@ -21,54 +16,42 @@ function validateAndSubmit() {
 
   // Check if input values are not empty
   if (username.trim() === '' || gmail.trim() === '' || password.trim() === '') {
-      alert("Please fill in all the fields.");
+    alert("Please fill in all the fields.");
   } else {
-      // Perform the signup action 
-      alert(`Signup successful!\nUsername: ${username}\nGmail: ${gmail}\nPassword: ${password}`);
- 
-      // Set a cookie for the user information with expiration date (expires in 1 days)
-      const expirationDate = new Date();
-      expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000));
-      
-      document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}`;
-      document.cookie = `gmail=${gmail}; expires=${expirationDate.toUTCString()}`;
-      document.cookie = `password=${password}; expires=${expirationDate.toUTCString()}`;
-      
-    
-          // Redirect to the new HTML page     
-      window.location.href = "/School_Website/html/imageSelection.html";
+    try {
+      // Check if the username exists on the server
+      const usernameResponse = await fetch(`http://localhost:5000/api/user/usernameExist?username=${encodeURIComponent(username)}`);
+      const usernameResult = await usernameResponse.json();
+
+      // Check if the Gmail exists on the server
+      const gmailResponse = await fetch(`http://localhost:5000/api/user/gmailExist?gmail=${encodeURIComponent(gmail)}`);
+      const gmailResult = await gmailResponse.json();
+
+      if (usernameResult.status === 'success' && usernameResult.usernameExists) {
+        alert("Username already exists. Please choose a different username.");
+      } else if (gmailResult.status === 'success' && gmailResult.gmailExists) {
+        alert("Gmail address already exists. Please use a different Gmail address.");
+      } else {
+        // Perform the signup action
+        alert(`Signup successful!\nUsername: ${username}\nGmail: ${gmail}\nPassword: ${password}`);
+
+        // Set a cookie for the user information with an expiration date (expires in 1 day)
+        const expirationDate = new Date();
+        expirationDate.setTime(expirationDate.getTime() + (1 * 24 * 60 * 60 * 1000));
+
+        document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}`;
+        document.cookie = `gmail=${gmail}; expires=${expirationDate.toUTCString()}`;
+        document.cookie = `password=${password}; expires=${expirationDate.toUTCString()}`;
+
+        // Redirect to the new HTML page
+        window.location.href = "/School_Website/html/imageSelection.html";
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while checking the information. Please try again.");
+    }
   }
 }
 
 // Attach the function to the button click event
 document.getElementById("signUpButton").addEventListener("click", validateAndSubmit);
-
-/* signUpButton.addEventListener("click", function () {
-  const server = "http://127.0.0.1:5000/api/user/createAccount";
-  const requestBody = {
-    gmail: userGmail.value,
-    password: userPassword.value,
-    username: userUsername.value,
-  };
-
-  fetch(server, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status === "success") {
-        console.log("Account created successfully");
-        // Redirect or perform other actions after successful registration
-      } else {
-        console.error("Error creating an account.");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
- */
