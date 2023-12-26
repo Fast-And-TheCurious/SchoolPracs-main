@@ -28,7 +28,7 @@ function validateAndSubmit() {
  
       // Set a cookie for the user information with expiration date (expires in 1 days)
       const expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + 1);
+      expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000));
       
       document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}`;
       document.cookie = `gmail=${gmail}; expires=${expirationDate.toUTCString()}`;

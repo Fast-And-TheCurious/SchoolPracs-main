@@ -79,7 +79,7 @@ async function fetchImages() {
 
    // Set a cookie for the selected image with expiration date (expires in 1 day)
    const expirationDate = new Date();
-   expirationDate.setDate(expirationDate.getDate() + 1);
+   expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000));
    
    document.cookie = `selectedImage=${selectedImage.src}; expires=${expirationDate.toUTCString()}`;
 
