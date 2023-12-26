@@ -1,14 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+/* document.addEventListener('DOMContentLoaded', function () {
     fetch('http://localhost:5000/getAll')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));  
   });
-
-const signUpButton = document.querySelector("#signUpButton");
-const userGmail = document.querySelector("#gmail");
-const userPassword = document.querySelector("#password");
-const userUsername = document.querySelector("#username");
-
+ */
+ 
 /* methods:
  does email entered exist in database
  does username already exist
@@ -16,7 +12,38 @@ const userUsername = document.querySelector("#username");
 // signup.js
 //change code
 
-signUpButton.addEventListener("click", function () {
+// Check if fields have values
+function validateAndSubmit() {
+  // Get input values
+  const username = document.getElementById("username").value;
+  const gmail = document.getElementById("gmail").value;
+  const password = document.getElementById("password").value;
+
+  // Check if input values are not empty
+  if (username.trim() === '' || gmail.trim() === '' || password.trim() === '') {
+      alert("Please fill in all the fields.");
+  } else {
+      // Perform the signup action 
+      alert(`Signup successful!\nUsername: ${username}\nGmail: ${gmail}\nPassword: ${password}`);
+ 
+      // Set a cookie for the user information with expiration date (expires in 1 days)
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 1);
+      
+      document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}`;
+      document.cookie = `gmail=${gmail}; expires=${expirationDate.toUTCString()}`;
+      document.cookie = `password=${password}; expires=${expirationDate.toUTCString()}`;
+      
+    
+          // Redirect to the new HTML page     
+      window.location.href = "/School_Website/html/imageSelection.html";
+  }
+}
+
+// Attach the function to the button click event
+document.getElementById("signUpButton").addEventListener("click", validateAndSubmit);
+
+/* signUpButton.addEventListener("click", function () {
   const server = "http://127.0.0.1:5000/api/user/createAccount";
   const requestBody = {
     gmail: userGmail.value,
@@ -44,3 +71,4 @@ signUpButton.addEventListener("click", function () {
       console.error(error);
     });
 });
+ */
