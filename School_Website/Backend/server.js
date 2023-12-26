@@ -1,15 +1,10 @@
 const express = require("express");
 const app = express();
-//const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
-//oim
-app.use(cookieParser());
+
 const bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
 
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
@@ -20,9 +15,12 @@ const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
 const topicManager = require("./topicManager");
+const imageManager = require('./imageManager');
 
 //app.use(bodyParser.json());
 
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 
@@ -31,7 +29,7 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
-
+// Connect to the database
 async function connectToDatabase() {
   try {
     await createConnection();
@@ -45,6 +43,34 @@ async function connectToDatabase() {
 connectToDatabase();
 
 //api end-points
+
+/* Getting Images for Profile Picture Selection*/
+
+// API endpoint to get all images
+app.get("/api/images", async (req, res) => {
+  try {
+    const images = await imageManager.getAllImages();
+    res.json(images);
+  } catch (error) {
+    console.error("Error retrieving images:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Example server-side code in your signup route
+app.post("/api/signup", (req, res) => {
+  const { username, gmail, password } = req.body;
+
+  // Perform the signup action (validate, store in the database, etc.)
+
+  // Set cookies
+  res.cookie('username', username);
+  res.cookie('gmail', gmail);
+  res.cookie('password', password);
+
+  // Send a response, or redirect to another page if needed
+  res.status(200).json({ message: "Signup successful" });
+});
 
 /* User */
 
