@@ -61,9 +61,12 @@ const userPassword = document.querySelector("#Password");
       const data = await response.json();
       if (data.status === "success") {
         // User ID fetched successfully, handle here
-        const userID = data.userID;
+        const userIDd= data.userID;
         if (callback) {
-          callback(userID);
+          callback(userIDd);
+          console.log(callback);
+          //direct to user profile or course page
+          
         }
       } else {
         console.error("User ID not found.");
@@ -73,10 +76,4 @@ const userPassword = document.querySelector("#Password");
     }
   }
   
-  // Example usage:
-  //Do something with the user ID
- /*  getUserID((userID) => {
-    
-    console.log("User ID:", userID);
-  });
-   */
+  
