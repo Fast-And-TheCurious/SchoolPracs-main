@@ -18,6 +18,14 @@ async function validateAndSubmit() {
   if (username.trim() === '' || gmail.trim() === '' || password.trim() === '') {
     alert("Please fill in all the fields.");
   } else {
+    // Check password strength
+    const passwordStrengthResult = checkPasswordStrength(password);
+
+    if (passwordStrengthResult !== "Password is strong!") {
+      alert(passwordStrengthResult);
+      return; // Stop execution if password is not strong
+    }
+
     try {
       // Check if the username exists on the server
       const usernameResponse = await fetch(`http://localhost:5000/api/user/usernameExist?username=${encodeURIComponent(username)}`);
@@ -55,3 +63,33 @@ async function validateAndSubmit() {
 
 // Attach the function to the button click event
 document.getElementById("signUpButton").addEventListener("click", validateAndSubmit);
+
+function checkPasswordStrength(password) {
+  // Check if password is at least 6 characters long
+  if (password.length < 6) {
+    return "Password should be at least 6 characters long.";
+  }
+
+  // Check if password contains at least one uppercase letter
+  if (!/[A-Z]/.test(password)) {
+    return "Password should contain at least one uppercase letter.";
+  }
+
+  // Check if password contains at least one special character
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    return "Password should contain at least one special character.";
+  }
+
+  // Check if password contains at least one number
+  if (!/\d/.test(password)) {
+    return "Password should contain at least one number.";
+  }
+
+  // If password passes all criteria
+  return "Password is strong!";
+}
+
+// Example usage
+const password = "MySecureP@ssword123";
+const result = checkPasswordStrength(password);
+console.log(result);
