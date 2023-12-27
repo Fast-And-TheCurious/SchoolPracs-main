@@ -88,8 +88,3 @@ function checkPasswordStrength(password) {
   // If password passes all criteria
   return "Password is strong!";
 }
-
-// Example usage
-const password = "MySecureP@ssword123";
-const result = checkPasswordStrength(password);
-console.log(result);
