@@ -24,8 +24,15 @@ function createConnection() {
 }
 
 function update(query, values) {
-  connection.query(query, values, function (err) {
-    if (err) throw err;
+  return new Promise((resolve, reject) => {
+    connection.query(query, values, function (err, results) {
+      if (err) {
+        console.error('Error executing query:', err);
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
   });
 }
 

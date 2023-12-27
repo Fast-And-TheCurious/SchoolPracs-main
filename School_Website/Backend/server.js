@@ -249,19 +249,27 @@ app.post("/api/user/profile", async (req, res) => {
 });
 
 /* Create User Account */
-app.post("/api/user/createAccount", async (req, res) => {
-  const { username, password, emailAddress } = req.body;
+
+app.post("/api/user/create", async (req, res) => {
+  const { username, email, password, profileIcon } = req.body;
 
   try {
-    const user = new userManager();
-    await user.createAccount(username, password, emailAddress);
+      // Ensure the required fields are provided
+      if (!username || !password || !email || !profileIcon) {
+          res.status(400).json({ status: "error", message: "Missing required fields" });
+          return;
+      }
+      // Perform the user creation logic
+      const user = new userManager();
+      await user.createAccount(username,email, password, profileIcon);
 
-    res.status(200).json({ status: "success", message: "Account created successfully" });
+      res.status(201).json({ status: "success", message: "User created successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: "error", message: "An error occurred" });
+      console.error(error);
+      res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
+
 //Update User Profile Data 
 app.put("/api/user/updateProfile", (req, res) => {
   const { userID, newUsername, newProfileIcon } = req.body;

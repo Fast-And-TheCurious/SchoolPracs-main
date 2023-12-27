@@ -1,10 +1,3 @@
-/* Methods Check List:
- does email entered exist in database
- does username already exist
- */
-// signup.js
-//change code
-
 // user1@example.com user1
 
 // Check if fields have values

@@ -91,15 +91,18 @@ class userManager {
     }
   }
 
-  async createAccount(username, password, profileIcon, email) {
-    try {
-      const query = `INSERT INTO bryantmDB.User (username, password, profileIcon, email) VALUES (?, ?, ?, ?);`;
-      //change the insert to wokr for your database
-      await update(query, [username, password, profileIcon, email]);
-    } catch (error) {
-      return error;
-    }
+async createAccount(username, email, password, profileIcon) {
+  try {
+      // Note the order of values: username, email, password, profileIcon
+      const query = `INSERT INTO bryantmDB.User (username, email, password, userImage) VALUES (?, ?, ?, ?);`;
+      await update(query, [username, email, password, profileIcon]);
+
+      return { success: true, message: 'Account created successfully' };
+  } catch (error) {
+      console.error('Error creating account:', error);
+      return { success: false, message: 'Failed to create account' };
   }
+}
 
   async doesUsernameExist(username) {
     try {
