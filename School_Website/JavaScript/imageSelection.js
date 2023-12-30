@@ -29,8 +29,7 @@ async function fetchImages() {
   }
 }
 
-// Call the function to fetch images
-fetchImages();
+
 // Assuming you have a container element with the ID "imageContainer"
 const imageContainer = document.getElementById("imageContainer");
 
