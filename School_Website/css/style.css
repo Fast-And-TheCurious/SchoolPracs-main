@@ -168,6 +168,17 @@ nav .locate{
     text-align: left;
 }
 
+/* About US */
+
+.about-us{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+.aboutDisplay{
+    border: black 1px solid;
+}
 /* Cources */
 
 p{
