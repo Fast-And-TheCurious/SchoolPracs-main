@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;    
+}
+:root{    
+    /* 
+    https://hookagency.com/blog/website-color-schemes/
+    darkGreen: #164A41;
+*/
+    --text-colour: #fff; /* Make it contrast with the red */
+    --background-color: #f44336;/* Find less bright red */
+}
+body{
+    background-color: whitesmoke;
+}
+.header{
+    max-height: 5rem;
+    width: 100%;
+    background: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url();
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+nav{
+    display: flex;
+    padding: 2% 4%;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo a{
+    text-decoration: none;
+    color: var(--text-colour);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{    
+    list-style: none;
+    display: inline-block;
+    padding:8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.nav-links ul li a::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: var(--background-color);
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.nav-links ul li a:hover::after{
+    width: 100%;    
+}
+.container{
+    margin: 1rem;
+}
+.introduction{
+    margin: 1rem 0 1rem 0;
+    font-size: large;
+}
+.tableOfContents{
+   font-size: 1.2rem;
+}
+.tableOfContents ul{
+    list-style: none;
+}
+.tableOfContents a{
+    text-decoration: none;
+    color: black;   
+}
+.tableOfContents ul li{
+    margin: .5rem 0 .5rem 0;
+}
+.tableOfContents a:hover{
+    cursor: pointer;
+    color: rgb(185, 101, 101);
+}
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+   
+    border-bottom: solid 1px black;
+}
+
+.infoCollection{
+   
+    /* border: grey solid 1px; */
+}
+.sub-title{
+    margin: 1rem 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 550;
+    border-bottom: 1px black solid;
+    margin-bottom: .5rem;
+}
+.heading{
+    margin: 1rem 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border-bottom: 1px black solid;
+    max-width:fit-content;
+    margin-bottom: .5rem;
+}
+
+.content{
+    
+}
