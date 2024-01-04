@@ -171,6 +171,9 @@ nav .locate {
 
 /* About US */
 
+.about-background_container{
+  background: rgba(248, 243, 243, 0.9); /* Background color with transparency */
+}
 .about-us {
   width: 90%;
   margin: auto;
@@ -186,8 +189,10 @@ nav .locate {
 
 /* Apply styling to the left area */
 .left-area {
-    grid-column: 1; /* Specify that the left area spans the first column */
-    
+  margin-bottom: 2rem;
+    grid-column: 1; /* Specify that the left area spans the first column */    
+  padding: 20px;
+  position: relative; /* Relative positioning for absolute positioning within */
 }
 
 /* Apply styling to the right area */
@@ -199,7 +204,8 @@ nav .locate {
 /* Additional styling for sections in the left area */
 .section {
     margin-bottom: 20px; /* Add margin between sections */
-    border: 1px solid #ccc;;
+    border: 1px solid #ccc;  
+    background: white;
 }
 .title{
     margin: 1rem 0 1rem 0;
