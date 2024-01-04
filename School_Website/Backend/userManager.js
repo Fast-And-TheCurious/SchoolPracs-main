@@ -20,6 +20,23 @@ class userManager {
       return error;
     }
   }
+
+  async getUserIdByGmail(gmail) {
+    try {
+      const query = "SELECT id FROM bryantmDB.User WHERE email = ? LIMIT 1;";
+      const result = await select(query, [gmail]);
+  
+      if (result.length > 0) {
+        return result[0].id;
+      } else {
+        return null; // User not found
+      }
+    } catch (error) {
+      console.error("Error getting user ID by Gmail:", error);
+      throw error;
+    }
+  }
+  
   async getUserEmail(userID) {
     try {
       const query = `SELECT email FROM bryantmDB.User WHERE id = ?`;
@@ -123,5 +140,16 @@ async createAccount(username, email, password, profileIcon) {
       return error;
     }
   }
+async doesPasswordMatch(userId, password) {
+  try {
+    const query = `SELECT COUNT(*) AS count FROM bryantmDB.User WHERE id = ? AND password = ?`;
+    const [result] = await select(query, [userId, password]);
+
+    return result.count === 1;
+  } catch (error) {
+    console.error("Error checking password match:", error);
+    throw error;
+  }
+}
 }
 module.exports = userManager;

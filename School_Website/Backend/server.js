@@ -180,21 +180,46 @@ app.get("/api/user/userID", async (req, res) => {
   }
 });
 
-/* Search Users */
-app.get("/api/user/search", async (req, res) => {
-  const { userID, searchUser } = req.query;
+// API endpoint to get user ID by Gmail
+app.get("/api/user/idByGmail", async (req, res) => {
+  const { gmail } = req.query;
 
   try {
-    const user = new userManager();
-    const userList = await user.getListOfUsernames(userID, searchUser);
+    // Ensure the required parameter is provided
+    if (!gmail) {
+      res.status(400).json({ status: "error", message: "Missing Gmail parameter" });
+      return;
+    }
 
-    res.status(200).json({ status: "success", userList });
+    // Perform the user ID retrieval logic
+    const user = new userManager();
+    const userId = await user.getUserIdByGmail(gmail);
+
+    if (userId) {
+      res.status(200).json({ status: "success", userId });
+    } else {
+      res.status(404).json({ status: "error", message: "User not found" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
 
+// API endpoint to check if the entered password matches the one in the database
+app.get("/api/user/passwordMatch", async (req, res) => {
+  const { userId, password } = req.query;
+
+  try {
+    const user = new userManager();
+    const passwordMatch = await user.doesPasswordMatch(userId, password);
+
+    res.status(200).json({ status: "success", passwordMatch });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
+});
 /* Get User Profile */
 app.get("/api/user/profile", async (req, res) => {
   const { userID } = req.query;
@@ -271,53 +296,10 @@ app.post("/api/user/create", async (req, res) => {
 });
 
 //Update User Profile Data 
-app.put("/api/user/updateProfile", (req, res) => {
-  const { userID, newUsername, newProfileIcon } = req.body;
 
-  let user = new userManager();
-
-  user
-    .updateProfile(newUsername, newProfileIcon, userID)
-    .then((result) => {
-      res.status(200).send({ message: "Profile updated successfully" });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred while updating profile");
-    });
-});
 /* Change Password: */
-app.put("/api/user/changePassword", (req, res) => {
-  const { userID, newPassword } = req.body;
 
-  let user = new userManager();
-
-  user
-    .changePassword(userID, newPassword)
-    .then((result) => {
-      res.status(200).send({ message: "Password changed successfully" });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred while changing password");
-    });
-});
 /* User Deletion: */
-app.delete("/api/user/deleteAccount", (req, res) => {
-  const { userID } = req.body;
-
-  let user = new userManager();
-
-  user
-    .deleteAccount(userID)
-    .then((result) => {
-      res.status(200).send({ message: "Account deleted successfully" });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error occurred while deleting account");
-    });
-});
 
 //Courses
 

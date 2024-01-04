@@ -1,79 +1,55 @@
-/* document.addEventListener('DOMContentLoaded', function () {
-  fetch('http://localhost:5000/getAll')
-  .then(response => response.json())
-  .then(data => loadHTMLTable(data['data']));  
-});
- */
-const loginButton = document.querySelector("#loginButton");
-const userEmail = document.querySelector("#Gmail");
-const userPassword = document.querySelector("#Password");
+/* 1	user1	user1@example.com	password1 */
+async function validateAndFetchUserInfo() {
+  // Get user input
+  const userGmail = document.querySelector("#Gmail").value.trim();
+  const userPassword = document.querySelector("#Password").value.trim();
 
-// add hiding and viewing of function later
-/* togglePasswordView.addEventListener("click", function () {
-    let nextView = togglePasswordView.innerHTML == "Open" ? "Close" : "Open";
-    togglePasswordView.innerHTML = nextView;
-    passwordInput.type = nextView == "Open" ? "text" : "password";
-  });
-  
-  toggleInputView.addEventListener("click", function () {
-    let nextView = toggleInputView.innerHTML == "Open" ? "Close" : "Open";
-    toggleInputView.innerHTML = nextView;
-    inputInput.type = nextView == "Open" ? "text" : "password";
-  }); */
-
-  loginButton.addEventListener("click", function () {
-
-    const server = "http://127.0.0.1:5000/api/user/login";
-    const query = `?email=${userEmail.value}&password=${userPassword.value}`;
-  
-    fetch(server + query)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        if (!data) {
-          const loginError = document.getElementById("LoginError");
-          loginError.style.visibility = "visible";
-        } else {
-          
-          // After a successful login, set the session cookie
-          setSessionCookie(data.sessionToken);
-          getUserID();
-
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-  
-  // Function to set the session cookie
-  function setSessionCookie(sessionToken) {   
-    const expiryDate = new Date(0);  
-    document.cookie = `sessionToken=${sessionToken}; expires=${expiryDate.toUTCString()}; path=/`;
+  // Check if input values are not empty
+  if (userGmail === '' || userPassword === '') {
+    alert("Please fill in all the fields.");
+    return; // Stop execution if fields are empty
   }
-  
-  async function getUserID(callback) {
-    const server = "http://127.0.0.1:5000/api/user/userID";
-    const query = `?email=${userEmail.value}`;
-  
-    try {
-      const response = await fetch(server + query);
-      const data = await response.json();
-      if (data.status === "success") {
-        // User ID fetched successfully, handle here
-        const userIDd= data.userID;
-        if (callback) {
-          callback(userIDd);
-          console.log(callback);
-          //direct to user profile or course page
+
+  try {
+    // Check if the Gmail exists
+    const gmailResponse = await fetch(`http://localhost:5000/api/user/gmailExist?gmail=${encodeURIComponent(userGmail)}`);
+    const gmailResult = await gmailResponse.json();
+
+    if (gmailResult.status === 'success' && gmailResult.gmailExists) {
+      // If the Gmail exists, proceed to check the password
+      const userIDResponse = await fetch(`http://localhost:5000/api/user/idByGmail?gmail=${encodeURIComponent(userGmail)}`);
+      const userIDResult = await userIDResponse.json();
+      
+      if (userIDResult.status === 'success' && userIDResult.userId) {
+        // Now, check if the entered password matches the one in the database
+        const passwordMatchResponse = await fetch(`http://localhost:5000/api/user/passwordMatch?userId=${userIDResult.userId}&password=${encodeURIComponent(userPassword)}`);
+        const passwordMatchResult = await passwordMatchResponse.json();
+
+        if (passwordMatchResult.status === 'success' && passwordMatchResult.passwordMatch) {
+          // Password match, procced with login of user
           
+          /* console.log("Login successful!");
+          console.log("userIDResult",userIDResult);
+          console.log("UserID:",userIDResult.userId); */
+
+          // Redirect to the course page
+          window.location.href = "/School_Website/html/course.html";
+                  
+
+        } else {
+          alert("Incorrect password. Please try again.");
         }
       } else {
-        console.error("User ID not found.");
+        alert("User not found. Please check your credentials.");
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      alert("Gmail doesn't exist. Please check if you have entered the correct gmail.");
     }
+  } catch (error) {
+    console.error(error);
+    alert("An error occurred while checking the information. Please try again.");
   }
-  
-  
+}
+
+// Attach the function to the button click event
+document.getElementById("loginButton").addEventListener("click", validateAndFetchUserInfo);
