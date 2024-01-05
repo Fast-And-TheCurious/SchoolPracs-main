@@ -17,12 +17,15 @@ const userManager = require("./userManager");
 const topicManager = require("./topicManager");
 const imageManager = require('./imageManager');
 
-//app.use(bodyParser.json());
+// Import email and password reset logic modules
+const { sendPasswordResetEmail } = require('./gmailService');
+const { initiatePasswordReset } = require('./gmailManager');
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -43,6 +46,24 @@ async function connectToDatabase() {
 connectToDatabase();
 
 //api end-points
+// API endpoint to initiate the password reset process
+app.post('/api/user/resetPassword', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+      // Call the function from your Gmail manager to initiate the password reset process
+      const result = await initiatePasswordReset(email);
+
+      if (result.success) {
+          res.status(200).json({ status: 'success', message: result.message });
+      } else {
+          res.status(400).json({ status: 'error', message: result.message });
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'error', message: 'An error occurred' });
+  }
+});
 
 /* Getting Images for Profile Picture Selection*/
 
