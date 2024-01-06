@@ -17,6 +17,11 @@ async function initiatePasswordReset(userEmail) {
         // TODO: Implement logic to send an email with the verification code
         // You can use a library like Nodemailer for this purpose
 
+        // Set a cookie for the code generated with an expiration date (expires in 10 minutes)
+        const expirationDate = new Date();
+        expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
+        document.cookie = `verificationCode =${verificationCode}; expires=${expirationDate.toUTCString()}`;
+          
         // Return success message
         return { success: true, message: 'Password reset initiated successfully' };
     } catch (error) {
