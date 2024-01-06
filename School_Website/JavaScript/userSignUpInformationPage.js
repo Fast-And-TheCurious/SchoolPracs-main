@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Function to get cookie value by name
+    // Function to get cookie value by name ==== check if this is really needed
     function getCookie(name) {
         const cookies = document.cookie.split(';');
         for (const cookie of cookies) {
