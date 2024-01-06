@@ -1,4 +1,4 @@
-document.getElementById("resetButton").addEventListener("click", async function () {
+document.getElementById("submitButton").addEventListener("click", async function () {
   const userEmail = document.getElementById("email").value;
 
   try {
@@ -14,8 +14,12 @@ document.getElementById("resetButton").addEventListener("click", async function 
       });
 
       if (response.ok) {
-          console.log('Password reset initiated successfully!');
-          // Handle success, e.g., show a success message to the user
+          console.log('Password reset initiated successfully!');          
+        
+        // Handle success. Showing a success message to the user
+            alert("Check your gmail!");
+        // Redirect user to password reset form page
+        window.location.href = "/School_Website/html/userPasswordResetForm.html";
       } else {
           console.error('Failed to initiate password reset:', response.statusText);
           // Handle failure, e.g., show an error message to the user
