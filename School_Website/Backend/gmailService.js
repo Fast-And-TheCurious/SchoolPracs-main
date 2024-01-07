@@ -46,3 +46,4 @@ module.exports = {
   generateVerificationCode,
   sendVerificationEmail,
 };
+/* Make a alert to user if they didn't enter a gmail */
