@@ -1,3 +1,4 @@
+/*  Responsible for sending emails using Nodemailer. */
 const nodemailer = require('nodemailer');
 
 // Function to generate a random verification code
@@ -46,4 +47,4 @@ module.exports = {
   generateVerificationCode,
   sendVerificationEmail,
 };
-/* Make a alert to user if they didn't enter a gmail */
+

@@ -3,8 +3,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
-
+const cookie=require('cookie');
 const bodyParser = require('body-parser');
+
 
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
@@ -47,6 +48,7 @@ connectToDatabase();
 
 //api end-points
 // API endpoint to initiate the password reset process
+
 app.post('/api/user/resetPassword', async (req, res) => {
   const { email } = req.body;
 
@@ -55,12 +57,15 @@ app.post('/api/user/resetPassword', async (req, res) => {
       const result = await initiatePasswordReset(email);
 
       if (result.success) {
+                   // Respond with success message
           res.status(200).json({ status: 'success', message: result.message });
       } else {
+          // Respond with error message
           res.status(400).json({ status: 'error', message: result.message });
       }
   } catch (error) {
       console.error(error);
+      // Respond with a generic error message
       res.status(500).json({ status: 'error', message: 'An error occurred' });
   }
 });
