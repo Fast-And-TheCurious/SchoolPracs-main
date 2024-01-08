@@ -3,7 +3,7 @@ const { select, update } = require("./database");
 class userManager {
   async updateProfile(newUserName, newProfileIcon, newEmail, userID) {
     try {
-      const query = `UPDATE bryantmDB.User SET username = ?, profileIcon = ?, email = ?  WHERE (UserID = ?)`;
+      const query = `UPDATE bryantmDB.Users SET username = ?, profileIcon = ?, email = ?  WHERE (UserID = ?)`;
       await update(query, [newUserName, newProfileIcon, newEmail, userID]);
       return "Update profile operation successful";
     } catch (error) {
@@ -13,7 +13,7 @@ class userManager {
 
   async getUserID(email) {
     try {
-      const query = `SELECT id FROM bryantmDB.User where email = ?`;
+      const query = `SELECT id FROM bryantmDB.Users where email = ?`;
       const [result] = await select(query, [email]);
       return result;
     } catch (error) {
@@ -23,7 +23,7 @@ class userManager {
 
   async getUserIdByGmail(gmail) {
     try {
-      const query = "SELECT id FROM bryantmDB.User WHERE email = ? LIMIT 1;";
+      const query = "SELECT id FROM bryantmDB.Users WHERE email = ? LIMIT 1;";
       const result = await select(query, [gmail]);
   
       if (result.length > 0) {
@@ -39,7 +39,7 @@ class userManager {
   
   async getUserEmail(userID) {
     try {
-      const query = `SELECT email FROM bryantmDB.User WHERE id = ?`;
+      const query = `SELECT email FROM bryantmDB.Users WHERE id = ?`;
       const [result] = await select(query, [userID]);
       return result ? result.email : null; // Return the email address or null if not found
     } catch (error) {
@@ -49,7 +49,7 @@ class userManager {
 
   async getUsername(userID) {
     try {
-      const query = `SELECT username FROM bryantmDB.User where UserID = ?`;
+      const query = `SELECT username FROM bryantmDB.Users where UserID = ?`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
@@ -60,7 +60,7 @@ class userManager {
   //This is used to allow user to login if they forgot their password
   async doUserEmailMatch(username, email) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.User where username = ? AND email = ?`;
+      const query = `SELECT count(*) FROM bryantmDB.Users where username = ? AND email = ?`;
       const [result] = await select(query, [username, email]);
       return result["count(*)"] == 1;
     } catch (error) {
@@ -70,7 +70,7 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username, profileIcon FROM bryantmDB.User where id = ?;`;
+      const query = `SELECT username, profileIcon FROM bryantmDB.Users where id = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
@@ -80,7 +80,7 @@ class userManager {
   /* Update the column names here to match database */
   async getUserProfileIcon(userID) {
     try {
-      const query = `SELECT profileIcon FROM bryantmDB.User WHERE id = ?`;
+      const query = `SELECT profileIcon FROM bryantmDB.Users WHERE id = ?`;
       const [result] = await select(query, [userID]);
 
       if (result && result.length > 0) {
@@ -100,7 +100,7 @@ class userManager {
   //Check if the user's login credential is correct
   async userLogin(email, password) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.User where email = ? AND password = ?`;
+      const query = `SELECT count(*) FROM bryantmDB.Users where email = ? AND password = ?`;
       const [result] = await select(query, [email, password]);
       return result["count(*)"] == 1;//ask
     } catch (error) {
@@ -111,7 +111,7 @@ class userManager {
 async createAccount(username, email, password, profileIcon) {
   try {
       // Note the order of values: username, email, password, profileIcon
-      const query = `INSERT INTO bryantmDB.User (username, email, password, userImage) VALUES (?, ?, ?, ?);`;
+      const query = `INSERT INTO bryantmDB.Users (username, email, password, userImage) VALUES (?, ?, ?, ?);`;
       await update(query, [username, email, password, profileIcon]);
 
       return { success: true, message: 'Account created successfully' };
@@ -123,7 +123,7 @@ async createAccount(username, email, password, profileIcon) {
 
   async doesUsernameExist(username) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.User where username = ?;`;
+      const query = `SELECT count(*) FROM bryantmDB.Users where username = ?;`;
       const [result] = await select(query, [username]);
       return result["count(*)"] == 1;
     } catch (error) {
@@ -133,7 +133,7 @@ async createAccount(username, email, password, profileIcon) {
 
   async doesGmailExist(gmail) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.User where email = ?;`;
+      const query = `SELECT count(*) FROM bryantmDB.Users where email = ?;`;
       const [result] = await select(query, [gmail]);
       return result["count(*)"] == 1;
     } catch (error) {
@@ -142,7 +142,7 @@ async createAccount(username, email, password, profileIcon) {
   }
 async doesPasswordMatch(userId, password) {
   try {
-    const query = `SELECT COUNT(*) AS count FROM bryantmDB.User WHERE id = ? AND password = ?`;
+    const query = `SELECT COUNT(*) AS count FROM bryantmDB.Users WHERE id = ? AND password = ?`;
     const [result] = await select(query, [userId, password]);
 
     return result.count === 1;
@@ -151,5 +151,37 @@ async doesPasswordMatch(userId, password) {
     throw error;
   }
 }
+async  addVerificationCodeDetails(userEmail, codeGenerated, codeCreatedAt, codeExpiresAt) {
+  try {
+      const query = ` UPDATE bryantmDB.Users
+      SET verification_code = ?, verification_code_created_at = ?, verification_code_expires_at = ?
+      WHERE email = ?;`;
+      await update(query, [codeGenerated, codeCreatedAt, codeExpiresAt,userEmail]);
+
+      return { success: true, message: 'Verification code added successfully' };
+  } catch (error) {
+      console.error('Error adding verification code:', error);
+      return { success: false, message: 'Failed to add verification code' };
+  }
 }
+async deleteVerificationCodeDetails(userEmail) {
+  try {
+    const query = `
+      UPDATE bryantmDB.Users
+      SET verification_code = NULL, verification_code_created_at = NULL, verification_code_expires_at = NULL
+      WHERE email = ?;
+    `;
+    await update(query, [userEmail]);
+
+    return { success: true, message: 'Verification code details deleted successfully' };
+  } catch (error) {
+    console.error('Error deleting verification code details:', error);
+    return { success: false, message: 'Failed to delete verification code details' };
+  }
+}
+
+
+}
+
+
 module.exports = userManager;
