@@ -23,8 +23,8 @@ async function initiatePasswordReset(userEmail) {
         // Get the current date
         const currentDate = new Date();
 
-        // Set the expiration date (expires in 1 minutes)
-        const expirationDate = new Date(currentDate.getTime() + 1 * 60 * 1000);
+        // Set the expiration date (expires in 2 minutes)
+        const expirationDate = new Date(currentDate.getTime() + 2 * 60 * 1000);
 
         // Format the dates as strings for database insertion
         const codeCreatedAt = currentDate.toISOString().slice(0, 19).replace('T', ' '); // Format: YYYY-MM-DD HH:MM:SS
@@ -36,11 +36,11 @@ async function initiatePasswordReset(userEmail) {
         if (result.success) {
             console.log('Verification code details added successfully!');
 
-            // Delete verification code details after a certain time period (1 minutes)
+            // Delete verification code details after a certain time period (2.2 minutes)
             setTimeout(async () => {
                 const deleteResult = await userManager.deleteVerificationCodeDetails(userEmail);
                 console.log('Verification code details deleted after expiration:', deleteResult.message);
-            }, 1.2 * 60 * 1000);
+            }, 2.2 * 60 * 1000);
 
             return { success: true, message: 'Password reset initiated successfully' };
         } else {
