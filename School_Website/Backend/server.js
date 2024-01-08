@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const cookie=require('cookie');
 const bodyParser = require('body-parser');
 
-
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
 const lessonManager = require("./lessonManager");
