@@ -98,7 +98,38 @@ app.post("/api/signup", (req, res) => {
 });
 
 /* User */
+app.get("/api/getVerificationCodeDetails", async (req, res) => {
+  const { email } = req.query;
+  try {
+    const user = new userManager();
+    const verificationCodeDetails = await user.getVerificationCodeDetails(email);
+    
+    if (verificationCodeDetails.success) {
+      res.json(verificationCodeDetails);
+    } else {
+      res.status(500).json(verificationCodeDetails); // Use appropriate status code
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "An error occurred" });
+  }
+});
+app.get("/api/passwordReset", async (req,res)=>{
+  const {email} = req.query;
+  try{
+    const user = new userManager();
+    const reserPassword = await user.resetUserPassword(email);
 
+    if (reserPassword) {
+      res.status(200).json({ status: "success", message: "Password Reser successful" });
+    } else {
+      res.status(401).json({ status: "error", message: "Unable to reset password" });
+    }
+  }catch(error){
+    console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+  }
+});
 /* User Login */
 app.get("/api/user/login", async (req, res) => {
   const { email, password } = req.query;
