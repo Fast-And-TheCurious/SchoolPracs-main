@@ -1,5 +1,3 @@
-// user1@example.com user1
-
 // Check if fields have values
 async function validateAndSubmit() {
   // Get input values
