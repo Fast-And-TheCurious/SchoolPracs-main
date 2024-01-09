@@ -180,6 +180,30 @@ async deleteVerificationCodeDetails(userEmail) {
   }
 }
 
+async getVerificationCodeDetails(userEmail) {
+  try {
+    const query = `SELECT verification_code
+                   FROM bryantmDB.Users
+                   WHERE email = ?`;
+    const [result] = await select(query, [userEmail]);
+
+    return { success: true, verificationCode: result.verification_code, message: 'Verification code details retrieved successfully' };
+  } catch (error) {
+    console.error('Error getting verification code details:', error);
+    return { success: false, message: 'Failed to get verification code details' };
+  }
+}
+async resetUserPassword(password,email){
+  try{
+    const query =`UPDATE bryantmDB.Users SET password= ${password} WHERE email =?`;
+    await update(query,[email]);
+
+    return { success: true, message: 'Password updated successfully' };
+  }catch(error){
+    console.error('Error updating user password:', error);
+    return {success: false, message:'Failed to update user password'};
+  }
+}
 
 }
 
