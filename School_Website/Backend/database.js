@@ -25,11 +25,14 @@ function createConnection() {
 
 function update(query, values) {
   return new Promise((resolve, reject) => {
+    console.log('Executing query:', query, 'with values:', values);
+    
     connection.query(query, values, function (err, results) {
       if (err) {
         console.error('Error executing query:', err);
         reject(err);
       } else {
+        console.log('Query executed successfully.');
         resolve(results);
       }
     });
