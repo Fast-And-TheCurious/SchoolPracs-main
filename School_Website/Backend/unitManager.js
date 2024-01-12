@@ -1,6 +1,6 @@
 const { select } = require("./database");
 class unitManager {
-  async getUnits() {
+  async getUnits() {  /* this mught be redundant due to the the getUnitByCourse === check  */
     try {
       const query = "SELECT * FROM Unit"; 
       const result = await select(query);
@@ -14,7 +14,22 @@ class unitManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
-
+  async getUnitsByCourse(courseID, unitID) {
+    try {
+      const query = `
+        SELECT * FROM bryantmDB.Unit
+        WHERE course_id = (SELECT id FROM bryantmDB.Courses WHERE id = ?)
+          AND id = ?;
+      `;
+  
+      const [result] = await select(query, [courseID, unitID]);
+      return { success: true, unitsByCourse: result, message: 'Unit by course details retrieved successfully' };
+    } catch (error) {
+      console.error("An error occurred while fetching units by course:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
+  
 }
 
 module.exports = unitManager;
