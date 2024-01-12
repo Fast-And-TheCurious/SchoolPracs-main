@@ -112,8 +112,19 @@ class lessonManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
+  /* IMPORTANT */
+  async getLessonsByUnit(unitID){
+    try{
+      const query = `SELECT * FROM bryantmDB.Lesson 
+      WHERE unitID LIKE (SELECT id FROM bryantmDB.Unit WHERE id LIKE ?) `;
+      const [result] = await select(query, [unitID]);
+      return { success: true, unitsByCourse: result, message: 'Lessons by unit details retrieved successfully' };
+    }catch(error){
+      console.error("An error occurred while fetching lessons by units:", error);
+      return { error: "An error occurred while processing the request", statusCode: 500 };
+    }
+  }
 }
-
 
 module.exports = lessonManager;
 
