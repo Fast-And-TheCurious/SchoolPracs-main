@@ -14,7 +14,6 @@ const signUpManager = require("./signUpManager");
 const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
-const topicManager = require("./topicManager");
 const imageManager = require('./imageManager');
 
 // Import email and password reset logic modules
@@ -114,11 +113,12 @@ app.get("/api/getVerificationCodeDetails", async (req, res) => {
     res.status(500).json({ success: false, message: "An error occurred" });
   }
 });
-app.get("/api/passwordReset", async (req,res)=>{
-  const {email} = req.query;
+//Reset user password in database
+app.post("/api/passwordReset", async (req, res) => {
+  const {password, email} = req.query;
   try{
     const user = new userManager();
-    const reserPassword = await user.resetUserPassword(email);
+    const reserPassword = await user.resetUserPassword(password, email);
 
     if (reserPassword) {
       res.status(200).json({ status: "success", message: "Password Reser successful" });
@@ -353,9 +353,13 @@ app.post("/api/user/create", async (req, res) => {
 
 //Update User Profile Data 
 
-/* Change Password: */
-
 /* User Deletion: */
+
+
+
+
+
+
 
 //Courses
 
@@ -376,6 +380,11 @@ app.get("/api/courses", async (req, res) => {
     res.status(500).json({ error: "An internal server error occurred" });
   }
 });
+
+
+
+
+
 //Lessons
 //endpoint for getting lessons
 app.get("/api/lessons", async (req, res) => {
@@ -395,7 +404,13 @@ app.get("/api/lessons", async (req, res) => {
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-//Units
+
+
+
+
+
+
+//Units api-endpoints
 app.get("/api/units", async (req, res) => {
   try {
     const manager = new unitManager();
@@ -407,6 +422,21 @@ app.get("/api/units", async (req, res) => {
       res.status(200).json(units);
     }
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An internal server error occurred" });
+  }
+});
+
+app.get("/api/unitsByCourse", async (res,req)=>{
+  try{
+    const manager = new unitManager();
+    const unitsByCourse = await manager.getUnitsByCourse();
+    if (unitsByCourse.error) {
+      res.status(500).json({ error: "An error occurred while processing the request" });
+    } else {
+      res.status(200).json(unitsByCourse);
+    }
+  }catch(error){
     console.error(error);
     res.status(500).json({ error: "An internal server error occurred" });
   }
