@@ -195,9 +195,10 @@ async getVerificationCodeDetails(userEmail) {
 }
 async resetUserPassword(password,email){
   try{
-    const query =`UPDATE bryantmDB.Users SET password= ${password} WHERE email =?`;
-    await update(query,[email]);
+    const query = `UPDATE bryantmDB.Users SET password = ? WHERE email = ?`;
+    console.log('Executing SQL query:', query);
 
+    await update(query, [password, email]);
     return { success: true, message: 'Password updated successfully' };
   }catch(error){
     console.error('Error updating user password:', error);
