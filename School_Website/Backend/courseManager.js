@@ -86,7 +86,7 @@ const { select } = require("./database");
 class CourseManager {
   async getCourses() {
     try {
-      const query = "SELECT * FROM Courses";
+      const query = "SELECT * FROM courses";
       const result = await select(query);
 
       if (!result || result.length === 0) {

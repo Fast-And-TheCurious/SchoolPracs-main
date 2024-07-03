@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // not to self: the mysql database has to be open to run the server
 const mysql = require("mysql2");
-
+// MySQL infomation 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root", 
-  password: "-Q8[Sw+!@Hb{5sFKq6XB/EAC#\tYv~",
+  host: "localhost", 
+  user: "root",  
+  password: "CtMBgwiukcXGdKCRlfj8T6",
   database: "bryantmdb",
 });
 module.exports = connection;
