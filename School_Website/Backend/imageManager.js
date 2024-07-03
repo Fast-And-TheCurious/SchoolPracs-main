@@ -2,7 +2,7 @@ const { select } = require("./database");
 
 async function getAllImages() {
   try {
-    const query = "SELECT * FROM Image_Urls";
+    const query = "SELECT * FROM image_urls";
     const images = await select(query);
     return images;
   } catch (error) {
