@@ -74,6 +74,7 @@ app.post('/api/user/resetPassword', async (req, res) => {
 app.get("/api/images", async (req, res) => {
   try {
     const images = await imageManager.getAllImages();
+    console.log("Images to send in response:", images);
     res.json(images);
   } catch (error) {
     console.error("Error retrieving images:", error);
