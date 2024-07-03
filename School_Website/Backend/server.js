@@ -74,7 +74,7 @@ app.post('/api/user/resetPassword', async (req, res) => {
 app.get("/api/images", async (req, res) => {
   try {
     const images = await imageManager.getAllImages();
-    console.log("Images to send in response:", images);
+    console.log("From server.js; Images to send in response:", images);
     res.json(images);
   } catch (error) {
     console.error("Error retrieving images:", error);
@@ -116,7 +116,7 @@ app.get("/api/getVerificationCodeDetails", async (req, res) => {
 });
 //Reset user password in database
 app.post("/api/passwordReset", async (req, res) => {
-  const {password, email} = req.query;
+  const {password, email} = req.body;
   try{
     const user = new userManager();
     const reserPassword = await user.resetUserPassword(password, email);

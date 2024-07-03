@@ -34,6 +34,9 @@ document
           console.log("Passwords match");
           if (checkPasswordStrength(newPassword)) {
             // check if password is strong
+            console.log("newPassword going to table in database:"+newPassword);
+            console.log("gmail used:"+gmail);
+            
             const passwordRespone = await fetch(
               "http://localhost:5000/api/passwordReset",
               {
