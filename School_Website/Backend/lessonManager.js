@@ -55,7 +55,7 @@ const { select } = require("./database");
 class lessonManager {
   async getCourses() {
     try {
-      const query = "SELECT * FROM Courses";
+      const query = "SELECT * FROM courses";
       const result = await select(query);
 
       if (!result || result.length === 0) {
@@ -69,7 +69,7 @@ class lessonManager {
   }
   async getAllLessons() {
     try {
-      const query = "SELECT * FROM Lesson"; 
+      const query = "SELECT * FROM lessons"; 
       const result = await select(query);
   
       if (!result || result.length === 0) {
@@ -85,7 +85,7 @@ class lessonManager {
   
   async getLessonsByCourse(courseId) {
     try {
-      const query = "SELECT * FROM Lesson WHERE courseId = ?";
+      const query = "SELECT * FROM lessons WHERE courseId = ?";
       const result = await select(query, [courseId]);
 
       if (!result || result.length === 0) {
@@ -100,7 +100,7 @@ class lessonManager {
 
   async getUnitsByCourse(courseId) {
     try {
-      const query = "SELECT * FROM Unit WHERE courseId = ?";
+      const query = "SELECT * FROM unit WHERE courseId = ?";
       const result = await select(query, [courseId]);
 
       if (!result || result.length === 0) {
@@ -115,7 +115,7 @@ class lessonManager {
   /* IMPORTANT */
   async getLessonsByUnit(unitID){
     try{
-      const query = `SELECT * FROM bryantmDB.Lesson 
+      const query = `SELECT * FROM bryantmdb.lessons 
       WHERE unitID LIKE (SELECT id FROM bryantmDB.Unit WHERE id LIKE ?) `;
       const [result] = await select(query, [unitID]);
       return { success: true, unitsByCourse: result, message: 'Lessons by unit details retrieved successfully' };

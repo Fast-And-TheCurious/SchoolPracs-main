@@ -2,7 +2,7 @@ const { select } = require("./database");
 class unitManager {
   async getUnits() {  /* this mught be redundant due to the the getUnitByCourse === check  */
     try {
-      const query = "SELECT * FROM Unit"; 
+      const query = "SELECT * FROM unit"; 
       const result = await select(query);
 
       if (!result || result.length === 0) {
@@ -17,8 +17,8 @@ class unitManager {
   async getUnitsByCourse(courseID, unitID) {
     try {
       const query = `
-        SELECT * FROM bryantmDB.Unit
-        WHERE course_id = (SELECT id FROM bryantmDB.Courses WHERE id = ?)
+        SELECT * FROM bryantmdb.unit
+        WHERE course_id = (SELECT id FROM bryantmd.courses WHERE id = ?)
           AND id = ?;
       `;
   

@@ -95,7 +95,6 @@ const data = {
 };
 
 console.log("dataArray: ", data);
- 
 function calculateTotalMasteryPoints(data) {
   const totalMasteryPoints = data.lessons.reduce((total, lesson) => {
     return total + parseFloat(lesson.masteryPoints.replace(/,/g, ""));
