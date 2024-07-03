@@ -111,8 +111,8 @@ class userManager {
 async createAccount(username, email, password, profileIcon) {
   try {
       // Note the order of values: username, email, password, profileIcon
-      const query = `INSERT INTO bryantmDB.Users (username, email, password, userImage) VALUES (?, ?, ?, ?);`;
-      await update(query, [username, email, password, profileIcon]);
+      const query = `INSERT INTO bryantmDB.Users (username, profileIcon, email, password) VALUES (?, ?, ?, ?);`;
+      await update(query, [username, profileIcon, email, password]);
 
       return { success: true, message: 'Account created successfully' };
   } catch (error) {
