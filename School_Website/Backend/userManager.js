@@ -1,5 +1,8 @@
 const { select, update } = require("./database");
-
+// motes for me"
+/* 
+rows = the array of rows returned by the SQL query
+*/
 class userManager {
   async updateProfile(newUserName, newProfileIcon, newEmail, userID) {
     try {
@@ -100,13 +103,15 @@ class userManager {
   //Check if the user's login credential is correct
   async userLogin(email, password) {
     try {
-      const query = `SELECT count(*) FROM bryantmDB.Users where email = ? AND password = ?`;
+      const query = `SELECT count(*) as count FROM bryantmDB.Users WHERE email = ? AND password = ?`;
       const [result] = await select(query, [email, password]);
-      return result["count(*)"] == 1;//ask
+      return result.count === 1;
     } catch (error) {
-      return error;
+      console.error("Error during login:", error);
+      throw error;
     }
   }
+  
 
 async createAccount(username, email, password, profileIcon) {
   try {
@@ -195,7 +200,7 @@ async getVerificationCodeDetails(userEmail) {
 }
 async resetUserPassword(password,email){
   try{
-    const query = `UPDATE bryantmDB.Users SET password = ? WHERE email = ?`;
+    const query = `UPDATE bryantmdb.users SET password = ? WHERE email = ?`;
     console.log('Executing SQL query:', query);
 
     await update(query, [password, email]);
@@ -203,6 +208,42 @@ async resetUserPassword(password,email){
   }catch(error){
     console.error('Error updating user password:', error);
     return {success: false, message:'Failed to update user password'};
+  }
+}
+
+async getUserCompletedCourses(email){
+  // get by user gmail
+  try {
+    const query = `
+        SELECT cources_completed FROM  bryantmdb.users
+        WHERE email = ?
+    `;
+    const [rows] = await db.execute(query, [email]);
+    if (rows.length > 0) {
+      return rows[0].courses_completed;
+  } else {
+      return null;
+  }
+} catch (error) {
+    console.error('Error fetching completed courses:', error);
+    throw error;
+}
+}
+
+async getUserPoints(email){ // get column in database
+  // getBy user gmail
+  try{
+    const query = `SELECT points_accumulated FROM bryantmdb.users WHERE email= ?`;
+    const[rows] = await db.execute(query, [email]);
+    if (rows.length > 0) {
+      return rows[0].points;
+  } else {
+      return null;
+  }
+  
+  }catch(error){
+    console.error('Error fetching user points:', error);
+    throw error;
   }
 }
 
