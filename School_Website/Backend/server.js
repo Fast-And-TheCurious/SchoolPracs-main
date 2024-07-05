@@ -45,6 +45,26 @@ async function connectToDatabase() {
 connectToDatabase();
 
 //api end-points
+
+
+
+// Login route
+app.post('/api/user/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userManagerInstance = new userManager();
+    const loggedIn = await userManagerInstance.userLogin(email, password);
+    if (loggedIn) {
+      res.json({ status: 'success', loggedIn: true });
+    } else {
+      res.json({ status: 'fail', loggedIn: false });
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+});
+
 // API endpoint to initiate the password reset process
 
 app.post('/api/user/resetPassword', async (req, res) => {
@@ -498,6 +518,36 @@ app.post('/api/userMessages', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
+
+
+// Endpoint for getting user's completed courses
+app.get('/user-completed-courses', async (req, res) => {
+  const { email } = req.query;
+  try {
+      const completedCourses = await userManager.getUserCompletedCourses(email);
+      res.status(200).json({ completedCourses });
+  } catch (error) {
+      console.error('Error fetching user completed courses:', error);
+      res.status(500).json({ error: 'Failed to fetch user completed courses' });
+  }
+});
+// Endpoint for getting user's points
+app.get('/user-points', async (req, res) => {
+  const { email } = req.query;
+  try {
+      const points = await userManager.getUserPoints(email);
+      res.status(200).json({ points });
+  } catch (error) {
+      console.error('Error fetching user points:', error);
+      res.status(500).json({ error: 'Failed to fetch user points' });
+  }
+});
 /* app.get('/api/help/messages', async (req, res) => {
   try {
     const messages = await helpManager.getAllMessages();
