@@ -526,7 +526,7 @@ app.post('/api/userMessages', async (req, res) => {
 
 
 
-// Endpoint for getting user's completed courses
+/* // Endpoint for getting user's completed courses
 app.get('/user-completed-courses', async (req, res) => {
   const { email } = req.query;
   try {
@@ -547,7 +547,13 @@ app.get('/user-points', async (req, res) => {
       console.error('Error fetching user points:', error);
       res.status(500).json({ error: 'Failed to fetch user points' });
   }
-});
+}); */
+
+
+
+
+
+
 /* app.get('/api/help/messages', async (req, res) => {
   try {
     const messages = await helpManager.getAllMessages();
