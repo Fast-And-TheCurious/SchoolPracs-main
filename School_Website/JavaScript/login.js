@@ -17,39 +17,35 @@ async function validateAndFetchUserInfo() {
 
     if (gmailResult.status === 'success' && gmailResult.gmailExists) {
       // If the Gmail exists, proceed to check the password
-      const userIDResponse = await fetch(`http://localhost:5000/api/user/idByGmail?gmail=${encodeURIComponent(userGmail)}`);
-      const userIDResult = await userIDResponse.json();
-      
-      if (userIDResult.status === 'success' && userIDResult.userId) {
-        // Now, check if the entered password matches the one in the database
-        const passwordMatchResponse = await fetch(`http://localhost:5000/api/user/passwordMatch?userId=${userIDResult.userId}&password=${encodeURIComponent(userPassword)}`);
-        const passwordMatchResult = await passwordMatchResponse.json();
+      const loginResponse = await fetch(`http://localhost:5000/api/user/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: userGmail,
+          password: userPassword
+        })
+      });
+      const loginResult = await loginResponse.json();
 
-        if (passwordMatchResult.status === 'success' && passwordMatchResult.passwordMatch) {
-          // Password match, procced with login of user
-          
-          /* console.log("Login successful!");
-          console.log("userIDResult",userIDResult);
-          console.log("UserID:",userIDResult.userId); */
-
-          // Redirect to the course page
-          window.location.href = "/School_Website/html/course.html";
-                  
-
-        } else {
-          alert("Incorrect password. Please try again.");
-        }
+      if (loginResult.status === 'success' && loginResult.loggedIn) {
+        // Login successful
+        window.location.href = "/School_Website/html/course.html";
       } else {
-        alert("User not found. Please check your credentials.");
+        // Incorrect password
+        alert("Incorrect password. Please try again.");
       }
     } else {
-      alert("Gmail doesn't exist. Please check if you have entered the correct gmail.");
+      // Gmail doesn't exist
+      alert("Gmail doesn't exist. Please check if you have entered the correct Gmail.");
     }
   } catch (error) {
-    console.error(error);
+    console.error("Error during login:", error);
     alert("An error occurred while checking the information. Please try again.");
   }
 }
+
 
 // Attach the function to the button click event
 document.getElementById("loginButton").addEventListener("click", validateAndFetchUserInfo);
