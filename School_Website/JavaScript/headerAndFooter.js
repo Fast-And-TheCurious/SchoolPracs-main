@@ -7,7 +7,8 @@ const headerData = {
         { label: "Courses", link: "course.html" },
         { label: "Blog", link: "blog.html" },
         { label: "Contact", link: "contact.html" },
-        { label: "Login", link: "login.html" }
+        { label: "Login", link: "login.html" },
+        { label: "Profile", link: "profileMe.html"}
     ]
 };
 
