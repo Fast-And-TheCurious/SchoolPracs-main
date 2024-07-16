@@ -39,11 +39,13 @@ async function fetchImages() {
     const response = await fetch("http://localhost:5000/api/images");
     const fetchedData = await response.json();
 
+    console.log(fetchedData);
+
     // Loop through the fetched images and create image elements
     fetchedData.forEach(item => {
       const imgElement = document.createElement("img");
       imgElement.className = "image-item";
-      imgElement.src = item.image;
+      imgElement.src = item.image_url;
       imgElement.alt = "Image";
       imageContainer.appendChild(imgElement);
     });
