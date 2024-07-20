@@ -26,7 +26,7 @@ class userManager {
 
   async getUserIdByGmail(gmail) {
     try {
-      const query = "SELECT id FROM bryantmDB.Users WHERE email = ? LIMIT 1;";
+      const query = "SELECT id FROM bryantmDB.users WHERE email = ? LIMIT 1;";
       const result = await select(query, [gmail]);
   
       if (result.length > 0) {
