@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', async function () {
   
   // Logout functionality
   document.getElementById('logoutButton').addEventListener('click', function() {
-    // Remove the stored token on logout
-    localStorage.removeItem('token');
+    // Remove the stored cookie on logout
+    
     // Redirect to login page
-    window.location.href = '/School_Website/html/login.html';
+    window.location.href = '/School_Website/html/index.html';
   });
   
   // Theme settings
@@ -116,21 +116,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
   
   document.getElementById('logoutButton').addEventListener('click', async function() {
-    try {
-      const response = await fetch('http://localhost:5000/api/user/logout', {
-        method: 'POST',
-        credentials: 'include' // Include credentials (cookies)
-      });
-  
-      const result = await response.json();
-      if (result.status === 'success') {
-        window.location.href = '/School_Website/html/login.html';
-      } else {
-        alert('Failed to log out');
-      }
-    } catch (error) {
-      console.error('Error during logout:', error);
-      alert('An error occurred while logging out.');
-    }
+    document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = "/School_Website/html/index.html";
   });
   
