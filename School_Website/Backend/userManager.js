@@ -73,7 +73,7 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username, profileIcon FROM bryantmDB.Users where id = ?;`;
+      const query = `SELECT username, profileIcon, email, history_activities, cources_completed, points_accumulated FROM bryantmDB.Users where id = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {

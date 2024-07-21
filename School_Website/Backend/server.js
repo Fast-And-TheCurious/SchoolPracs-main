@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000; // change port? 
+const session = require("express-session");
+const PORT = process.env.PORT || 5000; 
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const cookie=require('cookie');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
@@ -20,12 +24,26 @@ const imageManager = require('./imageManager');
 const { sendPasswordResetEmail } = require('./gmailService');
 const { initiatePasswordReset } = require('./gmailManager');
 
+const secretKey = process.env.JWT_SECRET;
+if (!secretKey) {
+  console.error('Secret key for JWT is not defined');
+  process.exit(1); // Stop process with an error
+}
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({
+  origin: 'http://127.0.0.1:5502', // Adjust to your frontend URL
+  credentials: true // Allow credentials (cookies, authorization headers)
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || secretKey,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Note: Set 'secure: true' if using HTTPS
+}));
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -55,6 +73,7 @@ app.post('/api/user/login', async (req, res) => {
     const userManagerInstance = new userManager();
     const loggedIn = await userManagerInstance.userLogin(email, password);
     if (loggedIn) {
+      req.session.user = { email }; // Save user info in the session
       res.json({ status: 'success', loggedIn: true });
     } else {
       res.json({ status: 'fail', loggedIn: false });
@@ -63,6 +82,16 @@ app.post('/api/user/login', async (req, res) => {
     console.error('Error during login:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
+});
+// Logout endpoint
+app.post('/api/user/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ status: 'error', message: 'Failed to log out' });
+    }
+    res.clearCookie('connect.sid'); // This name might vary depending on your session cookie name
+    res.json({ status: 'success', message: 'Logged out successfully' });
+  });
 });
 
 // API endpoint to initiate the password reset process
@@ -271,7 +300,7 @@ app.get("/api/user/idByGmail", async (req, res) => {
     // Perform the user ID retrieval logic
     const user = new userManager();
     const userId = await user.getUserIdByGmail(gmail);
-
+    console.log("userID: "+ userId);
     if (userId) {
       res.status(200).json({ status: "success", userId });
     } else {
@@ -297,24 +326,10 @@ app.get("/api/user/passwordMatch", async (req, res) => {
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
-/* Get User Profile */
-app.get("/api/user/profile", async (req, res) => {
-  const { userID } = req.query;
 
-  try {
-    const user = new userManager();
-    const userProfile = await user.getUserProfile(userID);
 
-    if (userProfile) {
-      res.status(200).json({ status: "success", userProfile });
-    } else {
-      res.status(404).json({ status: "not found", message: "User not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: "error", message: "An error occurred" });
-  }
-});
+
+
 
 /* Get User Profile Icon */
 app.get("/api/user/profileIcon", async (req, res) => {
@@ -336,7 +351,7 @@ app.get("/api/user/profileIcon", async (req, res) => {
 });
 
 /* Update User Profile */
-app.post("/api/user/profile", async (req, res) => {
+app.post("/api/update/user/profile", async (req, res) => {
   const { userID, newUsername, newProfileIcon } = req.body;
 
   try {
@@ -349,6 +364,26 @@ app.post("/api/user/profile", async (req, res) => {
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
+
+// Get user profile info
+app.get('/api/get/user/profile', async (req, res) => {
+ const { userID } = req.query;
+ try{
+  const user = new userManager();
+  const userInfo = await user.getUserProfile(userID);
+  if(userInfo.error){
+    res.status(404).json({ status: "not found", message: userInfo.error });
+  } else {
+    res.status(200).json({ status: "success", userInfo });
+  }
+
+ }catch(error){
+  console.error(error);
+  res.status(500).json({status: "error", message: "An error occurred"});
+ }
+});
+
+
 
 /* Create User Account */
 
@@ -526,7 +561,7 @@ app.post('/api/userMessages', async (req, res) => {
 
 
 
-/* // Endpoint for getting user's completed courses
+// Endpoint for getting user's completed courses
 app.get('/user-completed-courses', async (req, res) => {
   const { email } = req.query;
   try {
@@ -537,7 +572,8 @@ app.get('/user-completed-courses', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch user completed courses' });
   }
 });
-// Endpoint for getting user's points
+
+/* // Endpoint for getting user's points
 app.get('/user-points', async (req, res) => {
   const { email } = req.query;
   try {

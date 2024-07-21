@@ -51,7 +51,7 @@ async function validateAndFetchUserInfo() {
 
         // Set a cookie for the selected image with expiration date (expires in 1 day)
         const expirationDate = new Date();
-        expirationDate.setTime(expirationDate.getTime() + 1 * 60 * 60 * 1000);
+        expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000);
 
         document.cookie = `userID= ${userID};  expires=${expirationDate.toUTCString()}; path=/`;
 

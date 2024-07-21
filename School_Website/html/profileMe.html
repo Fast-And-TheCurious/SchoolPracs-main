@@ -3,7 +3,7 @@
  <html lang="en">
  <head>
   <link rel="stylesheet" href="/School_Website/css/theme.css">
-  <script src="/js/theme.js"></script>
+  <script src="/School_Website/JavaScript/theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
                     <div class="col-lg-3 order-lg-2">
                       <div class="card-profile-image">
                         <a href="#">
-                          <img src="/School_Website/images/jgsnow_cyberpunk_post-apocalyptic_urban_street_cinematic_high_d_a841e87f-aee3-44d7-8bb5-6151aae8e669.png
+                          <img id="user-profile-icon" src="/School_Website/images/jgsnow_cyberpunk_post-apocalyptic_urban_street_cinematic_high_d_a841e87f-aee3-44d7-8bb5-6151aae8e669.png
                           " class="rounded-circle">
                         </a>
                       </div>
@@ -112,7 +112,7 @@
                           <div class="col-lg-6">
                             <div class="form-group focused">
                               <label  class="form-control-label" for="input-username">Username</label>
-                              <input type="text" id="username" class="form-control" placeholder="Username" value="" readonly><!-- value <-- is the value the user will input when making an account so use the sorted value -->
+                              <input id="username" type="text" id="username" class="form-control" placeholder="Username" value="" readonly><!-- value <-- is the value the user will input when making an account so use the sorted value -->
                             </div>
                           </div>
                           <div class="col-lg-6">
@@ -153,39 +153,7 @@
                               <div class="frequency_courses">
                                   <canvas id="lineChart"></canvas>
                               </div>
-                          </div>
-                          <script>
-                              // Sample data for lessons and tests completed
-                              const lessonData = [10, 15, 20, 25, 30]; // Replace with your actual data
-                              const testData = [5, 10, 8, 12, 15]; // Replace with your actual data
-                      
-                              // Get the canvas element
-                              const ctx = document.getElementById('lineChart').getContext('2d');
-                      
-                              // Create a line chart
-                              const lineChart = new Chart(ctx, {
-                                  type: 'line',
-                                  data: {
-                                      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // Replace with appropriate labels
-                                      datasets: [
-                                          {
-                                              label: 'Lessons Completed',
-                                              borderColor: 'blue',
-                                              data: lessonData,
-                                          },
-                                          {
-                                              label: 'Tests Completed',
-                                              borderColor: 'green',
-                                              data: testData,
-                                          },
-                                      ],
-                                  },
-                                  options: {
-                                      responsive: true,
-                                      maintainAspectRatio: false,
-                                  },
-                              });
-                          </script>
+                          </div>                         
                           </div>
                         </div>
                       </div>
