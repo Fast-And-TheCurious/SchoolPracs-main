@@ -83,16 +83,6 @@ app.post('/api/user/login', async (req, res) => {
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 });
-// Logout endpoint
-app.post('/api/user/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ status: 'error', message: 'Failed to log out' });
-    }
-    res.clearCookie('connect.sid'); // This name might vary depending on your session cookie name
-    res.json({ status: 'success', message: 'Logged out successfully' });
-  });
-});
 
 // API endpoint to initiate the password reset process
 
