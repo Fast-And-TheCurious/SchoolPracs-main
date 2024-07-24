@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="/School_Website/css/unistyling.css" />
   <link rel="stylesheet" href="/School_Website/css/header&Footer.css" />
   <link rel="stylesheet" href="/School_Website/css/theme.css">
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
@@ -44,11 +46,14 @@
       <ul id="lessonList">
       </ul>
   </aside>
+  <!-- 
+  The YouTube ID in the given URL 'https://www.youtube.com/embed/JdqL89ZZwFw?si=04Q_OL3gQWiZ5A6v' is JdqL89ZZwFw. This ID uniquely identifies the specific video on YouTube. -->
   <section class="video_container">
     <div class="unitLessonTitle" id="lessonTitle"></div>
     <div class="video_box_display">
       <div class="video">
-        <iframe
+        <div id="player"></div>
+       <!--  <iframe
           id="youtubeVideo"
           width="1200rem"
           height="100%"
@@ -57,7 +62,7 @@
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
-        ></iframe>
+        ></iframe> -->
         <div id="gif-container" class="hidden">
           <img class="video" src="/School_Website/Videos/cat.gif">
         </div>
@@ -72,6 +77,8 @@
       </div>
     </div>    
   </section>  
+  
+
   </section> 
 
   <!-- Footer -->

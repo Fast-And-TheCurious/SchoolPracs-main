@@ -650,3 +650,15 @@ app.delete('/api/help/messages/:message_id', async (req, res) => {
     res.status(500).send('Error occurred');
   }
 }); */
+app.post("/api/update-lesson-completed", async (req, res)=>{
+const {userID} = req.body;
+try{
+  const lesson = new lessonManager();
+  await lesson.updateProfile(userID);
+
+  res.status(200).json({ status: "success", message: "Profile updated successfully" });
+}catch(error){
+  console.error(error);
+    res.status(500).json({ status: "error", message: "An error occurred" });
+}
+});
