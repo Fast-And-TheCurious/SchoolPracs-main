@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+  }
+  :root{
+    --margin-left:4rem; 
+  }
+  .header {
+    max-height: 10vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+      url();  
+  }
+  nav {
+    display: flex;
+    padding: 2% 4%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-links {
+    flex: 1;
+    text-align: right;
+  }
+  .nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+  }
+  .nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  .nav-links ul li a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--background-color);
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+  .nav-links ul li a:hover::after {
+    width: 100%;
+  }
+  .h1,.h2 {
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: .5rem;
+    color: #32325d;
+  }
+  .h2{  
+        font-size: .75rem;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        letter-spacing: .04em;
+}
+.container{
+  background-color: black;
+  width: 100%;
+  min-height: 80rem; /* play with */
+}
+.lessonInfo{
+  margin-left: var(--margin-left);
+  color:white;
+
+}
+.lessonInfo ul{
+    list-style: none;
+
+}
