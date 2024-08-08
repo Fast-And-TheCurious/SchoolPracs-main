@@ -4,7 +4,12 @@
     font-family: "Poppins", sans-serif;
   }
   :root{
+    --margin-top:1rem;
+    --margin-bottom:1rem;
     --margin-left:4rem; 
+    --margin-right:4rem;
+    --border-radius:.5rem;
+    --border: solid white .2rem;
   }
   .header {
     max-height: 10vh;
@@ -50,7 +55,7 @@
     font-weight: 600;
     line-height: 1.5;
     margin-bottom: .5rem;
-    color: #32325d;
+    color: #ffffff;
   }
   .h2{  
         font-size: .75rem;
@@ -58,17 +63,18 @@
         padding-bottom: .25rem;
         letter-spacing: .04em;
 }
-.container{
+.container{  
   background-color: black;
   width: 100%;
   min-height: 80rem; /* play with */
+  border: var(--border);/* find a way to remove the top margin from making a huge white space without using this as a scapegoat */
 }
-.lessonInfo{
-  margin-left: var(--margin-left);
-  color:white;
-
+.lessonInfo{  
+  margin: var(--margin-left) var(--margin-top) var(--margin-right) var(--margin-bottom);
+  border-radius: var(--border-radius);
+  border: var(--border);
 }
 .lessonInfo ul{
     list-style: none;
-
+    color:white;
 }
