@@ -52,8 +52,7 @@
     <div class="unitLessonTitle" id="lessonTitle"></div>
     <div class="video_box_display">
       <div class="video">
-        <div id="player"></div>
-       <!--  <iframe
+        <iframe
           id="youtubeVideo"
           width="1200rem"
           height="100%"
@@ -62,9 +61,9 @@
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
-        ></iframe> -->
+        ></iframe>
         <div id="gif-container" class="hidden">
-          <img class="video" src="/School_Website/Videos/cat.gif">
+          <img id="errorGif" class="video" src="/School_Website/Videos/cat.gif">
         </div>
       </div>
     </div>
@@ -74,6 +73,7 @@
         <button id="nextLessonButton">Next Lesson</button>      
         <button id="previousUnitButton"> Previous Unit</button>
         <button id="nextUnitButton">Next Unit</button>
+        <button onclick="updateLessonCompleted()" id="completeLesson">Complete Lesson</button>
       </div>
     </div>    
   </section>  
