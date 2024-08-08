@@ -650,7 +650,7 @@ app.delete('/api/help/messages/:message_id', async (req, res) => {
     res.status(500).send('Error occurred');
   }
 }); */
-app.post("/api/update-lesson-completed", async (req, res)=>{
+app.post("/api/updateLessonCompleted", async (req, res)=>{
 const {userID} = req.body;
 try{
   const lesson = new lessonManager();
