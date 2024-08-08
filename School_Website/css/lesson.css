@@ -94,7 +94,11 @@
     height: auto; 
 }
   .hidden {
-    display: none;
+   display:block;
+   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   } 
 
 .button-container {
@@ -116,7 +120,7 @@
     border-radius: .4rem;
     background: rgb(55, 55, 57);
     height: 2rem; 
-    width: 7.2rem; 
+    width: 7.5rem; 
     color: white; 
     cursor: pointer; 
 }
