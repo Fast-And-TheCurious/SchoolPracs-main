@@ -14,96 +14,12 @@ The 'form-control-label' class isn't used yet remove if it never is in future
     background-color: #eee;
     min-height: 100vh;
     top: 0;
-    /* left: 80px; */
+    
     transition: all 0.5s ease;
     /* width: calc(100% - 80px); */
     padding: 1rem;
-}/* 
-.heading{
-    font-size: 2rem;
-}
-.container{
-    width: 100%;
-    height: 95vh;
-    background: #d2d0d0;
-    display: flex;   
-    justify-items:flex-start;
-    flex-direction:column;
-  
 }
 
-.name_container{
-    margin-top: .6rem;
-    background: rgb(195, 75, 75);
-    width:30%;
-    height: 50px;    
-}
-.email_container{
-    margin-top:.6rem;
-    background: rgb(129, 59, 149);
-    width:30%;
-    height: 50px;
-}
-.grade_container{  
-    margin-top:.6rem;
-    background: rgb(59, 149, 77);
-    width:30%;
-    height: 50px;
-}
-
-.label{
-   letter-spacing: .08rem; 
-    padding-left: .5rem;  
-}
-.form-control{
-    height: 1.2rem;
-    width: 50%;
-    border-radius: .3rem;
-    display: flex;
-    justify-content: flex-start;
-    border: .01rem solid black;
-}
-
-
-
- */
- :root {
-    --blue: #5e72e4;
-    --indigo: #5603ad;
-    --purple: #8965e0;
-    --pink: #f3a4b5;
-    --red: #f5365c;
-    --orange: #fb6340;
-    --yellow: #ffd600;
-    --green: #2dce89;
-    --teal: #11cdef;
-    --cyan: #2bffc6;
-    --white: #fff;
-    --gray: #8898aa;
-    --gray-dark: #32325d;
-    --light: #ced4da;
-    --lighter: #e9ecef;
-    --primary: #5e72e4;
-    --secondary: #f7fafc;
-    --success: #2dce89;
-    --info: #11cdef;
-    --warning: #fb6340;
-    --danger: #f5365c;
-    --light: #adb5bd;
-    --dark: #212529;
-    --default: #172b4d;
-    --white: #fff;
-    --neutral: #fff;
-    --darker: black;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: Open Sans, sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  }
-  
   *,
   *::before,
   *::after {
@@ -140,7 +56,7 @@ The 'form-control-label' class isn't used yet remove if it never is in future
     margin: 0;
     text-align: left;
     color: #525f7f;
-    background-color: #f8f9fe;
+    background-color:#f8f9fe;
   }
   
   h1,
@@ -745,7 +661,7 @@ The 'form-control-label' class isn't used yet remove if it never is in future
   /* History display */
   .history_display {
     position: relative;
-    min-height: vh;
+    min-height: vh; /* look at */
     width: 100%;
 }
 
