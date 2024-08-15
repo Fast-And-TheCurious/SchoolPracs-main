@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const userID= getCookie("userID");
       console.log("userID: ",userID);
  
-      // might be useless??
-      if (!userID) {
+     if (!userID) {
         alert('No user found. Please log in.');
         window.location.href = '/School_Website/html/login.html';
         return;
@@ -95,26 +94,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Redirect to login page
     window.location.href = '/School_Website/html/index.html';
   });
-  
-  // Theme settings
-  const checkbox = document.getElementById("ThemeSettingsCheck");
-  const themeUpdateBtn = document.querySelector("#theme_updated_btn");
-  const body = document.body;
-  
-  checkbox.addEventListener("change", function() {
-    if (checkbox.checked) {
-      body.classList.remove("light-mode");
-      body.classList.add("dark-mode");
-    } else {
-      body.classList.remove("dark-mode");
-      body.classList.add("light-mode");
-    }
-  });
-  
-  themeUpdateBtn.addEventListener("click", function() {
-    // Save theme settings to the server or local storage
-  });
-  
+    
   document.getElementById('logoutButton').addEventListener('click', async function() {
     document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href = "/School_Website/html/index.html";
