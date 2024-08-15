@@ -77,13 +77,12 @@
     background: grey;
     margin-left: 1rem;
 }
-
 .video_box_display {
     margin-top: 1%;
     width: 85%;
     height: 70%; 
     background: black;
-    display: flex;
+    display: flex; 
     justify-content: center;
     position: relative;
 }
