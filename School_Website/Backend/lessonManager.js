@@ -75,11 +75,16 @@ class lessonManager {
   }
   async updateLessonsCompleted(){
   try{
-    const query = `UPDATE users SET lessons_completed = lessons_completed+1 WHERE id = ?`;
+    const query = `UPDATE users SET lessons_completed = lessons_completed+1 WHERE id = ?`; 
     await update(query, [userID]);
-    return "Update user lessons completed successful";   
-  }catch(error){
-    return error;
+    if (result.affectedRows > 0) {
+      return "Update user lessons completed successful";
+    } else {
+      return "No rows affected, user ID may not exist.";
+    }
+  }catch(error){    
+    return `Error updating user lessons completed: ${error.message}`;
+
   }
   }
 }

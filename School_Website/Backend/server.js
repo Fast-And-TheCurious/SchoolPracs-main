@@ -654,7 +654,7 @@ app.post("/api/updateLessonCompleted", async (req, res)=>{
 const {userID} = req.body;
 try{
   const lesson = new lessonManager();
-  await lesson.updateProfile(userID);
+  await lesson.updateLessonsCompleted(userID);
 
   res.status(200).json({ status: "success", message: "Profile updated successfully" });
 }catch(error){

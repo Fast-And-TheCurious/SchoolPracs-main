@@ -45,19 +45,19 @@ async function getLessons() {
 const lessonDataExport = {
   lessons: [],
 };
-
+let userID;
 document.addEventListener("DOMContentLoaded", async function () {
  
-  const userID = getCookie("userID");
+  userID = getCookie("userID");
   console.log("userID: ", userID);
 
   // might be useless??
-  /* if (!userID) {
+  if (!userID) {
     alert("No user found. Please log in.");
     window.location.href = "/School_Website/html/login.html";
     return;
   }
- */
+
   const units = await getUnits();
   const lessons = await getLessons();
 
@@ -173,6 +173,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 var watched=0;   
 
+/*  */
+    // do I put the number completed lessons in another table or in the user table like it currently is?
+    // then I'll need this:
+      //const lessonId = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].id;
+      // to get the user id, I need it to put the value the right place in table
+/*  */      
+       /*   const userIDResponse = await fetch(`http://localhost:5000/api/user/idByGmail?gmail=${encodeURIComponent(userGmail)}`); //userGmail isn't defined 
+            if (!userIDResponse.ok) {
+        throw new Error("Failed to fetch user ID");
+      }
+      const userIDResult = await userIDResponse.json();
+      const userId = userIDResult.userId;
+ */
   async function updateLessonCompleted() { 
     watched=watched+1;  
   console.log("watched.");
@@ -180,28 +193,15 @@ var watched=0;
   if(watched>1){
     alert("Video has been watched.");
   } else{
-/*  */
-    // do I put the number completed lessons in another table or in the user table like it currently is?
-    // then I'll need this:
-      //const lessonId = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].id;
-      // to get the user id, I need it to put the value the right place in table
-/*  */      
-         const userIDResponse = await fetch(`http://localhost:5000/api/user/idByGmail?gmail=${encodeURIComponent(userGmail)}`);
-            if (!userIDResponse.ok) {
-        throw new Error("Failed to fetch user ID");
-      }
-      const userIDResult = await userIDResponse.json();
-      const userId = userIDResult.userId;
-
-      fetch('http://loclhost:5000/api/updateLessonCompleted', {
+    console.log("userID used in updateLessonCompleted: ", userID);
+    fetch('http://localhost:5000/api/updateLessonCompleted', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userId: userId,
-          // add a table (lesson-completed) add id, userID, and lesson ID
-          // lessonId: lessonId 
+          userId: userID,
+        
         })
       })
       .then(response => response.json())
