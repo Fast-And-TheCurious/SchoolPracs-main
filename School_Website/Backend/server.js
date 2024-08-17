@@ -652,6 +652,7 @@ app.delete('/api/help/messages/:message_id', async (req, res) => {
 }); */
 app.post("/api/updateLessonCompleted", async (req, res)=>{
 const {userID} = req.body;
+console.log("Received userID:", userID); // Log the received userID
 try{
   const lesson = new lessonManager();
   await lesson.updateLessonsCompleted(userID);

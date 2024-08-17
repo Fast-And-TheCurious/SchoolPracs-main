@@ -1,5 +1,5 @@
 /* Lesson */
-const { select } = require("./database");
+const { select, update } = require("./database");
 
 class lessonManager {
   async getCourses() {
@@ -76,15 +76,12 @@ class lessonManager {
   async updateLessonsCompleted(userID){
   try{
     const query = `UPDATE users SET lessons_completed = lessons_completed+1 WHERE id = ?`; 
-    await update(query, [userID]);
-    if (result.affectedRows > 0) {
-      return "Update user lessons completed successful";
-    } else {
-      return "No rows affected, user ID may not exist.";
-    }
-  }catch(error){    
-    return `Error updating user lessons completed: ${error.message}`;
-
+    console.log("Executing query:", query, "with userID:", userID);
+    const result = await update(query, [userID]);
+    return "Update user lessons completed successful";
+  } catch (error) {
+    console.error("Error updating lessons completed:", error);
+    return error;
   }
   }
 }

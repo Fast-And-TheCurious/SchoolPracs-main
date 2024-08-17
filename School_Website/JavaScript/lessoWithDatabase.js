@@ -200,7 +200,7 @@ var watched=0;
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userId: userID,
+          userID: userID,
         
         })
       })
