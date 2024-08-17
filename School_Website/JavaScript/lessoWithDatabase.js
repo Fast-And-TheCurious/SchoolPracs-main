@@ -15,7 +15,7 @@ async function getUnits() {
     const unitsData = await response.json();
     if (unitsData.error) {
       console.error("Error fetching units:", unitsData.error);
-      document.getElementById('gif-container').classList.remove('hidden');
+      document.getElementById('gif-container').classList.remove('hidden'); // note to add: the add and remove just "adds" and "removes" the "hidden" class form the div with the id of #gif-container 
       return [];
     } else {
       document.getElementById('gif-container').classList.add('hidden');
