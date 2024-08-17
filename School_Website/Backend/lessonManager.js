@@ -73,7 +73,7 @@ class lessonManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
-  async updateLessonsCompleted(){
+  async updateLessonsCompleted(userID){
   try{
     const query = `UPDATE users SET lessons_completed = lessons_completed+1 WHERE id = ?`; 
     await update(query, [userID]);
