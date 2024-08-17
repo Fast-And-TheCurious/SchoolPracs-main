@@ -15,13 +15,15 @@ async function getUnits() {
     const unitsData = await response.json();
     if (unitsData.error) {
       console.error("Error fetching units:", unitsData.error);
+      document.getElementById('gif-container').classList.remove('hidden');
       return [];
     } else {
+      document.getElementById('gif-container').classList.add('hidden');
       return unitsData;
     }
   } catch (error) {
     console.error("An error occurred while fetching units:", error);
-    document.getElementById('errorGif').src.style.display = 'none'; /* See if works */
+    document.getElementById('gif-container').classList.remove('hidden'); 
     return [];
   }
 }
@@ -173,19 +175,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 var watched=0;   
 
-/*  */
-    // do I put the number completed lessons in another table or in the user table like it currently is?
-    // then I'll need this:
-      //const lessonId = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].id;
-      // to get the user id, I need it to put the value the right place in table
-/*  */      
-       /*   const userIDResponse = await fetch(`http://localhost:5000/api/user/idByGmail?gmail=${encodeURIComponent(userGmail)}`); //userGmail isn't defined 
-            if (!userIDResponse.ok) {
-        throw new Error("Failed to fetch user ID");
-      }
-      const userIDResult = await userIDResponse.json();
-      const userId = userIDResult.userId;
- */
   async function updateLessonCompleted() { 
     watched=watched+1;  
   console.log("watched.");
