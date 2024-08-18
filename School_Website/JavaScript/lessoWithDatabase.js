@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   userID = getCookie("userID");
   console.log("userID: ", userID);
 
-  // might be useless??
   if (!userID) {
     alert("No user found. Please log in.");
     window.location.href = "/School_Website/html/login.html";
@@ -148,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const previousUnitButton = document.getElementById("previousUnitButton");
   previousUnitButton.addEventListener("click", onPreviousUnitClick);
-
+  var watched=0;   
   function onNextLessonClick() {
     if (
       currentLessonIndex <
@@ -156,6 +155,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     ) {
       currentLessonIndex++;
       updateVideo();
+      watched=0;
     }
   }
 
@@ -172,8 +172,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const previousLessonButton = document.getElementById("previousLessonButton");
   previousLessonButton.addEventListener("click", onPreviousLessonClick);
 });
-
-var watched=0;   
 
   async function updateLessonCompleted() { 
     watched=watched+1;  
