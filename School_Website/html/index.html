@@ -13,15 +13,17 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="/School_Website/css/style.css">
     <link rel="stylesheet" href="/School_Website/css/grid.css">
+    
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
         rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <section class="header"> 
-        <nav> <!-- Make nav have sticky function -->
+       <!--  <nav> 
             <div class="logo"><a href="index.html">MathGeniusMinds</a></div>
             <div class="nav-links" id="navLinks">
                 <i class="fafa-times" onclick="hideMenu()"></i>
@@ -35,7 +37,23 @@
                 </ul>
             </div>
             <i class="locate" onclick="showMenu()"></i>
-        </nav>
+        </nav> -->
+        <div id="header-container"></div>
+        <script id="header-template" type="text/x-handlebars-template">
+            <section class="header">
+              <nav>
+                <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
+                <div class="nav-links" id="navLinks">
+                  <i class="fa fa-times" onclick="hideMenu()"></i>
+                  <ul>
+                    {{#each menuItems}}
+                      <li><a href="{{this.link}}">{{this.label}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </nav>
+            </section>
+          </script>
         <div class="text-box">
             <h1>Lets <span>Create</span> A<br>
                 <span>Better</span> World <span>Together</span>
@@ -88,69 +106,45 @@
             <h1>About Us</h1>
             <div class="about-container">
                 <div class="left-area">
-                    <!-- First section in the left area -->
                     <section class="section">
-                        <h3>What Sets Us Apart</h3>
-                                            <span class="heading">Comprehensive Course Offerings:</span>
-                        <br>
-                        <p>
-                        Our platform offers a diverse range of courses, covering various
-                        subjects and skill levels. From academic subjects to practical skills, we strive to cater to a broad
-                        spectrum of interests.
-                    </p>
-                        <span class="heading">Experienced Instructors: </span>
-                        <br>
-                        <p>
-                        Our courses are created and curated by experienced educators and
-                        professionals passionate about their fields. This ensures that learners receive content that is not
-                        only informative but also engaging and relevant.
-                    </p>
-                        <span class="heading">Interactive Learning: </span> 
-                        <br>
-                        <p>
-                        We believe in the power of interactive learning experiences. Our courses
-                        incorporate multimedia elements, quizzes, and assignments to enhance understanding and retention.
-                    </p>
-                        <span class="heading">Personalized Learning Paths: </span> 
-                        <br>
-                        <p>
-                        Every learner is unique. That's why we provide tools for users to
-                        customize their learning paths, track their progress, and achieve their educational goals at their
-                        own pace.
-                    </p>
+                        <h2>What Makes Us Unique</h2>
+                        <div class="feature">
+                            <h4>Comprehensive Courses</h4>
+                            <p>Explore a diverse range of subjects and skills designed to cater to all interests and expertise levels.</p>
+                        </div>
+                        <div class="feature">
+                            <h4>Expert Instructors</h4>
+                            <p>Learn from seasoned educators and professionals who bring both passion and deep knowledge to the table.</p>
+                        </div>
+                        <div class="feature">
+                            <h4>Interactive Learning</h4>
+                            <p>Engage with multimedia, quizzes, and assignments crafted to enhance your learning journey.</p>
+                        </div>
+                        <div class="feature">
+                            <h4>Personalized Paths</h4>
+                            <p>Customize your learning experience, track your progress, and achieve your goals at your own pace.</p>
+                        </div>
                     </section>
-                    <!-- Second section in the left area -->
                     <section class="section">
-                        <h3>Our Commitment</h3>
-                        
-                        <span class="heading">Privacy and Security:</span>
-                        <br>
-                        <p>
-                        The privacy and security of our users are of utmost importance. We adhere to
-                        strict data protection practices to ensure that user information is handled with the highest level
-                        of care and confidentiality.
-                    </p>
-                        <span class="heading">Inclusivity:</span>
-                        <br>
-                        <p>
-                        MathGeniusMinds is committed to creating an inclusive learning environment that welcomes
-                        individuals from all walks of life. We believe in the power of diversity and aim to make education
-                        accessible to everyone.
-                            </p>
-                        <span class="heading"></span>Continuous Improvement:
-                        <br>
-                        <p>
-                        We are dedicated to continually enhancing our platform. Your feedback is
-                        invaluable to us, and we actively seek ways to improve and expand our offerings to better serve your
-                        educational needs.
-                    </p>
+                        <h2>Our Core Values</h2>
+                        <div class="value">
+                            <h4>Privacy & Security</h4>
+                            <p>We uphold the highest standards of data protection to ensure your information remains secure and confidential.</p>
+                        </div>
+                        <div class="value">
+                            <h4>Inclusivity</h4>
+                            <p>Our platform is built on the principle of diversity, striving to make education accessible to everyone.</p>
+                        </div>
+                        <div class="value">
+                            <h4>Continuous Improvement</h4>
+                            <p>We’re committed to evolving based on your feedback to better serve your educational needs.</p>
+                        </div>
                     </section>
                 </div>
                 <div class="right-area">
-                    add an image
-                    
+                    <img src="/School_Website/images/panhanchun_A_fierce_but_slightly_cute_dragon_tried_to_breathe_f_08625c55-c188-402b-bd0d-c34538c3d207.png" alt="Our Vision" class="about-image" />
                 </div>
-            </div>
+            </div>              
         </section>
     </div>
     
@@ -285,5 +279,6 @@
         }
     </script>
 </body>
-
+<script src="/School_Website/JavaScript/index.js"></script>
+<script src="/School_Website/JavaScript/headerAndFooter.js"></script>
 </html>
