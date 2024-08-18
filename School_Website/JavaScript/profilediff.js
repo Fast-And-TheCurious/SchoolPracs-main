@@ -84,19 +84,14 @@ document.addEventListener('DOMContentLoaded', async function () {
       console.error('Error fetching profile:', error);
       alert('An error occurred while fetching the profile information.');
     }
-  });
-  
+  }); 
   
   // Logout functionality
-  document.getElementById('logoutButton').addEventListener('click', function() {
-    // Remove the stored cookie on logout
-    
-    // Redirect to login page
-    window.location.href = '/School_Website/html/index.html';
-  });
-    
+ 
   document.getElementById('logoutButton').addEventListener('click', async function() {
+    // Update the stored cookie on logout to be past date so it goes bye bye
     document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    alert("cookie updated to past date.");
     window.location.href = "/School_Website/html/index.html";
   });
   

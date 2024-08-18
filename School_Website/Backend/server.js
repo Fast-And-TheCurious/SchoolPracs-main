@@ -543,14 +543,6 @@ app.post('/api/userMessages', async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-
 // Endpoint for getting user's completed courses
 app.get('/user-completed-courses', async (req, res) => {
   const { email } = req.query;
@@ -563,24 +555,10 @@ app.get('/user-completed-courses', async (req, res) => {
   }
 });
 
-/* // Endpoint for getting user's points
-app.get('/user-points', async (req, res) => {
-  const { email } = req.query;
-  try {
-      const points = await userManager.getUserPoints(email);
-      res.status(200).json({ points });
-  } catch (error) {
-      console.error('Error fetching user points:', error);
-      res.status(500).json({ error: 'Failed to fetch user points' });
-  }
-}); */
+/* 
 
-
-
-
-
-
-/* app.get('/api/help/messages', async (req, res) => {
+Admin end-point stuff - add later??
+app.get('/api/help/messages', async (req, res) => {
   try {
     const messages = await helpManager.getAllMessages();
     res.status(200).json(messages);
@@ -599,35 +577,6 @@ app.get('/api/help/messages/:message_id', async (req, res) => {
       res.status(404).send('Message not found');
     } else {
       res.status(200).json(message);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error occurred');
-  }
-});
-
-// Create a new help message
-app.post('/api/help/messages', async (req, res) => {
-  const { user_id, message_text } = req.body;
-  try {
-    const newMessage = await helpManager.createMessage(user_id, message_text);
-    res.status(201).json(newMessage);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error occurred');
-  }
-});
-
-// Update help message by ID
-app.put('/api/help/messages/:message_id', async (req, res) => {
-  const { message_id } = req.params;
-  const { message_text } = req.body;
-  try {
-    const updatedMessage = await helpManager.updateMessage(message_id, message_text);
-    if (!updatedMessage) {
-      res.status(404).send('Message not found');
-    } else {
-      res.status(200).json(updatedMessage);
     }
   } catch (error) {
     console.error(error);
