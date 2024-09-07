@@ -48,7 +48,8 @@ const lessonDataExport = {
   lessons: [],
 };
 let userID;
-let lessonTitle;
+let lesson_Title="";
+
 document.addEventListener("DOMContentLoaded", async function () {
  
   userID = getCookie("userID");
@@ -101,11 +102,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     for (const lesson of unitlessonContent) {
       const listItem = document.createElement("li");
       listItem.classList.add("sidebar_lessonBox");
+        // Creates a link for each lesson
       listItem.innerHTML = `<a href="${lesson.lessonLink}">${lesson.lessonTitle}</a>`;
+      // Append the list item to the sidebar
       sidebar.appendChild(listItem);
     }
   }
-
   function updateVideo() {
     const youtubeVideo = document.getElementById("youtubeVideo");
     const lessonTitleElement = document.getElementById("lessonTitle");
@@ -118,16 +120,19 @@ document.addEventListener("DOMContentLoaded", async function () {
     sidebarLessons[currentLessonIndex].classList.add("active-lesson");   
 
     // Update the lessonTitle variable
-    lessonTitle = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
-    let n = lessonDataExport.lessons
-    lessonTitleElement.textContent = lessonTitle;//lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;   
+    lesson_Title = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
-    youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;      
+    lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+
+    youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;    
+    console.log("Current lesson title: ", lesson_Title);  
     }
  
   populateSidebar(currentUnitIndex);
   updateVideo();
-  console.log("Current lesson title: ", lessonTitle);
+
+  
+  
   function onNextUnitClick() {
     if (currentUnitIndex < lessonDataExport.lessons.length - 1) {
       currentUnitIndex++;
