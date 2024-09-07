@@ -609,6 +609,19 @@ try{
   res.status(200).json({ status: "success", message: "Profile updated successfully" });
 }catch(error){
   console.error(error);
-    res.status(500).json({ status: "error", message: "An error occurred" });
+  res.status(500).json({ status: "error", message: "An error occurred" });
 }
 });
+
+app.post("/api/updateActivtiesHistory", async (req, res)=>{
+const{content, userID} = req.body;
+try{
+  const user = new userManager();
+  await user.updateHistoryActivities(content, userID);
+  res.status(200).json({ status: "success", message: "Activities updated successfully "});
+}catch(error){
+  console.error(error);
+  res.status(500).json({ status: "error", message: "An error occurred" });
+}
+
+})

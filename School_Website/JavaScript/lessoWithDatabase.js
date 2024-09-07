@@ -48,6 +48,7 @@ const lessonDataExport = {
   lessons: [],
 };
 let userID;
+let lessonTitle;
 document.addEventListener("DOMContentLoaded", async function () {
  
   userID = getCookie("userID");
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       sidebar.appendChild(listItem);
     }
   }
-  
+
   function updateVideo() {
     const youtubeVideo = document.getElementById("youtubeVideo");
     const lessonTitleElement = document.getElementById("lessonTitle");
@@ -114,16 +115,19 @@ document.addEventListener("DOMContentLoaded", async function () {
       lesson.classList.remove("active-lesson");
     });
 
-    sidebarLessons[currentLessonIndex].classList.add("active-lesson");
+    sidebarLessons[currentLessonIndex].classList.add("active-lesson");   
 
-    lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
-   
+    // Update the lessonTitle variable
+    lessonTitle = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+    let n = lessonDataExport.lessons
+    lessonTitleElement.textContent = lessonTitle;//lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;   
+
     youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;      
     }
  
   populateSidebar(currentUnitIndex);
   updateVideo();
-
+  console.log("Current lesson title: ", lessonTitle);
   function onNextUnitClick() {
     if (currentUnitIndex < lessonDataExport.lessons.length - 1) {
       currentUnitIndex++;
@@ -165,7 +169,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       updateVideo();
     }
   }
-
   const nextLessonButton = document.getElementById("nextLessonButton");
   nextLessonButton.addEventListener("click", onNextLessonClick);
 
@@ -181,6 +184,35 @@ document.addEventListener("DOMContentLoaded", async function () {
     alert("Video has been watched.");
   } else{
     console.log("userID used in updateLessonCompleted: ", userID);
+    //need to do: Update user lesson history when clicked... in progress :D
+
+
+
+
+
+
+    fetch('https://localhost:5000/api/updateActivtiesHistory', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: content,
+        userID: userID,
+      })
+    })
+    .then(response => response.json())
+    .then(data=> {
+      console.log('Activity history updated:', data);
+    })
+    .catch(error => {
+      console.error('Error, cant update activity history:', error);
+    });
+
+
+
+
+
     fetch('http://localhost:5000/api/updateLessonCompleted', {
         method: 'POST',
         headers: {
