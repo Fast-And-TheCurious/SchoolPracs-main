@@ -3,10 +3,10 @@ const headerData = {
     homeLink: "index.html",
     menuItems: [
         { label: "Home", link: "index.html" },
-        { label: "About", link: "about.html" },
+        { label: "About", link: '#about' },
         { label: "Courses", link: "course.html" },
         { label: "Blog", link: "blog.html" },
-        { label: "Contact", link: "contact.html" },
+        { label: "Contact", link: "help.html" },
         { label: "Login", link: "login.html" },
         { label: "Profile", link: "profileMe.html"}
     ]
