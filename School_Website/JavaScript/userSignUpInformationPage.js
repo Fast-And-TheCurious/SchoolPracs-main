@@ -15,8 +15,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageDisplay = document.getElementById("imageDisplay");
 
     // Read cookie for selectedImage
-    const selectedImageCookie = document.cookie.split('; ').find(row => row.startsWith('selectedImage='));
-    const selectedImage = selectedImageCookie ? selectedImageCookie.split('=')[1] : null;
+//Gets all cookies as a string
+const cookiesString = document.cookie;
+
+//Split the cookies string into an array of individual cookie strings
+const cookiesArray = cookiesString.split('; ');
+
+//Initialize a variable to hold the selectedImage cookie
+let selectedImageCookie = null;
+
+//Loop through each cookie string to find the one starting with 'selectedImage='
+for (let i = 0; i < cookiesArray.length; i++) {
+    const cookie = cookiesArray[i];
+    if (cookie.startsWith('selectedImage=')) {
+        selectedImageCookie = cookie;
+        break; // Exit the loop once the desired cookie is found
+    }
+}
+
+//Initialize a variable to hold the image value
+let selectedImage = null;
+
+//If the selectedImageCookie was found, split it to get the value part
+if (selectedImageCookie) {
+    const parts = selectedImageCookie.split('=');
+    if (parts.length > 1) {
+        selectedImage = parts[1]; // Assign the value part to selectedImage
+    }
+}
 
     // Set src attribute of the image element
     if (imageDisplay && selectedImage) {
@@ -54,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Handle success                  
                       // Redirect to another page after successful user addition
                       /* Redirect to new page doesn't work */
-                     window.location.href = "/School_Website/html/course.html";
+                     window.location.href = "/School_Website/html/index.html";
                 } else {
                     console.error('Failed to add user:', response.statusText);
                     // Handle  failure
