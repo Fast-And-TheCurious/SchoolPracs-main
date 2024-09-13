@@ -249,7 +249,6 @@ async getUserPoints(email){ // get column in database
 async updateHistoryActivities(content,userID){
   try{
     const query =`UPDATE bryantmdb.users SET history_activities = ? WHERE id = ?`;
-    
     await update(query, [content ,userID]);
     return { success: true, message: 'Users history activites updated successfully' };
   }catch(error){

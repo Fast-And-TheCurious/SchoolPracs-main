@@ -49,7 +49,7 @@ const lessonDataExport = {
 };
 let userID;
 let lesson_Title="";
-
+let watched;
 document.addEventListener("DOMContentLoaded", async function () {
  
   userID = getCookie("userID");
@@ -188,7 +188,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   if(watched>1){
     alert("Video has been watched.");
   } else{
-    console.log("userID used in updateLessonCompleted: ", userID);
     //need to do: Update user lesson history when clicked... in progress :D
 
 
@@ -196,13 +195,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-    fetch('https://localhost:5000/api/updateActivtiesHistory', {
+    fetch('http://localhost:5000/api/updateActivtiesHistory', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        content: content,
+        content: lesson_Title,
         userID: userID,
       })
     })
