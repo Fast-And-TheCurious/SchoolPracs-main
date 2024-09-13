@@ -1,22 +1,56 @@
-const headerData = {
-    siteName: "MathGeniusMinds",
-    homeLink: "index.html",
-    menuItems: [
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName.trim() === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+  }
+
+// Function to render header based on login status
+function renderHeader() {
+    // Check if user is logged in
+    const userID = getCookie("userID");
+
+    // Menu items based on login status
+    const menuItems = [
         { label: "Home", link: "index.html" },
         { label: "About", link: '#about' },
         { label: "Courses", link: "course.html" },
         { label: "Blog", link: "blog.html" },
-        { label: "Contact", link: "help.html" },
-        { label: "Login", link: "login.html" },
-        { label: "Profile", link: "profileMe.html"}
-    ]
-};
+        { label: "Contact", link: "help.html" }
+    ];
 
-const headerTemplateSource = document.getElementById('header-template').innerHTML;
-const headerTemplate = Handlebars.compile(headerTemplateSource);
+    if (userID) {
+        // User logged in
+        menuItems.push(
+            { label: "Profile", link: "profileMe.html" }
+        );
+    } else {
+        // User not logged in
+        menuItems.push(
+            { label: "Login", link: "login.html" }
+        );
+    }
 
-const headerHtml = headerTemplate(headerData);
-document.getElementById('header-container').innerHTML = headerHtml;
+    // Add to header data
+    const headerData = {
+        siteName: "MathGeniusMinds",
+        homeLink: "index.html",
+        menuItems: menuItems
+    };
+    // Compile and render the header template
+    const headerTemplateSource = document.getElementById('header-template').innerHTML;
+    const headerTemplate = Handlebars.compile(headerTemplateSource);
+    const headerHtml = headerTemplate(headerData);
+
+    // Insert header HTML into the DOM
+    document.getElementById('header-container').innerHTML = headerHtml;
+}
+// Render the header after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', renderHeader);
 
 /* Footer */
 

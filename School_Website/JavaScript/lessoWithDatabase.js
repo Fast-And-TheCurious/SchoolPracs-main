@@ -188,13 +188,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   if(watched>1){
     alert("Video has been watched.");
   } else{
-    //need to do: Update user lesson history when clicked... in progress :D
-
-
-
-
-
-
     fetch('http://localhost:5000/api/updateActivtiesHistory', {
       method: 'POST',
       headers: {
@@ -212,11 +205,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     .catch(error => {
       console.error('Error, cant update activity history:', error);
     });
-
-
-
-
-
     fetch('http://localhost:5000/api/updateLessonCompleted', {
         method: 'POST',
         headers: {
