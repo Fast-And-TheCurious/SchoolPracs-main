@@ -42,7 +42,8 @@
                 <h2 class="course-title">{{title}}</h2>
                 <p class="description">{{description}}</p>
                 <p class="directbtn">
-                    <a href="{{link}}">Start</a>
+                    <a href="topic.html?course={{id}}">Start</a>   <!-- Use Handlebars expression to insert the course ID into the link --> <!-- Include the course ID in the query parameter -->
+                </p>
                 </p>
                 <!-- <p class="directbtn">
                     <a href="/path-to-topic-screen.html?course=courseID">Start</a>

@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   getCourses(); 
 });
-/* startCourseButton.addEventListener("click", function (event) {
-  event.preventDefault();
-
-  const courseID = course.id; 
-
-  window.location.href = `/lessons.html?course=${courseID}`;
-}); */
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -24,7 +17,7 @@ function getCourses() {
           id: `id: ${course.id}`,
           title: `Course ${course.id}: ${course.title}`,
           description: course.about_description,
-          link: course.link,
+          link: `topic.html?course=${course.id}`, // Pass courseID as a URL param
         }));
 
         console.log("Formatted Courses:", coursesData);
