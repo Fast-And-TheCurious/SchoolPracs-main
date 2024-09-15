@@ -60,21 +60,19 @@ const footerData = {
         {
             title: "Company",
             links: [
-                { label: "About Us", url: "#" },
-                { label: "Our Services", url: "#" }
+                { label: "About Us", url: "#" }, //remove??
             ]
         },
         {
             title: "Get Help",
             links: [
-                { label: "FAQ", url: "#" },
-                { label: "Get in Touch", url: "#" }
+                { label: "Get in Touch", url: "help.html" }
             ]
         },
         {
             title: "Our Blogs",
             links: [
-                { label: "Blogs", url: "blogs.html" }
+                { label: "Blogs", url: "blog.html" }
             ]
         }
     ],

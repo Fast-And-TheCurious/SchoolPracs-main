@@ -230,40 +230,34 @@
     </section>
 
     <!--Footer-->
-    <footer class="footer">
-        <h1>Contact Us</h1>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>company</h4>
-                    <ul>
-                        <li><a href="#">our services</a></li>
-                        <li><a href="/School_Website/html/websitePolicy.html">our policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>get help</h4>
-                    <ul>
-                        <li><a href="/School_Website/html/help.html">Get in touch</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Our Blogs</h4>
-                    <ul>
-                        <li><a href="/School_Website/html/blog.html">Blogs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <div id="footer-container"></div>
+    <script id="footer-template" type="text/x-handlebars-template">
+        <footer class="footer">
+            <h1>{{contactHeading}}</h1>
+            <div class="container">
+                <div class="row">
+                    {{#each columns}}
+                        <div class="footer-col">
+                            <h4>{{this.title}}</h4>
+                            <ul>
+                                {{#each this.links}}
+                                    <li><a href="{{this.url}}">{{this.label}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/each}}
+                    <div class="footer-col">
+                        <h4>{{socialHeading}}</h4>
+                        <div class="social-links">
+                            {{#each socialIcons}}
+                                <a href="{{this.url}}"><i class="{{this.iconClass}}"></i></a>
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </script>
 
     </section>
     <!--JavaScript-->
@@ -277,6 +271,5 @@
         }
     </script>
 </body>
-<script src="/School_Website/JavaScript/index.js"></script>
 <script src="/School_Website/JavaScript/headerAndFooter.js"></script>
 </html>
