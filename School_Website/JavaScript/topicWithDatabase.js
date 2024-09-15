@@ -40,6 +40,7 @@ async function getLessons() {
     console.error("An error occurred:", error);
   }
 }
+
 let flattenedArray = [];
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -48,14 +49,17 @@ document.addEventListener('DOMContentLoaded', async function() {
   const units = await getUnits();
   const lessons = await getLessons();
 
+  if (!courses || !units || !lessons) {
+    console.error("Failed to fetch data.");
+    return;
+  }
   const coursesArray = courses || [];
   const unitsArray = units || [];
   const lessonsArray = lessons || [];
 
-
-/*   console.log("Courses Array: ", coursesArray);
+  console.log("Courses Array: ", coursesArray);
   console.log("Units Array: ", unitsArray);
-  console.log("Lessons Array: ", lessonsArray); */
+  console.log("Lessons Array: ", lessonsArray);
 
 function formatLesson(lesson) {
   return {
@@ -71,7 +75,7 @@ function formatUnit(unit) {
   const unitLessons = lessons.filter((lesson) => lesson.unitID === unit.id);
   return {
     unitID: unit.id,
-    unit: `UNIT ${unit.id}`,
+    unit: unit.name,
     courseID: unit.courseID,
     title: unit.title,
     description: unit.about,
@@ -95,6 +99,7 @@ const data = {
 };
 
 console.log("dataArray: ", data);
+
 function calculateTotalMasteryPoints(data) {
   const totalMasteryPoints = data.lessons.reduce((total, lesson) => {
     return total + parseFloat(lesson.masteryPoints.replace(/,/g, ""));
@@ -105,7 +110,7 @@ function calculateTotalMasteryPoints(data) {
 
 const totalMasteryPoints = calculateTotalMasteryPoints(data);
 console.log(`Total Mastery Points: ${totalMasteryPoints}`);
-
+/* check not really needed */
 function calculateUniqueUnits(data) {
   const uniqueUnits = new Set();
 
@@ -115,7 +120,7 @@ function calculateUniqueUnits(data) {
     return uniqueUnits.size;
 }
 
-const uniqueUnitCount = calculateUniqueUnits(data);/*  */
+const uniqueUnitCount = calculateUniqueUnits(data);
 console.log(`Number of Unique Units: ${uniqueUnitCount}`);
 
 const unitInformation = {
@@ -361,4 +366,3 @@ document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
   });
 });
 });
- 
