@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', async function() {
   const unitsArray = units || [];
   const lessonsArray = lessons || [];
 
-  console.log("Courses Array: ", coursesArray);
+/*   console.log("Courses Array: ", coursesArray);
   console.log("Units Array: ", unitsArray);
   console.log("Lessons Array: ", lessonsArray);
-
+ */
 function formatLesson(lesson) {
   return {
     lessonTitle: lesson.title,
@@ -365,4 +365,5 @@ document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
     updateWorksheetDownloadButton(unit); // Update the worksheet download button
   });
 });
+
 });
