@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   unitsArray.forEach((unit) => {
     lessonDataExport.lessons.push({
       id: unit.id,
-      unit: `UNIT ${unit.id}`,
+      unit: `Unit ${unit.id}`,
       unitTitle: unit.title,
       note: unit.notes,
       aboutUnit: unit.aboutUnit,
@@ -120,12 +120,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     sidebarLessons[currentLessonIndex].classList.add("active-lesson");   
 
     // Update the lessonTitle variable
-    lesson_Title = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+ 
+    lesson_Title =lessonDataExport.lessons[currentLessonIndex].unit+": "+lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;    
-    console.log("Current lesson title: ", lesson_Title);  
+    console.log("Current lesson title: ", lesson_Title); 
     }
  
   populateSidebar(currentUnitIndex);
@@ -211,8 +212,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userID: userID,
-        
+          userID: userID,        
         })
       })
       .then(response => response.json())
