@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
   getCourses(); 
 });
 
-const urlParams = new URLSearchParams(window.location.search);
-
-const courseName = urlParams.get('course');
 
 function getCourses() {
   fetch("http://127.0.0.1:5000/api/courses")

@@ -45,6 +45,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   const courseIDFetched = urlParams.get("course");
 
   const courseIDNumber = courseIDFetched.match(/\d+/)[0]; // This finds the digits in the string
+  //Cookie for courseID cause I don't know how else to do this :D
+
+   // Set a cookie for the selected image with expiration date (expires in 1 day)
+   const expirationDate = new Date();
+   expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000));
+   
+   document.cookie = `courseID=${courseIDNumber}; expires=${expirationDate.toUTCString()}`;
+
   // Fetch data for the specific course
   const courses = await getCourses();
   const units = await getUnits();
