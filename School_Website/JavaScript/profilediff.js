@@ -25,30 +25,24 @@ document.addEventListener('DOMContentLoaded', async function () {
         throw new Error('Failed to fetch profile information: ' + response.statusText);
     }
 
-    // Process the response data (assuming it is in JSON format)
     const profileData = await response.json();
-    console.log('Profile data:', profileData);
 
     const completed_courses = profileData.userInfo.cources_completed;
+    const completed_lessons = profileData.userInfo.lessons_completed;
     const points_accumulated = profileData.userInfo.points_accumulated;
     const username = profileData.userInfo.username;
     const profile_icon = profileData.userInfo.profileIcon;
     const email = profileData.userInfo.email;
     const history_activities = profileData.userInfo.history_activities;
     
-    console.log(completed_courses);
-    console.log(points_accumulated);
-    console.log(username);
-    console.log(profile_icon);
-    console.log(email);
-    console.log(history_activities);
-  
     document.getElementById('num_completedCourses').textContent = completed_courses;
+    document.getElementById('num_lessons').innerText = completed_lessons;
     document.getElementById('num_points').textContent = points_accumulated;
     document.getElementById('username').placeholder = username;
     document.getElementById('user-email').placeholder = email;
     document.getElementById('user-profile-icon').src = profile_icon
-
+    document.getElementById('user-history').innerText = history_activities;
+    
      // Sample data for lessons and tests completed
      const lessonData = [10, 15, 20, 25, 30]; // Replace with your actual data
      const testData = [5, 10, 8, 12, 15]; // Replace with your actual data

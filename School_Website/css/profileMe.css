@@ -599,9 +599,9 @@ button.bg-white:focus {
 /* User stats */
 .profile-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto; /* Updated to "auto" to adjust the row height based on content */
-  grid-template-areas: "completedCourses points";
+  grid-template-areas: "completedCourses totalLessons points";  
 }
 
 .profile-item {
@@ -624,7 +624,9 @@ button.bg-white:focus {
 .completedCourses {
   grid-area: completedCourses;
 }
-
+.totalLessons {
+  grid-area: totalLessons;
+}
 .totalPoints {
   grid-area: points;
 }

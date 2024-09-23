@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const contentArray = {
     lessonContent: flattenedArray,
   };
-  console.log(contentArray);
 
   if (!courseIDNumber) {
     console.error("No course ID provided.");
@@ -102,24 +101,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     // all the stuff happens here 
     let indexOfCourseToUse = -1;
 
-    console.log("index 0 course ID: ",contentArray.lessonContent[0].courseID);
-
     for (let i = 0; i <contentArray.lessonContent.length; i++) {
       if(contentArray.lessonContent[i].courseID === parseInt(courseIDNumber, 10)){ // I wasn't sure if I was comparing a number to a number so I'm just making sure my conveting to an int
         indexOfCourseToUse = i;
         console.log(`Match found at index ${i}:`, contentArray.lessonContent[i]); // match found :)
         break;       
      }else{
-      console.log("No unit found matching courseID.");
+      console.log("No unit found matching courseID."); // I have no idea why this line is still being run if the first if is true
      }
     }
-    console.log("indexOfCourseToUse",indexOfCourseToUse);
-       
+    
     const data = {  
       lessons: [], 
     };
-    console.log("data array length", contentArray.lessonContent.length);
-    // 0 1 2 3 4 
+    
     for(let i = indexOfCourseToUse; i<indexOfCourseToUse+3 && i < contentArray.lessonContent.length; i++){
       data.lessons.push(contentArray.lessonContent[i]);
     }
@@ -134,7 +129,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     
     const totalMasteryPoints = calculateTotalMasteryPoints(data);
-    console.log(`Total Mastery Points: ${totalMasteryPoints}`);
     /* check not really needed */
     function calculateUniqueUnits(data) {
       const uniqueUnits = new Set();
@@ -146,7 +140,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     
     const uniqueUnitCount = calculateUniqueUnits(data);
-    console.log(`Number of Unique Units: ${uniqueUnitCount}`);
     
     const unitInformation = {
       unitInfo: [{ title: "Title", uniqueUnitCount: uniqueUnitCount }],

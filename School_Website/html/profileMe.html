@@ -2,8 +2,6 @@
  <!DOCTYPE html>
  <html lang="en">
  <head>
-  <link rel="stylesheet" href="/School_Website/css/theme.css">
-  <script src="/School_Website/JavaScript/theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
@@ -53,11 +51,18 @@
                               </div>
                             </div>
                             <div class="profile-item">
+                              <label class="profile-heading" for="user-profile">Lessons Completed</label>
+                              <div class="completedLessons number-display">
+                                <span id="num_lessons">0</span>
+                              </div>
+                            </div>
+                            <div class="profile-item">
                               <label class="profile-heading" for="user-profile">Points</label>
                               <div class="totalPoints number-display">
                                 <span id="num_points">0</span>
                               </div>
                             </div>
+                            
                           </div>
                           
                         <hr class="my-4">  
@@ -126,7 +131,7 @@
                                 <label class="sub-title" for="input-history">History</label>
                                 <div class="history_display">
                                   <ul id="history_content" class="history_content">
-                                    <li>getCourseHistory()</li>
+                                    <li  id="user-history" readonly></li>
                                     <li>getCourseHistory()</li>
                                   </ul>
                                 </div>
