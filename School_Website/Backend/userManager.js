@@ -13,18 +13,7 @@ class userManager {
       return error;
     }
   } 
-
-  async getUserID(email) {
-    try {
-      const query = `SELECT id FROM bryantmDB.Users where email = ?`;
-      const [result] = await select(query, [email]);
-      return result;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  async getUserIdByGmail(gmail) {
+ /*  async getUserIdByGmail(gmail) {
     try {
       const query = "SELECT id FROM bryantmDB.users WHERE email = ? LIMIT 1;";
       const result = await select(query, [gmail]);
@@ -38,7 +27,7 @@ class userManager {
       console.error("Error getting user ID by Gmail:", error);
       throw error;
     }
-  }
+  } */
   
   async getUserEmail(userID) {
     try {
@@ -73,7 +62,7 @@ class userManager {
 
   async getUserProfile(userID) {
     try {
-      const query = `SELECT username, profileIcon, email, history_activities, cources_completed, points_accumulated FROM bryantmDB.Users where id = ?;`;
+      const query = `SELECT username, profileIcon, email, history_activities, cources_completed, points_accumulated, lessons_completed FROM bryantmDB.Users where id = ?;`;
       const [result] = await select(query, [userID]);
       return result;
     } catch (error) {
@@ -145,7 +134,7 @@ async createAccount(username, email, password, profileIcon) {
       return error;
     }
   }
-async doesPasswordMatch(userId, password) {
+/* async doesPasswordMatch(userId, password) {
   try {
     const query = `SELECT COUNT(*) AS count FROM bryantmDB.Users WHERE id = ? AND password = ?`;
     const [result] = await select(query, [userId, password]);
@@ -155,7 +144,7 @@ async doesPasswordMatch(userId, password) {
     console.error("Error checking password match:", error);
     throw error;
   }
-}
+} */
 async  addVerificationCodeDetails(userEmail, codeGenerated, codeCreatedAt, codeExpiresAt) {
   try {
       const query = ` UPDATE bryantmDB.Users
@@ -211,41 +200,6 @@ async resetUserPassword(password,email){
   }
 }
 
-async getUserCompletedCourses(email){
-  // get by user gmail
-  try {
-    const query = `
-        SELECT cources_completed FROM  bryantmdb.users
-        WHERE email = ?
-    `;
-    const [rows] = await db.execute(query, [email]);
-    if (rows.length > 0) {
-      return rows[0].courses_completed;
-  } else {
-      return null;
-  }
-} catch (error) {
-    console.error('Error fetching completed courses:', error);
-    throw error;
-}
-}
-
-async getUserPoints(email){ // get column in database
-  // getBy user gmail
-  try{
-    const query = `SELECT points_accumulated FROM bryantmdb.users WHERE email= ?`;
-    const[rows] = await db.execute(query, [email]);
-    if (rows.length > 0) {
-      return rows[0].points;
-  } else {
-      return null;
-  }
-  
-  }catch(error){
-    console.error('Error fetching user points:', error);
-    throw error;
-  }
-}
 async updateHistoryActivities(content,userID){
   try{
     const query =`UPDATE bryantmdb.users SET history_activities = ? WHERE id = ?`;

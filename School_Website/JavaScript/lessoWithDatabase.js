@@ -50,6 +50,7 @@ const lessonDataExport = {
 let userID;
 let lesson_Title="";
 let watched;
+
 document.addEventListener("DOMContentLoaded", async function () {
  
   userID = getCookie("userID");
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   unitsArray.forEach((unit) => {
     lessonDataExport.lessons.push({
       id: unit.id,
+      courseID: unit.courseID,
       unit: `Unit ${unit.id}`,
       unitTitle: unit.title,
       note: unit.notes,
@@ -212,7 +214,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userID: userID,        
+          userID: userID,   
+       /* added */   lessonID: lessonID,     
         })
       })
       .then(response => response.json())

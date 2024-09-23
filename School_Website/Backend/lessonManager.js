@@ -32,7 +32,7 @@ class lessonManager {
     }
   }
   
-  async getLessonsByCourse(courseId) {
+/*   async getLessonsByCourse(courseId) {
     try {
       const query = "SELECT * FROM lessons WHERE courseId = ?";
       const result = await select(query, [courseId]);
@@ -45,9 +45,9 @@ class lessonManager {
       console.error("An error occurred while fetching lessons:", error);
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
-  }
+  } */
 
-  async getUnitsByCourse(courseId) {
+ /*  async getUnitsByCourse(courseId) {
     try {
       const query = "SELECT * FROM unit WHERE courseId = ?";
       const result = await select(query, [courseId]);
@@ -60,7 +60,8 @@ class lessonManager {
       console.error("An error occurred while fetching units:", error);
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
-  }
+  } */
+
   /* IMPORTANT */
   async getLessonsByUnit(unitID){
     try{
@@ -73,11 +74,22 @@ class lessonManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
-  async updateLessonsCompleted(userID){
+  async updateLessonsCompleted(userID, lessonID){
   try{
     const query = `UPDATE users SET lessons_completed = lessons_completed+1 WHERE id = ?`; 
     console.log("Executing query:", query, "with userID:", userID);
     const result = await update(query, [userID]);
+
+    const updateLessonTimeStamps =`UPDATE bryantmdb.lessons_completed SET lesson_id=?, completed_at=? WHERE user_id = ?`;
+    console.log("Executing query:", query, "with userID:", userID, "and lessonID:", lessonID);
+    const updateResult = await update(updateLessonTimeStamps, [userID]);
+
+/*
+bryantmdb.lessons_completed;
+id
+user_id
+lesson_id
+completed_at */
     return "Update user lessons completed successful";
   } catch (error) {
     console.error("Error updating lessons completed:", error);

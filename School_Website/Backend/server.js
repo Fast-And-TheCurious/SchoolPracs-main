@@ -276,7 +276,7 @@ app.get("/api/user/userID", async (req, res) => {
   }
 });
 
-// API endpoint to get user ID by Gmail
+/* // API endpoint to get user ID by Gmail
 app.get("/api/user/idByGmail", async (req, res) => {
   const { gmail } = req.query;
 
@@ -301,9 +301,9 @@ app.get("/api/user/idByGmail", async (req, res) => {
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
-
+ */
 // API endpoint to check if the entered password matches the one in the database
-app.get("/api/user/passwordMatch", async (req, res) => {
+/* app.get("/api/user/passwordMatch", async (req, res) => {
   const { userId, password } = req.query;
 
   try {
@@ -316,7 +316,7 @@ app.get("/api/user/passwordMatch", async (req, res) => {
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
-
+ */
 
 
 
@@ -473,7 +473,7 @@ app.get("/api/units", async (req, res) => {
   }
 });
 
-app.get("/api/unitsByCourse", async (res,req)=>{
+/* app.get("/api/unitsByCourse", async (res,req)=>{
   try{
     const manager = new unitManager();
     const unitsByCourse = await manager.getUnitsByCourse();
@@ -486,10 +486,10 @@ app.get("/api/unitsByCourse", async (res,req)=>{
     console.error(error);
     res.status(500).json({ error: "An internal server error occurred" });
   }
-});
+}); */
 
 // Lessons by Course
-app.get("/api/lessons/:courseId", async (req, res) => {
+/* app.get("/api/lessons/:courseId", async (req, res) => {
   try {
     const courseId = req.params.courseId;
     const manager = new courseManager();
@@ -504,7 +504,7 @@ app.get("/api/lessons/:courseId", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "An internal server error occurred" });
   }
-});
+}); */
 
 // Units by Course
 app.get("/api/units/:courseId", async (req, res) => {
@@ -540,18 +540,6 @@ app.post('/api/userMessages', async (req, res) => {
     res.status(result.statusCode || 500).json({ error: result.error });
   } else {
     res.status(200).json({ message: 'User message inserted successfully' });
-  }
-});
-
-// Endpoint for getting user's completed courses
-app.get('/user-completed-courses', async (req, res) => {
-  const { email } = req.query;
-  try {
-      const completedCourses = await userManager.getUserCompletedCourses(email);
-      res.status(200).json({ completedCourses });
-  } catch (error) {
-      console.error('Error fetching user completed courses:', error);
-      res.status(500).json({ error: 'Failed to fetch user completed courses' });
   }
 });
 
