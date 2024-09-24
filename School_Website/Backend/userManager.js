@@ -13,7 +13,7 @@ class userManager {
       return error;
     }
   } 
- /*  async getUserIdByGmail(gmail) {
+  async getUserIdByGmail(gmail) {
     try {
       const query = "SELECT id FROM bryantmDB.users WHERE email = ? LIMIT 1;";
       const result = await select(query, [gmail]);
@@ -27,7 +27,7 @@ class userManager {
       console.error("Error getting user ID by Gmail:", error);
       throw error;
     }
-  } */
+  }
   
   async getUserEmail(userID) {
     try {
@@ -105,7 +105,7 @@ class userManager {
 async createAccount(username, email, password, profileIcon) {
   try {
       // Note the order of values: username, email, password, profileIcon
-      const query = `INSERT INTO bryantmDB.Users (username, profileIcon, email, password) VALUES (?, ?, ?, ?);`;
+      const query = `INSERT INTO bryantmdb.users (username, profileIcon, email, password) VALUES (?, ?, ?, ?);`;
       await update(query, [username, profileIcon, email, password]);
 
       return { success: true, message: 'Account created successfully' };
