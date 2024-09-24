@@ -31,8 +31,6 @@ async function validateAndSubmit() {
       } else if (gmailResult.status === 'success' && gmailResult.gmailExists) {
         alert("Gmail address already exists. Please use a different Gmail address.");
       } else {
-        // Perform the signup action
-        alert(`Signup successful!\nUsername: ${username}\nGmail: ${gmail}\nPassword: ${password}`);
 
         // Set a cookie for the user information with an expiration date (expires in 1 day)
         const expirationDate = new Date();

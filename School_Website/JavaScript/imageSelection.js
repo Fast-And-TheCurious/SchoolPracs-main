@@ -39,8 +39,6 @@ async function fetchImages() {
     const response = await fetch("http://localhost:5000/api/images");
     const fetchedData = await response.json();
 
-    console.log(fetchedData);
-
     // Loop through the fetched images and create image elements
     fetchedData.forEach(item => {
       const imgElement = document.createElement("img");
@@ -75,7 +73,7 @@ async function fetchImages() {
   // Check if a user has selected an image
   if (selectedImage) {
     // Image selected
-    alert("Image Selected!"); 
+    
   //set Cookie
 
    // Set a cookie for the selected image with expiration date (expires in 1 day)
