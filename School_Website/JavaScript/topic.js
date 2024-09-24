@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("Course ID:", courseIDNumber);
     // all the stuff happens here 
     let indexOfCourseToUse = -1;
+    let endIndex = -1;
 
     for (let i = 0; i <contentArray.lessonContent.length; i++) {
       if(contentArray.lessonContent[i].courseID === parseInt(courseIDNumber, 10)){ // I wasn't sure if I was comparing a number to a number so I'm just making sure my conveting to an int
@@ -118,12 +119,18 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.log("No unit found matching courseID."); // I have no idea why this line is still being run if the first if is true
      }
     }
-    
+      for(let j =contentArray.lessonContent.length-1; j>=0; j--){
+    if(contentArray.lessonContent[j].courseID ===  parseInt(courseIDNumber, 10)){
+       endIndex=j;   
+       break;
+    }
+   }
+
     const data = {  
       lessons: [], 
     };
     
-    for(let i = indexOfCourseToUse; i<indexOfCourseToUse+3 && i < contentArray.lessonContent.length; i++){
+    for(let i = indexOfCourseToUse; i<endIndex+1 && i < contentArray.lessonContent.length; i++){
       data.lessons.push(contentArray.lessonContent[i]);
     }
     console.log("Array to use for page content:", data);
