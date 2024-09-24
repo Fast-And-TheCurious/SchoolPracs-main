@@ -161,15 +161,16 @@ function getCookie(name) {
     });
 
     sidebarLessons[currentLessonIndex].classList.add("active-lesson");   
-
+    console.log("currentLessonIndex",currentLessonIndex);
+    console.log("currentUnitIndex",currentUnitIndex);
     // Update the lessonTitle variable
- 
-    lesson_Title =lessonDataExport.lessons[currentLessonIndex].unit+": "+lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+    lesson_Title =lessonDataExport.lessons[currentUnitIndex].unit+": "+lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;    
     console.log("Current lesson title: ", lesson_Title); 
+    
     }
  
   populateSidebar(currentUnitIndex);
