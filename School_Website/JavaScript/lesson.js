@@ -61,17 +61,19 @@ function getCookie(name) {
     console.log("userID: ", userID);
     const courseIDFetched = getCookie("courseID");
 
-    const courseIDNumber = parseInt(courseIDFetched, 10);
+    const courseID = parseInt(courseIDFetched, 10);
+    const backButton = document.getElementById('backToUnitsButton');
+    backButton.href = `/School_Website/html/topic.html?course=${courseID}`;
 
-    if (Number.isInteger(courseIDNumber)) { // can remove later, not needed after finished
-      console.log("The course ID is a valid integer:", courseIDNumber);
+    if (Number.isInteger(courseID)) { // can remove later, not needed after finished
+      console.log("The course ID is a valid integer:", courseID);
     } else {
       console.error("The course ID is not a valid integer:", courseIDFetched);
     }
 
-    console.log("courseID",courseIDNumber);
+    console.log("courseID",courseID);
    
-    if (!courseIDNumber) {
+    if (!courseID) {
         console.error("No valid course ID fetched.");
     } //add logic?
 
@@ -111,7 +113,7 @@ function getCookie(name) {
   let endIndex = -1;
   
   for(let i =0; i< lessonsContent.lessons.length; i++){
-    if(lessonsContent.lessons[i].courseID === courseIDNumber){
+    if(lessonsContent.lessons[i].courseID === courseID){
         startIndexOfLessonsToUse=i;  
         break; 
     }else{
@@ -119,7 +121,7 @@ function getCookie(name) {
     }
   }
   for(let j = lessonsContent.lessons.length-1; j>=0; j--){
-    if(lessonsContent.lessons[j].courseID === courseIDNumber){
+    if(lessonsContent.lessons[j].courseID === courseID){
        endIndex=j;   
        break;
     }
