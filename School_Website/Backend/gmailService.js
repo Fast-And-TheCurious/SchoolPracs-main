@@ -43,8 +43,39 @@ async function sendVerificationEmail(userEmail, verificationCode) {
   }
 }
 
+// Function to send a response email
+async function sendResponseEmail(userEmail, subject, message) {
+  try {
+      // Create a Nodemailer transporter using SMTP
+      const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+              user: 'MathGeniusMinds@gmail.com',   // My Gmail
+              pass: 'zime bvso rrco dfjg',           // app password or OAuth token
+          },
+      });
+
+      // Define the email options
+      const mailOptions = {
+          from: 'MathGeniusMinds@gmail.com',
+          to: userEmail,
+          subject: subject,
+          text: message,
+      };
+
+      // Send the email
+      await transporter.sendMail(mailOptions);
+
+      console.log(`Response email sent to ${userEmail}`);
+  } catch (error) {
+      console.error('Error sending email:', error);
+      throw error;
+  }
+}
+
 module.exports = {
   generateVerificationCode,
   sendVerificationEmail,
+  sendResponseEmail,
 };
 

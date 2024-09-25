@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     messageData.messages.push(messages.messages[i]);
    }
    console.log("messageData",messageData)
-
+    document.getElementById('unreadMessages').textContent = messages.messages.length;
     // Compile Handlebars template and render the messages
     const source = document.getElementById('messages-container').innerHTML;
     const template = Handlebars.compile(source);
@@ -53,6 +53,27 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById('message-details').style.display = 'block';
         });
     });
+    // Handle admin response form submission
+document.getElementById('admin-response-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const response = document.getElementById('admin-response').value;
+
+    if (response.trim() === '') {
+        alert('Please write a response before submitting.');
+        return;
+    }
+
+    const userGmail = document.getElementById('detail-sender').textContent;
+
+    // Handle response (this is just a mockup)
+    alert('Admin response submitted: ' + response);
+
+    // Clear the response textarea after submission
+    document.getElementById('admin-response').value = '';
+});
+
+
 });
 
 // Register Handlebars helper to create message snippet
@@ -64,24 +85,6 @@ Handlebars.registerHelper('formatTimestamp', function(timestamp) {
         return timestamp.substring(0, 10) + " " + timestamp.substring(11, 16); // Changed \t to space
     }
     return ''; 
-});
-
-// Handle admin response form submission
-document.getElementById('admin-response-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const response = document.getElementById('admin-response').value;
-
-    if (response.trim() === '') {
-        alert('Please write a response before submitting.');
-        return;
-    }
-
-    // Handle response (this is just a mockup)
-    alert('Admin response submitted: ' + response);
-
-    // Clear the response textarea after submission
-    document.getElementById('admin-response').value = '';
 });
 
 

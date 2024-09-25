@@ -1,5 +1,5 @@
 /* Responsible for managing the password reset process, generating verification codes, and interacting with the database. */
-const { generateVerificationCode, sendVerificationEmail } = require('./gmailService');
+const { generateVerificationCode, sendVerificationEmail, sendResponseEmail } = require('./gmailService');
 const userManager_ = require('./userManager'); // Import your userManager module
 // Instantiate an object of the userManager class
 const userManager = new userManager_();
@@ -54,6 +54,17 @@ async function initiatePasswordReset(userEmail) {
     }
 }
 
+async function sendAdminResponse(userEmail, subject, message) {
+    try {
+        await sendResponseEmail(userEmail, subject, message);
+        return { success: true, message: 'Response email sent successfully.' };
+    } catch (error) {
+        console.error('Error sending response email:', error);
+        return { success: false, message: 'Failed to send response email.' };
+    }
+}
+
 module.exports = {
     initiatePasswordReset,
+    sendAdminResponse,
 };

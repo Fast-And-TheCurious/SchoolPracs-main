@@ -22,7 +22,7 @@ const imageManager = require('./imageManager');
 // Import email and password reset logic modules
 const { sendPasswordResetEmail } = require('./gmailService');
 const { initiatePasswordReset } = require('./gmailManager');
-
+const { sendAdminResponse } = require('./gmailManager');
 const secretKey = process.env.JWT_SECRET;
 if (!secretKey) {
   console.error('Secret key for JWT is not defined');
@@ -62,7 +62,17 @@ async function connectToDatabase() {
 connectToDatabase();
 
 //api end-points
+// Endpoint to send admin response email
+app.post('/api/sendResponse', async (req, res) => {
+  const { userEmail, subject, message } = req.body;
 
+  if (!userEmail || !subject || !message) {
+      return res.status(400).json({ success: false, message: 'Email, subject, and message are required.' });
+  }
+
+  const result = await sendAdminResponse(userEmail, subject, message);
+  res.json(result);
+});
 
 
 // Login route
