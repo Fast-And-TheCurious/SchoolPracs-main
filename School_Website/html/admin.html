@@ -1,40 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/School_Website/css/admin.css" />
-    <title>Admin</title>
-  </head>
-  <body>
-    <section class="header">
-      <nav>
-        <!-- Make nav have sticky function -->
-        <div class="nav-links" id="navLinks">
-          <i class="fafa-times" onclick="hideMenu()"></i>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">logout</a></li>
-          </ul>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/School_Website/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+  <title>User Profile</title>
+
+</head>
+
+<body>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="container">
+      <div class="main-content">
+
+        <!-- Page content -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+              <div class="card shadow">
+                <div class="card-body pt-0">
+                  <div>
+                    <hr class="my-4">
+                    <h3 class="font-weight-light text-muted mb-4">Messages Stats:</h3>
+                    <div class="profile-grid">
+                      <div class="profile-item">
+                        <label class="profile-heading" for="user-profile">Unread Messages</label>
+                        <div class="number-display">
+                          <span id="messages">0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="setting_box">
+                      <h3 id="settingHeading" class="font-weight-light">Settings</h3>
+                      <div class="page" id="logout">
+                        <button id="logoutButton" class="button">
+                          Logout
+                        </button>
+                      </div>
+                      <a href="index.html">
+                        <button class="button">
+                          Return to home page
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+            <div class="col-xl-8 order-xl-1">
+              <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <h3 class="mb-0">Admin</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <!-- User Messages -->
+                    <div id="messages-container">
+                      {{#each messages}}
+                      <div class="message-row" id="message-row-{{@index}}">
+                        <a href="#" class="message-link" data-id="{{@index}}">
+                          <span class="message-from">{{sender}}</span>
+                          <span class="message-snippet">{{snippet message}}</span>
+                          <span class="message-time">{{timeSent}}</span>
+                        </a>
+                      </div>
+                      {{/each}}
+                    </div>
+                    <!-- Hidden section for displaying full message and admin response form -->
+                    <div id="message-details" style="display: none;">
+                      <div class="message-details-content">
+                        <h3>Message from: <span id="detail-sender"></span></h3>
+                        <p><strong>Time Sent:</strong> <span id="detail-time"></span></p>
+
+                        <h4>Admin Response:</h4>
+                        <form id="admin-response-form">
+                          <textarea id="admin-response" rows=10 placeholder="Write your response here..."></textarea>
+                          <br />
+                          <button class="button" type="submit">Send Response</button>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </nav>
-    </section>
-
-    <section class="container">
-
-      <div class="lessonInfo">
-        <div class="h1">Lessons</div>
-        <ul>
-          <li>lorem</li>
-          <li>lorem</li>
-          <li>lorem</li>
-          <li>lorem</li>
-          <li>lorem</li>
-        </ul>
       </div>
+    </div>
+  </div>
+  </div>
 
+</body>
+<script src="/School_Website/JavaScript/admin.js"></script>
 
-    </section>
-  </body>
 </html>

@@ -1,80 +1,321 @@
+/* 
+Notes for me: 
+The 'form-control-label' class isn't used yet remove if it never is in future
+*/
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-  }
-  :root{
-    --margin-top:1rem;
-    --margin-bottom:1rem;
-    --margin-left:4rem; 
-    --margin-right:4rem;
-    --border-radius:.5rem;
-    --border: solid white .2rem;
-  }
-  .header {
-    max-height: 10vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
-      url();  
-  }
-  nav {
-    display: flex;
-    padding: 2% 4%;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .nav-links {
-    flex: 1;
-    text-align: right;
-  }
-  .nav-links ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    position: relative;
-  }
-  .nav-links ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-  }
-  .nav-links ul li a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: var(--background-color);
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-  }
-  .nav-links ul li a:hover::after {
-    width: 100%;
-  }
-  .h1,.h2 {
-    font-family: inherit;
-    font-weight: 600;
-    line-height: 1.5;
-    margin-bottom: .5rem;
-    color: #ffffff;
-  }
-  .h2{  
-        font-size: .75rem;
-        padding-top: .25rem;
-        padding-bottom: .25rem;
-        letter-spacing: .04em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
-.container{  
-  background-color: black;
+/* Main contaner */
+.main-content {
+  position: relative;
+  background-color: #eee;
+  min-height: 100vh;
+  top: 0;
+  transition: all 0.5s ease;
+  /* width: calc(100% - 80px); */
+  padding: 1rem;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+body {
+  font-family: Open Sans, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+  color: #525f7f;
+  background-color: #f8f9fe;
+}
+
+h3,
+h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+h3,
+h4,
+h5 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  color: #32325d;
+}
+
+h3 {
+  font-size: 1.0625rem;
+}
+
+h4 {
+  font-size: 0.9375rem;
+}
+
+h5 {
+  font-size: 0.8125rem;
+}
+
+h6 {
+  font-size: 0.625rem;
+}
+
+.container-fluid {
   width: 100%;
-  min-height: 80rem; /* play with */
-  border: var(--border);/* find a way to remove the top margin from making a huge white space without using this as a scapegoat */
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
-.lessonInfo{  
-  margin: var(--margin-left) var(--margin-top) var(--margin-right) var(--margin-bottom);
-  border-radius: var(--border-radius);
-  border: var(--border);
+
+.row {
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-wrap: wrap;
 }
-.lessonInfo ul{
-    list-style: none;
-    color:white;
+
+.col-8,
+.col-xl-4,
+.col-xl-8 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-8 {
+  max-width: 66.66667%;
+  flex: 0 0 66.66667%;
+}
+
+@media (min-width: 1200px) {
+  .col-xl-4 {
+    max-width: 33.33333%;
+    flex: 0 0 33.33333%;
+  }
+
+  .col-xl-8 {
+    max-width: 66.66667%;
+    flex: 0 0 66.66667%;
+  }
+
+  .order-xl-1 {
+    order: 1;
+  }
+
+  .order-xl-2 {
+    order: 2;
+  }
+}
+
+/*  */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.375rem;
+  background-color: #fff;
+  background-clip: border-box;
+}
+
+.card-body {
+  padding: 1.5rem;
+  flex: 1 1 auto;
+}
+.card-header {
+  margin-bottom: 0;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.shadow {
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.my-4 {
+  margin-top: 1.5rem !important;
+}
+
+.mb-4,
+.my-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+a.bg-white:hover,
+a.bg-white:focus,
+button.bg-white:hover,
+button.bg-white:focus {
+  background-color: #e6e6e6 !important;
+}
+
+.main-content {
+  position: relative;
+}
+
+.main-content {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .main-content .container-fluid {
+    padding-right: 39px !important;
+    padding-left: 39px !important;
+  }
+}
+
+/* User stats */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: rgb(224, 222, 222);
+  border-radius: 50%;
+}
+
+/* Settings */
+
+.button {
+  margin-top: 0.5rem;
+  width: 100%;
+  background: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(39, 38, 38);
+}
+.button:hover {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgb(224, 222, 222);
+  border: 1px solid rgb(224, 222, 222);
+}
+/* Messages sections */
+#messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.message-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.message-link {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.message-from {
+  width: 20%;
+  font-weight: bold;
+}
+
+.message-snippet {
+  width: 60%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.message-time {
+  width: 20%;
+  text-align: right;
+  color: gray;
+}
+
+.message-details-content {
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+#admin-response {
+  margin: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 3px;
+  border: none;
+  outline: none;
 }
