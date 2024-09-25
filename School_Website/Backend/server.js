@@ -566,6 +566,28 @@ try{
   res.status(500).json({ status: "error", message: "An error occurred" });
 }
 });
+app.get('/api/userLessonActivity', async (req, res) => {
+  const userID = req.query.userID; // Get userID from query parameters
+
+  if (!userID) {
+      return res.status(400).json({ error: 'User ID is required' });
+  }
+
+  try {
+    const manager = new lessonManager();
+      const result = await manager.getUserLessonActivity(userID);
+      // Check if lessons are defined and have data
+      if(result.error) {
+
+        res.status(result.statusCode || 500).json({ error: result.error });
+      } else {
+        res.status(200).json({ messages: result });
+      }
+  } catch (error) {
+      console.error('Error fetching lesson activity:', error);
+      res.status(500).json({ error: 'Something went wrong' });
+  }
+});
 
 // admin api-endpoints
 

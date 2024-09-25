@@ -202,9 +202,6 @@ async resetUserPassword(password,email){
 
 async updateHistoryActivities(content,userID){
   try{
-      // Unit 1: Course Overview
-      // 01234567891111111111222
-      //           0123456789012  
     let colonIndex = content.indexOf(":");
     let title = content.substring(colonIndex + 2); // +2 to skip ": "
     const query =`UPDATE bryantmdb.users SET history_activities = ? WHERE id = ?`;
