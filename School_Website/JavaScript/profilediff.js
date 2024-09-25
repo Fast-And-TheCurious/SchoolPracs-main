@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Prepare data for the chart
     const labels = [];
 const dataPoints = [];
+let lessonsCompleted = 0;
 
 // Loop through each activity in the lessonActivity array
 for (let i = 0; i < lessonActivity.length; i++) {
@@ -75,7 +76,8 @@ for (let i = 0; i < lessonActivity.length; i++) {
   labels.push(completionDate.toLocaleTimeString());
 
   // Add the lesson_id to dataPoints
-  dataPoints.push(activity.lesson_id);
+  lessonsCompleted += 1;
+  dataPoints.push(lessonsCompleted);
 }
 // Create the chart
 const ctx = document.getElementById('lessonActivityChart').getContext('2d');
@@ -104,7 +106,7 @@ const lessonActivityChart = new Chart(ctx, {
             y: {
                 title: {
                     display: true,
-                    text: 'Lesson ID'
+                    text: 'Number of Lessons Completed'
                 },
                 beginAtZero: true
             }
