@@ -77,10 +77,11 @@ if (selectedImageCookie) {
 
                 if (response.ok) {
                     console.log('User added successfully!');
-                    //Handle success                  
+                    //Handle success                   School_Website\html\index.html
                       // Redirect to another page after successful user addition
                       /* Redirect to new page doesn't work */
-                     window.location.href = "/School_Website/html/index.html";
+                      window.open("http://127.0.0.1:5000/School_Website/html/index.html", "_self");
+             // window.location.href = "/School_Website/html/index.html";
                 } else {
                     console.error('Failed to add user:', response.statusText);
                     // Handle  failure

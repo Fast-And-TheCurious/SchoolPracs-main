@@ -340,21 +340,22 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     });
     function updateWorksheetDownloadButton(unit) {
-      const selectedLesson = lessonData.lessons.find((lesson) => lesson.unit === unit);
+      const selectedLesson = data.lessons.find((lesson) => lesson.unit === unit);
     
       const dt = document.getElementById("worksheetDownloadButton");
     
       if (selectedLesson && selectedLesson.worksheet) {
-        dt.href = `/School_Website/pdfs/${selectedLesson.worksheet}`;
+       //dt.href = `/School_Website/pdfs/${selectedLesson.worksheet}`;
         dt.download = `${selectedLesson.worksheet}`;
+        console.log*( dt.download);
         // Enable the download button
-        dt.removeAttribute("disabled");
+       // dt.removeAttribute("disabled");
       } else {
         // Disable the download button if the worksheet is not found
-        dt.setAttribute("disabled", "true");
+       // dt.setAttribute("disabled", "true");
       }
     }
-    // Define a variable to store the currently selected unit (initialize it to "Worksheets")
+/*     // Define a variable to store the currently selected unit (initialize it to "Worksheets")
     let selectedUnit = "Worksheets";
     
     // Function to update the "Download Worksheet" link based on the selected unit
@@ -373,7 +374,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // In other cases, disable the link
         downloadLink.setAttribute("disabled", "true");
       }
-    }
+    } */
     
     // Attach event listeners to the units in the sidebar to update the selected unit
     document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
@@ -381,7 +382,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         selectedUnit = event.currentTarget.querySelector(".sub_sub-heading").textContent;
     
         // Update the "Download Worksheet" link
-        updateDownloadLink();
+       // updateDownloadLink();
     
         // Call your existing function to update the content based on the selected unit
         updateContent(selectedUnit);
@@ -389,7 +390,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     
     // Initialize the "Download Worksheet" link
-    updateDownloadLink();
+  //  updateDownloadLink();
     
     document.querySelectorAll(".sidebar_lessonBox").forEach((item) => {
       item.addEventListener("click", (event) => {
