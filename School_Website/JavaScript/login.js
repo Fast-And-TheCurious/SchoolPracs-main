@@ -55,7 +55,7 @@ async function validateAndFetchUserInfo() {
 
         document.cookie = `userID= ${userID};  expires=${expirationDate.toUTCString()}; path=/`;
 
-        window.location.href = "/School_Website/html/profileMe.html";
+        window.location.href = "/School_Website/html/profile.html";
       } else {
         // Incorrect password
         alert("Incorrect password. Please try again.");

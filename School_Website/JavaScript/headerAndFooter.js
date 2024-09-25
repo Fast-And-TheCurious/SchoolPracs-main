@@ -26,7 +26,7 @@ function renderHeader() {
     if (userID) {
         // User logged in
         menuItems.push(
-            { label: "Profile", link: "profileMe.html" }
+            { label: "Profile", link: "profile.html" }
         );
     } else {
         // User not logged in
