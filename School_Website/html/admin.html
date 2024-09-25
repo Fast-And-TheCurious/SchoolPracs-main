@@ -15,13 +15,9 @@
 </head>
 
 <body>
-
-  <!-- Main content -->
   <div class="main-content">
     <div class="container">
       <div class="main-content">
-
-        <!-- Page content -->
         <div class="container-fluid">
           <div class="row">
             <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -56,7 +52,6 @@
                 </div>
               </div>
             </div>
-            <!--  -->
             <div class="col-xl-8 order-xl-1">
               <div class="card bg-secondary shadow">
                 <div class="card-header bg-white border-0">
@@ -73,9 +68,9 @@
                       {{#each messages}}
                       <div class="message-row" id="message-row-{{@index}}">
                         <a href="#" class="message-link" data-id="{{@index}}">
-                          <span class="message-from">{{sender}}</span>
-                          <span class="message-snippet">{{snippet message}}</span>
-                          <span class="message-time">{{timeSent}}</span>
+                          <span class="message-from">{{user_gmail}}</span>
+                          <span class="message-snippet">{{snippet message_text}}</span>
+                          <span class="message-time">{{formatTimestamp message_timestamp}}</span>
                         </a>
                       </div>
                       {{/each}}
@@ -85,10 +80,10 @@
                       <div class="message-details-content">
                         <h3>Message from: <span id="detail-sender"></span></h3>
                         <p><strong>Time Sent:</strong> <span id="detail-time"></span></p>
-
+                        <textarea id="user-message" style="width: 100%; resize:none;" rows=6 readonly></textarea>
                         <h4>Admin Response:</h4>
                         <form id="admin-response-form">
-                          <textarea id="admin-response" rows=10 placeholder="Write your response here..."></textarea>
+                          <textarea id="admin-response" rows=6 placeholder="Write your response here..."></textarea>
                           <br />
                           <button class="button" type="submit">Send Response</button>
                         </form>

@@ -19,7 +19,6 @@ const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
 const imageManager = require('./imageManager');
-
 // Import email and password reset logic modules
 const { sendPasswordResetEmail } = require('./gmailService');
 const { initiatePasswordReset } = require('./gmailManager');
@@ -113,7 +112,6 @@ app.post('/api/user/resetPassword', async (req, res) => {
 app.get("/api/images", async (req, res) => {
   try {
     const images = await imageManager.getAllImages();
-    console.log("From server.js; Images to send in response:", images);
     res.json(images);
   } catch (error) {
     console.error("Error retrieving images:", error);
@@ -276,7 +274,7 @@ app.get("/api/user/userID", async (req, res) => {
   }
 });
 
-/* // API endpoint to get user ID by Gmail
+// API endpoint to get user ID by Gmail
 app.get("/api/user/idByGmail", async (req, res) => {
   const { gmail } = req.query;
 
@@ -301,7 +299,7 @@ app.get("/api/user/idByGmail", async (req, res) => {
     res.status(500).json({ status: "error", message: "An error occurred" });
   }
 });
- */
+
 // API endpoint to check if the entered password matches the one in the database
 /* app.get("/api/user/passwordMatch", async (req, res) => {
   const { userId, password } = req.query;
@@ -543,50 +541,6 @@ app.post('/api/userMessages', async (req, res) => {
   }
 });
 
-/* 
-
-Admin end-point stuff - add later??
-app.get('/api/help/messages', async (req, res) => {
-  try {
-    const messages = await helpManager.getAllMessages();
-    res.status(200).json(messages);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error occurred');
-  }
-});
-
-// Get help message by ID
-app.get('/api/help/messages/:message_id', async (req, res) => {
-  const { message_id } = req.params;
-  try {
-    const message = await helpManager.getMessageById(message_id);
-    if (!message) {
-      res.status(404).send('Message not found');
-    } else {
-      res.status(200).json(message);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error occurred');
-  }
-});
-
-// Delete help message by ID
-app.delete('/api/help/messages/:message_id', async (req, res) => {
-  const { message_id } = req.params;
-  try {
-    const deletedMessage = await helpManager.deleteMessage(message_id);
-    if (!deletedMessage) {
-      res.status(404).send('Message not found');
-    } else {
-      res.status(200).json(deletedMessage);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error occurred');
-  }
-}); */
 app.post("/api/updateLessonCompleted", async (req, res)=>{
 const {userID} = req.body;
 console.log("Received userID:", userID); // Log the received userID
@@ -612,3 +566,19 @@ try{
   res.status(500).json({ status: "error", message: "An error occurred" });
 }
 });
+
+// admin api-endpoints
+
+app.get('/api/messages', async (req, res) => {
+
+  const manager = new helpManager(); 
+  const result = await manager.getMessages();
+    // Check if the response contains an error
+    if (result.error) {
+      res.status(result.statusCode || 500).json({ error: result.error });
+    } else {
+      res.status(200).json({ messages: result });
+    }
+});
+
+
