@@ -196,14 +196,28 @@ async resetUserPassword(password,email){
     return { success: true, message: 'Password updated successfully' };
   }catch(error){
     console.error('Error updating user password:', error);
-    return {success: false, message:'Failed to update user password'};
+    return {success: false, message:'Failed to update user password'}; 
   }
 }
 
 async updateHistoryActivities(content,userID){
   try{
+      // Unit 1: Course Overview
+      // 01234567891111111111222
+      //           0123456789012  
+    let colonIndex = content.indexOf(":");
+    let title = content.substring(colonIndex + 2); // +2 to skip ": "
     const query =`UPDATE bryantmdb.users SET history_activities = ? WHERE id = ?`;
     await update(query, [content ,userID]);
+
+    const updateLessonTimeStampsQuery =`INSERT INTO bryantmdb.lessons_completed (user_id, lesson_id, completed_at)
+                                        VALUES (?, (SELECT id FROM bryantmdb.lessons WHERE title = ? LIMIT 1), NOW())`;
+
+    await update(updateLessonTimeStampsQuery, [userID, title]);
+// get lessonID from title name
+    console.log("Executing query:", query, "with userID:", userID);
+    const updateResult = await update(updateLessonTimeStampsQuery, [userID]);
+
     return { success: true, message: 'Users history activites updated successfully' };
   }catch(error){
     console.error('Error updating user activity history:', error);
