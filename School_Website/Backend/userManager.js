@@ -209,15 +209,27 @@ async updateHistoryActivities(content,userID){
     let title = content.substring(colonIndex + 2); // +2 to skip ": "
     const query =`UPDATE bryantmdb.users SET history_activities = ? WHERE id = ?`;
     await update(query, [content ,userID]);
+   
+    const lessonResult = await select(
+      'SELECT id FROM bryantmdb.lessons WHERE title = ? LIMIT 1',
+      [title]
+  );
+  if (lessonResult.length > 0) {
+    const lessonId = lessonResult[0].id;
 
-    const updateLessonTimeStampsQuery =`INSERT INTO bryantmdb.lessons_completed (user_id, lesson_id, completed_at)
-                                        VALUES (?, (SELECT id FROM bryantmdb.lessons WHERE title = ? LIMIT 1), NOW())`;
+    // Update lessons_completed
+    await update(
+        'UPDATE bryantmdb.users SET lessons_completed = lessons_completed + 1 WHERE id = ?',
+        [userID]
+    );
 
-    await update(updateLessonTimeStampsQuery, [userID, title]);
-// get lessonID from title name
+    // Insert into lessons_completed
+    await update(
+        'INSERT INTO bryantmdb.lessons_completed (user_id, lesson_id, completed_at) VALUES (?, ?, NOW())',
+        [userID, lessonId]
+    );  
+}
     console.log("Executing query:", query, "with userID:", userID);
-    const updateResult = await update(updateLessonTimeStampsQuery, [userID]);
-
     return { success: true, message: 'Users history activites updated successfully' };
   }catch(error){
     console.error('Error updating user activity history:', error);
