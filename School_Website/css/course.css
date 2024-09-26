@@ -5,18 +5,7 @@
 }
 
 :root {
-    --dimlyBlue: #e8f9fd;
-    --mediumGreen: #4D774E;
-    --lightGreen: #9DC88D;
-    --naturalYellow: #F1B24A;
-    --blackish: #202020;
-    --grey: #DCE1E3;
-    --greyWater: #5C5F58;
-    --light: #ced4da;
-    --text-colour: #fff;
-    /* Make it contrast with the red */
-    --background-color: #f44336;
-    /* Find less bright red */
+
 }
 
 body {
@@ -24,92 +13,3 @@ body {
     /* background-color: #f1f1f1; */
 }
 
-/*  */
-/*Courses display  */
-
-/* Style for the container */
-/* .courses {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-} */
-
-/* Style for each course box */
-/* .course-box {
-    width: 100%;   
-    background-color: #f4f4f4;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-/* .direct a {
-    padding: 0.25rem 1rem;
-    background: #9DC88D;
-    border-radius: .5rem;
-    text-decoration: none;
-    color: #000000;
-}
- */
-/* Add hover effect for course boxes */
-/* .course-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
-/* .course-box a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    background: red;
-} */
-
-/*  */
-
-/* .banner-title{
-    font-size: 2.2rem;
-    font-family: var(--Playfair);
-    line-height: 1.2;
-    margin-right: 70%;
-}
-.banner-title span{
-    font-family: var(--Playfair);
-    color: var(--exDark);
-}
-.banner p{
-    padding: 1rem 0 2rem 0;
-    font-size: 1.2rem;
-    text-transform: capitalize;
-    font-family: var(--Roboto);
-    font-weight: 300;
-    word-spacing: 2px;
-}
-.banner form{
-    border: solid 1px black;
-    background: #fff;
-    border-radius: 2rem;
-    padding: 0.4rem 1rem;
-    display: flex;
-    justify-content: space-between;
-}
-.search-input{
-    font-family: var(--Roboto);
-    font-size: 1.1rem;
-    width: 100%;
-    outline: 0;
-    padding: 0.3rem 0;
-    border: none;
-}
-.search-input::placeholder{
-    text-transform: capitalize;
-}
-.search-btn{
-    width: 40px;
-    font-size: 1.1rem;
-    color: black;
-    border: none;
-    background: transparent;
-    outline: 0;
-    cursor: pointer;
-} */
-
-/*  */

@@ -55,7 +55,6 @@ body {
   
   /* Style for the lesson list */
   .sidebar-content {
-    /* Set the max height of the content container */
     max-height: inherit;
     overflow-y: inherit;
   }  
@@ -89,6 +88,7 @@ body {
     flex-direction: column; 
     flex-grow: 1; 
     overflow: auto; 
+    background:  #f0f0f0;;
 }
 
 .unit_display_box {
@@ -111,47 +111,18 @@ body {
 }
 
 /* Lessons dis */
-.unit_box_display{
-  padding: var(--box-padding);
-  margin-top: .5rem;
-  width: var(--widthOfContent);
-  min-height: fit-content;
-  border: /* var(--border-color) */
-  1px solid #f44336;
-  background: white;
-}
-.unit_title_display{
-  min-height: fit-content;
-  border-bottom: .5px solid #383838;
-  
 
-}.unit_lesson_display_area {
-  margin-top: .1rem;
-  position: relative;
-}
-
-.lesson_flex {
-  display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next row */
-}
-
-.lesson_flex li {
-  flex-basis: 50%; /* Divide the container into two columns */
-  padding: 5px; /* Add padding for spacing between items */
-  box-sizing: border-box; /* Include padding in the item's width calculation */
-}
 .lesson_columns {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  gap: 1rem; /* Adjust the gap between items as needed */
-  list-style: none; /* Remove list bullets */
+  gap: 1rem; 
+  list-style: none; 
 }
 
 /* Style the list items (anchors) */
 .lesson_columns a {
-  text-decoration: none; /* Remove underlines */ 
+  text-decoration: none;
 }
-/* Change to fit theme better it looks a bit off */
 
 /*boxes */
 .info-box {
@@ -174,24 +145,4 @@ body {
 .info-box p {
   font-size: 16px;
   color: #666;
-}
-
-/* styles.css */
-.about-section {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.about-section h2 {
-  font-size: 24px;
-  text-decoration: underline;
-}
-
-.about-section p {
-  font-size: 16px;
-  line-height: 1.4;
-}
-.title-container{
-  margin-top: .2rem;
 }

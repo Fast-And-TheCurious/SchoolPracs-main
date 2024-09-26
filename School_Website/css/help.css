@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+:root{
+    --text-colour: #fff;
+}
 body{
     background: #080710;
 }
@@ -59,12 +62,12 @@ body{
 .help_title{
     padding-bottom: 28px;
     text-align: center;
-    color: #fff;
+    color: var( --text-colour);
 }
 .heading{
     text-align: center;
     flex-wrap: wrap;
-    color: #fff;
+    color: var( --text-colour);
     margin-bottom: 1rem;
 }
 /*  */
@@ -82,13 +85,13 @@ body{
     border: none;
     outline: none;
     padding: 12px;
-    color: white;
+    color: var( --text-colour);
     font-size: 16px;
     background-color: rgba(225,225,225,0.07);
     border-radius: 3px;
 }
 .help-form_input::placeholder{
-    color: white;
+    color: var( --text-colour);
     letter-spacing: 1.5px;
 }
 /* TextArea scrollbar customizing  */
@@ -130,7 +133,7 @@ textarea::-webkit-scrollbar {
 }
 .submit_help_button:hover{
     background-color: rgba(225,225,225,0.04);
-    color: white;
+    color: var( --text-colour);
 }
 
 @media(max-width:46px){

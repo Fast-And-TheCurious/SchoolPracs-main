@@ -9,10 +9,7 @@
     https://hookagency.com/blog/website-color-schemes/
     darkGreen: #164A41;
 */
-  --dimlyBlue: #e8f9fd;
-  --mediumGreen: #4d774e;
-  --lightGreen: #9dc88d;
-  --naturalYellow: #f1b24a;
+ 
   --blackish: #202020;
   --grey: #dce1e3;
   --greyWater: #5c5f58;
@@ -95,8 +92,8 @@ nav {
 .hero-btn {
   display: inline-block;
   text-decoration: none;
-  color: #fff;
-  border: 1px solid #fff;
+  color: var(--text-colour);
+  border: 1px solid var(--text-colour);
   padding: 12px 34px;
   font-size: 1rem;
   background: transparent;
@@ -133,7 +130,7 @@ nav .locate {
   }
   nav .locate {
     display: block;
-    color: #fff;
+    color: var(--text-colour);
     margin: 10px;
     font-size: 22px;
     cursor: pointer;
@@ -266,7 +263,7 @@ p {
   width: 100%;
   font-weight: 500;
   font-size: 26px;
-  color: #fff;
+  color: var(--text-colour);
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -355,7 +352,6 @@ p {
 }
 
 /* footer*/
-/* Make it have less height */
 .footer {
   background-color: #24262b;
   padding: 30px 0;
