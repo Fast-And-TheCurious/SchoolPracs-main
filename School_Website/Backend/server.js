@@ -19,10 +19,12 @@ const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
 const imageManager = require('./imageManager');
+const blogManager = require('./blogManager');
 // Import email and password reset logic modules
 const { sendPasswordResetEmail } = require('./gmailService');
 const { initiatePasswordReset } = require('./gmailManager');
-const { sendAdminResponse } = require('./gmailManager');
+// const { sendAdminResponse } = require('./gmailManager');
+const gmailManager = require ("./gmailManager");
 const secretKey = process.env.JWT_SECRET;
 if (!secretKey) {
   console.error('Secret key for JWT is not defined');
@@ -70,7 +72,7 @@ app.post('/api/sendResponse', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Email, subject, and message are required.' });
   }
 
-  const result = await sendAdminResponse(userEmail, subject, message);
+  const result = await gmailManager.sendAdminResponse(userEmail, subject, message);
   res.json(result);
 });
 
@@ -613,4 +615,14 @@ app.get('/api/messages', async (req, res) => {
     }
 });
 
+// blog api endpoint
 
+app.get('/api/articles', async (req, res) => {
+  const manager = new blogManager();
+  const result = await manager.getArticleInformation();
+  if (result.error) {
+    res.status(result.statusCode || 500).json({ error: result.error });
+  } else {
+    res.status(200).json({ messages: result });
+  }
+});

@@ -1,6 +1,6 @@
 const { select } = require("./database");
 
-class CourseManager {
+class courseManager {
   async getCourses() {
     try {
       const query = "SELECT * FROM courses";
@@ -17,4 +17,4 @@ class CourseManager {
   }  
 } 
 
-module.exports = CourseManager;
+module.exports = courseManager;

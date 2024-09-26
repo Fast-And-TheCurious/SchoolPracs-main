@@ -1,114 +1,134 @@
 <!DOCTYPE html>
 <html>
-  <head>    
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Mathematics</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Font awesome icon -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/School_Website/css/blog.css" />
-  </head>
-  <body>
-    <!-- header -->
-    <header>
-      <nav class="navbar">
-        <div class="container">
-          <a href="index.html" class="navbar-brand">MathGeniusMinds.</a>
-          <div class="navbar-nav">
-            <a href="blog.html">home</a>
-            <a href="help.html">contact</a>
-            <a href="">about</a>
-          </div>
-        </div>
-      </nav>
-      <div class="banner">
-        <div class="container">
-          <h1 class="banner-title"><span>All.</span> About Mathematics</h1>
-          <p>everything that you want to know about math</p>
-          <form>
-            <input
-              type="text"
-              class="search-input"
-              placeholder="find your what you want to know . . ."
-            />
-            <button type="submit" class="search-btn">
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </header>
-    <!-- end of header -->
 
-    <!-- recent -->
-    <section class="recent" id="recent">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Mathematics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <link rel="stylesheet" href="/School_Website/css/blog.css" />
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <nav class="navbar">
       <div class="container">
-        <div class="title">
-          <h2>Recent Developments in Mathematics</h2>
-          <p>Mathematics blogs</p>
-        </div>
-
-        <div class="recent-content">
-          <!-- item -->
-          <div class="recent-item">
-            <div class="recent-img">
-              <img
-                src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
-                alt=""
-              />
-            </div>
-            <div class="recent-title">
-              <a href="https://www.sciencedaily.com/releases/2022/10/221031212807.htm">
-                Mathematicians explain how some fireflies flash in sync
-              </a>
-<!--               <a href="https://www.sciencedaily.com/releases/2022/10/221031212807.htm" -->
-               <!--  <div>Mathematicians explain how some fireflies flash in sync</div> -->
-            </div>
-          </div>
-          <!-- end of item -->
-          <!-- item -->
-          <div class="recent-item">
-            <div class="recent-img">
-              <img
-                src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
-                alt=""
-              />
-            </div>
-            <div class="recent-title">
-        <!--       href=" https://www.sciencedaily.com/releases/2023/03/230303105248.htm" -->
-        <a href="https://www.sciencedaily.com/releases/2023/03/230303105248.htm">Think you're good at math? Study shows it may be because you   had equitable math teachers</a>
-             <!--    <div>Think you're good at math? Study shows it may be because you</div> -->
-              </a><!-- https://www.sciencedaily.com/releases/2023/03/230303105248.htm -->
-            </div>
-          </div>
-          <!-- end of item -->
-          <!-- item -->
-          <div class="recent-item">
-            <div class="recent-img">
-              <img
-                src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
-                alt=""
-              />
-            </div>
-            <div class="recent-title">     
-              <a href="#">                
-                make an awesome art portfolio for college or university
-              </a>     
-            </div>
-          </div>
-          <!-- end of item -->
+        <a href="index.html" class="navbar-brand">MathGeniusMinds.</a>
+        <div class="navbar-nav">
+          <a href="blog.html">home</a>
+          <a href="help.html">contact</a>
+          <a href="">about</a>
         </div>
       </div>
-    </section>
-    <!-- end of recent -->
+    </nav>
+    <div class="banner">
+      <div class="container">
+        <h1 class="banner-title"><span>All.</span> About Mathematics</h1>
+        <p>everything that you want to know about math</p>
+        <form>
+          <input type="text" class="search-input" placeholder="find your what you want to know . . ." />
+          <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+          
+      </div>
+    </div>
+  </header>
+  <!-- end of header -->
+  <section class="recent" id="recent">
+    <div class="container">
+      <div class="title">
+        <h2>Recent Developments in Mathematics</h2>
+        <p>Mathematics blogs</p>
+      </div>
 
-    <!-- blog -->
+      <div class="recent-content">
+
+        <div class="recent-item">
+          <div class="recent-img">
+            <img
+              src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
+              alt="" />
+          </div>
+          <div class="recent-title">
+            <a href="https://www.sciencedaily.com/releases/2022/10/221031212807.htm">Mathematicians explain how some
+              fireflies flash in sync</a>
+
+
+          </div>
+        </div>
+
+        <div class="recent-item">
+          <div class="recent-img">
+            <img
+              src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
+              alt="" />
+          </div>
+          <div class="recent-title">
+
+            <a href="https://www.sciencedaily.com/releases/2023/03/230303105248.htm">Think you're good at math? Study
+              shows it may be because you had equitable math teachers</a>
+
+            </a>
+          </div>
+        </div>
+
+        <div class="recent-item">
+          <div class="recent-img">
+            <img
+              src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
+              alt="" />
+          </div>
+          <div class="recent-title">
+            <a href="https://www.quantamagazine.org/the-biggest-discoveries-in-math-in-2023-20231222/">
+              The Year in Math
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="blog" id="blog">
+    <div class="container">
+      <div class="title">
+        <h2>Our Latest Blog</h2>
+        <p>Keep up to date with us</p>
+      </div>
+      <div class="blog-content"></div>
+    </div>
+  </section>
+
+  <script id="blog-template" type="text/x-handlebars-template">
+      {{#each this}}
+      <div class="blog-item">
+        <div class="blog-img">
+          <img src="{{ImageURL}}" alt="{{Title}}" />
+        </div>
+        <div class="blog-text">
+          <span>{{formatDate DateReleased}}</span>
+          <h2>{{Title}}</h2>
+          <button class="model-button" onclick="document.getElementById('modal-{{BlogID}}').style.display='block'">Read More</button>
+    
+          <!-- The modal -->
+          <div id="modal-{{BlogID}}" class="modal">
+            <div class="modal-content">
+              <span onclick="document.getElementById('modal-{{BlogID}}').style.display='none'" class="close">&times;</span>
+              <p>{{Content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+
+  <!-- 
     <section class="blog" id="blog">
       <div class="container">
         <div class="title">
@@ -117,7 +137,7 @@
         </div>
         <div class="blog-content">
           
-          <!-- item -->
+        
           <div class="blog-item">
             <div class="blog-img">
               <img
@@ -129,9 +149,9 @@
               <span>27 August, 2023</span>
               <h2>The Elegance of Fractal Geometry: A Mathematical Tapestry of Infinite Complexity</h2>
               <button class="model-button" onclick="document.getElementById('myModal').style.display='block'">Read More</button>
-              <!-- The modal -->
+             
               <div id="myModal" class="modal">
-                <!-- Modal content -->
+            
                 <div class="modal-content">
                   <span
                     onclick="document.getElementById('myModal').style.display='none'"
@@ -161,8 +181,7 @@
               </div>
             </div>
           </div>
-          <!-- end of item -->
-          <!-- item -->
+        
           <div class="blog-item">
             <div class="blog-img">
               <img
@@ -174,9 +193,9 @@
               <span>15 September, 2023</span>
               <h2>Mathematics: The Universal Language of Patterns and Logic</h2>              
               <button class="model-button" onclick="document.getElementById('myModal').style.display='block'">Read More</button>
-              <!-- The modal -->
+              
               <div id="myModal" class="modal">
-                <!-- Modal content -->
+             
                 <div class="modal-content">
                   <span
                     onclick="document.getElementById('myModal').style.display='none'"
@@ -202,8 +221,7 @@
               </div>
             </div>
           </div>
-          <!-- end of item -->
-          <!-- item -->
+         
           <div class="blog-item">
             <div class="blog-img">
               <img
@@ -216,9 +234,9 @@
               <h2>
                 Mathematics: The Gateway to Universal Understanding</h2>              
               <button class="model-button" onclick="document.getElementById('myModal').style.display='block'">Read More</button>
-              <!-- The modal -->
+             
               <div id="myModal" class="modal">
-                <!-- Modal content -->
+              
                 <div class="modal-content">
                   <span
                     onclick="document.getElementById('myModal').style.display='none'"
@@ -242,48 +260,50 @@
               </div>
             </div>
           </div>
-          <!-- end of item -->
+        
         </div>
       </div>
     </section>
-    <!-- end of blog -->
-
-    <!-- about -->
-    <section class="about" id="about">
-      <div class="container">
-        <div class="about-content">
-          <div>
-            <img
-              src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
-              alt=""
-            />
+  -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div>
+          <img
+            src="/School_Website/images/Ansonkj_gray_tabby_cat__dressed_up_in_black_hoodie_wearing_earp_aaf12f10-29fd-42d9-a064-06fad02b72e2.png"
+            alt="" />
+        </div>
+        <div class="about-text">
+          <div class="title">
+            <h2>MathGeniusMinds</h2>
+            <p>Making the world better with each mind</p>
           </div>
-          <div class="about-text">
-            <div class="title">
-              <h2>MathGeniusMinds</h2>
-                <p>Making the world better with each mind</p>
-            </div>
-            <p>
-              At our math website, we are passionate about making mathematics accessible and enjoyable for students of all levels.
-              Our mission is to provide comprehensive math resources and interactive learning experiences that empower students to excel in their math education.
-              With a team of dedicated educators and technologists, we strive to create a dynamic platform that combines clear explanations, interactive activities, and personalized learning features. 
-              Whether you're seeking to strengthen your foundational math skills or tackle advanced concepts, our website is here to support your journey and help you build a solid mathematical foundation.
-              Join us and embark on a transformative learning experience that will unlock your math potential.
-            </p>            
-          </div>
+          <p>
+            At our math website, we are passionate about making mathematics accessible and enjoyable for students of all
+            levels.
+            Our mission is to provide comprehensive math resources and interactive learning experiences that empower
+            students to excel in their math education.
+            With a team of dedicated educators and technologists, we strive to create a dynamic platform that combines
+            clear explanations, interactive activities, and personalized learning features.
+            Whether you're seeking to strengthen your foundational math skills or tackle advanced concepts, our website
+            is here to support your journey and help you build a solid mathematical foundation.
+            Join us and embark on a transformative learning experience that will unlock your math potential.
+          </p>
         </div>
       </div>
-    </section>
-    <!-- end of about -->
+    </div>
+  </section>
 
-    <!-- footer -->
-    <footer>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <span>Follow Us</span>
-    </footer>
-    <!-- end of footer -->
-  </body>
+  <!-- footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <span>Follow Us</span>
+  </footer>
+  <!-- end of footer -->
+</body>
+
 </html>
+<script src="/School_Website/JavaScript/blog.js"></script>
