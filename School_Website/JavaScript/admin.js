@@ -54,23 +54,47 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
     // Handle admin response form submission
-document.getElementById('admin-response-form').addEventListener('submit', function(e) {
+document.getElementById('admin-response-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const response = document.getElementById('admin-response').value;
+    console.log('Form submitted'); // Debug log
 
-    if (response.trim() === '') {
+    const userEmail = document.getElementById('user-email').value; 
+    const subject = 'Reply to your message'; 
+    const message = document.getElementById('admin-response').value;
+
+    if (message.trim() === '') {
         alert('Please write a response before submitting.');
         return;
     }
+     // Send the email response
+     try {
+        const response = await fetch('/api/sendResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userEmail, subject, message }),
+        });
 
-    const userGmail = document.getElementById('detail-sender').textContent;
+        const result = await response.json();
+        
+        console.log(result); // Debug log to see the response
 
-    // Handle response (this is just a mockup)
-    alert('Admin response submitted: ' + response);
+        if (result.success) {
+            alert('Response email sent successfully!');
+        } else {
+            alert('Failed to send response email: ' + result.message);
+        }
 
-    // Clear the response textarea after submission
-    document.getElementById('admin-response').value = '';
+        // Clear the response textarea after submission
+        document.getElementById('admin-response').value = '';
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while sending the email.');
+    }
+  
+   
 });
 
 
