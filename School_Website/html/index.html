@@ -11,7 +11,6 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="/School_Website/css/style.css">
     <link rel="stylesheet" href="/School_Website/css/grid.css">
-    
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
         rel="stylesheet">
@@ -21,28 +20,13 @@
 
 <body>
     <section class="header"> 
-       <!--  <nav> 
-            <div class="logo"><a href="index.html">MathGeniusMinds</a></div>
-            <div class="nav-links" id="navLinks">
-                <i class="fafa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="topic.html">About</a></li>
-                    <li><a href="course.html">Courses</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="/School_Website/html/help.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </div>
-            <i class="locate" onclick="showMenu()"></i>
-        </nav> -->
         <div id="header-container"></div>
         <script id="header-template" type="text/x-handlebars-template">
             <section class="header">
               <nav>
                 <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
                 <div class="nav-links" id="navLinks">
-                  <i class="fa fa-times" onclick="hideMenu()"></i>
+                  <i class="fa fa-times"></i>
                   <ul>
                     {{#each menuItems}}
                       <li><a href="{{this.link}}">{{this.label}}</a></li>

@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const contentArray = {
     lessonContent: flattenedArray,
   };
-
+  
   if (!courseIDNumber) {
     console.error("No course ID provided.");
     return;
@@ -109,11 +109,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     // all the stuff happens here 
     let indexOfCourseToUse = -1;
     let endIndex = -1;
+  
 
     for (let i = 0; i <contentArray.lessonContent.length; i++) {
       if(contentArray.lessonContent[i].courseID === parseInt(courseIDNumber, 10)){ // I wasn't sure if I was comparing a number to a number so I'm just making sure my conveting to an int
         indexOfCourseToUse = i;
-        console.log(`Match found at index ${i}:`, contentArray.lessonContent[i]); // match found :)
         break;       
      }else{
       console.log("No unit found matching courseID."); // I have no idea why this line is still being run if the first if is true
@@ -129,11 +129,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const data = {  
       lessons: [], 
     };
-    
+ 
     for(let i = indexOfCourseToUse; i<endIndex+1 && i < contentArray.lessonContent.length; i++){
       data.lessons.push(contentArray.lessonContent[i]);
     }
-    console.log("Array to use for page content:", data);
 
     function calculateTotalMasteryPoints(data) {
       const totalMasteryPoints = data.lessons.reduce((total, lesson) => {
@@ -144,20 +143,22 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     
     const totalMasteryPoints = calculateTotalMasteryPoints(data);
-    /* check not really needed */
-    function calculateUniqueUnits(data) {
-      const uniqueUnits = new Set();
-    
-      data.lessons.forEach((lesson) => {
-        uniqueUnits.add(lesson.unit);
-      });
-        return uniqueUnits.size;
+ 
+    async function fetchCourseTitle(courseIDNumber) {
+      const courses = await getCourses();
+      
+      for (let i = 0; i < courses.length; i++) {
+        if (courses[i].id == courseIDNumber) {
+          return courses[i].title; // ReturnS title
+        }
+      }      
+      return undefined; // Return if not found
     }
     
-    const uniqueUnitCount = calculateUniqueUnits(data);
-    
+    let courseTitle = await fetchCourseTitle(courseIDNumber);
+
     const unitInformation = {
-      unitInfo: [{ title: "Title", uniqueUnitCount: uniqueUnitCount }],
+      unitInfo: [{ title: courseTitle }],
     };
     // Function to change title dynamically
     function changeTitle(newTitle) {
@@ -189,7 +190,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const lessonSidebarHtml = lessonSidebarTemplate({
       unitInfo: unitInformation.unitInfo,
       lessons: data.lessons,
-      numUnits: uniqueUnitCount,
+     /*  numUnits: uniqueUnitCount, */
       showAllUnits: showAllUnits,
       totalMasteryPoints: totalMasteryPoints,
     });
