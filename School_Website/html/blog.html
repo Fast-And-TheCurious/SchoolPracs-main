@@ -114,10 +114,8 @@
         <div class="blog-text">
           <span>{{formatDate DateReleased}}</span>
           <h2>{{Title}}</h2>
-          <button class="model-button" onclick="document.getElementById('modal-{{BlogID}}').style.display='block'">Read More</button>
-    
-          <!-- The modal -->
-          <div id="modal-{{BlogID}}" class="modal">
+          <button class="model-button" onclick="document.getElementById('modal-{{BlogID}}').style.display='block'">Read More</button>    
+         <div id="modal-{{BlogID}}" class="modal">
             <div class="modal-content">
               <span onclick="document.getElementById('modal-{{BlogID}}').style.display='none'" class="close">&times;</span>
               <p>{{Content}}</p>

@@ -1,4 +1,4 @@
-const { select, update } = require("./database");
+const { update } = require("./database");
 
 class signUpManager{
     async addUser(newUserName,newPassword, newProfileIcon, newEmail, userID){

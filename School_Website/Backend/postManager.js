@@ -1,5 +1,5 @@
 const { select, update } = require("./database");
-
+// for community tab stated in spec doc, haven't made that scetion, prop just delete
 class postManager{
       //naming convension for uploading files to firebase
   async total(userID) {

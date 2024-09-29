@@ -14,7 +14,7 @@ class unitManager {
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
   }
-  async getUnitsByCourse(courseID, unitID) {
+/*   async getUnitsByCourse(courseID, unitID) {
     try {
       const query = `
         SELECT * FROM bryantmdb.unit
@@ -28,32 +28,8 @@ class unitManager {
       console.error("An error occurred while fetching units by course:", error);
       return { error: "An error occurred while processing the request", statusCode: 500 };
     }
-  }
+  } */ // check used, currently not
   
 }
 
 module.exports = unitManager;
-
-/* const unitArray = [];
-
-async function fetchUnits() {
-  let connection;
-  try {
-    connection = await pool.getConnection();
-
-    const [rows, fields] = await connection.query("SELECT * FROM Unit");
-
-    unitArray.push(...rows);
-
-    console.log("\nUnits:\n");
-    console.log(unitArray);
-  } catch (error) {
-    console.error("Error:", error);
-  } finally {
-    if (connection) {
-      connection.release();
-    }
-  }
-}
-module.exports.unitArray= unitArray;
-fetchUnits(); */

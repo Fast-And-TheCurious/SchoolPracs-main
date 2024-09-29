@@ -328,9 +328,6 @@ app.get("/api/user/idByGmail", async (req, res) => {
 });
  */
 
-
-
-
 /* Get User Profile Icon */
 app.get("/api/user/profileIcon", async (req, res) => {
   const { userID } = req.query;
@@ -411,12 +408,6 @@ app.post("/api/user/create", async (req, res) => {
 
 /* User Deletion: */
 
-
-
-
-
-
-
 //Courses
 
 //endpoints for courseManager
@@ -437,10 +428,6 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
-
-
-
-
 //Lessons
 //endpoint for getting lessons
 app.get("/api/lessons", async (req, res) => {
@@ -459,12 +446,6 @@ app.get("/api/lessons", async (req, res) => {
   }
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-
-
-
-
 
 //Units api-endpoints
 app.get("/api/units", async (req, res) => {

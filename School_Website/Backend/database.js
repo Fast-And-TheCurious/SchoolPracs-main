@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-// not to self: the mysql database has to be open to run the server
 const mysql = require("mysql2");
 // MySQL infomation 
 const connection = mysql.createConnection({
