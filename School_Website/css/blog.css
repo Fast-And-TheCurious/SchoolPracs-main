@@ -119,7 +119,57 @@ header{
     outline: 0;
     cursor: pointer;
 }
+/* Search container area */
 
+.searchResultContainer{
+    display: none;
+    justify-content: center; 
+    align-items: center;
+    margin-top:1rem;
+    height: 15rem;
+    width: 100%;
+    background-color: #fefefe;
+    border-radius: .5rem;
+}
+.result{    
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+    "authorResult img"
+    "dateResult img"
+    "titleResult resultRead";
+    height: 12.5rem;
+    width: 95%;
+    color: var(--exDark);
+    align-items: center;
+}
+#authorResult {
+    grid-area: authorResult;
+}
+#dateResult {
+    grid-area: dateResult;
+}
+#titleResult {
+    grid-area: titleResult;
+}
+#resultRead {
+    grid-area: resultRead;
+}
+.result ul {   
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: var(--exDark);    
+    display:flex;
+}
+.result img{
+    height:90%;
+    width: 50%;
+    grid-area: img;    
+}
+.ristrict{
+    width: 50%;
+}
 /* recent */
 .recent{
     padding: 4.5rem 0;
@@ -143,9 +193,6 @@ header{
     cursor: pointer;
     margin: 1.5rem 0;
 }
-/* .art_Link{
-    text-decoration: none;
-} */
 .recent-img{
     position: relative;
     overflow: hidden;
@@ -181,31 +228,73 @@ header{
 }
 
 /* blog */
+.read-more-button {
+    background-color:var(--exDark) 1px solid; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
+.read-more-button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid var(--exDark);
+}
 /* The modal background */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* The modal box */
 .modal-content {
-    cursor: pointer;
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%; 
+    border-radius: 5px;
 }
-.modal-content span{
+/* .modal-content span{
     size: 20px;
+} */
+.close {
+    color: #aaa;
+    float: right; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    color: black; 
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-text {
+    font-size: 16px; 
+    color: var(--exDark); 
+    line-height: 1.5;
+    text-align: left;
+}
+
+.modal h2 {
+    font-size: 24px; 
+    margin-bottom: 15px; 
 }
 /*  */
 

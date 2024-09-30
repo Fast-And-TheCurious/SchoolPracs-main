@@ -31,14 +31,30 @@
         <h1 class="banner-title"><span>All.</span> About Mathematics</h1>
         <p>everything that you want to know about math</p>
         <form>
-          <input type="text" class="search-input" placeholder="find your what you want to know . . ." />
-          <button type="submit" class="search-btn">
+          <input id="search-box-input" type="text" class="search-input" placeholder="find your what you want to know . . ." />
+          <button id="search-button" type="button" class="search-btn">
             <i class="fas fa-search"></i>
           </button>
         </form>
-          
+        <div class="searchResultContainer">           
+          <div class="result">
+            <ul id="authorResult"></ul>
+            <ul id="dateResult"><span></span></ul>
+            <ul id="titleResult"></ul>
+            <img id="pictureResult" src="" alt="Image Description">
+            <button  class="model-button ristrict read-more-button" id="resultRead"  data-modal-id="modal-1" data-content="This is the full content of the article.">Read</button>
+            
+          </div>
+        </div>
+        <div id="modal-1" class="modal">
+          <div class="modal-content">
+              <span class="close" data-modal-id="modal-1">&times;</span>
+              <p class="modal-text"></p> <!-- holds content -->
+          </div>
       </div>
+  </div>
     </div>
+
   </header>
   <!-- end of header -->
   <section class="recent" id="recent">
@@ -91,7 +107,6 @@
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -112,13 +127,15 @@
           <img src="{{ImageURL}}" alt="{{Title}}" />
         </div>
         <div class="blog-text">
+          <h3>{{Author}}</h3>
           <span>{{formatDate DateReleased}}</span>
           <h2>{{Title}}</h2>
-          <button class="model-button" onclick="document.getElementById('modal-{{BlogID}}').style.display='block'">Read More</button>    
+          <button class="model-button read-more-button" onclick="document.getElementById('modal-{{BlogID}}').style.display='block'">Read More</button>    
          <div id="modal-{{BlogID}}" class="modal">
             <div class="modal-content">
               <span onclick="document.getElementById('modal-{{BlogID}}').style.display='none'" class="close">&times;</span>
-              <p>{{Content}}</p>
+              <h2 class="modal-title">{{Title}}</h2>
+              <p class="modal-text">{{Content}}</p>
             </div>
           </div>
         </div>
