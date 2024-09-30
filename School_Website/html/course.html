@@ -1,86 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>    
-  <title>Course Display</title>
-  <link rel="stylesheet" href="/School_Website/css/course.css" />
-  <link rel="stylesheet" href="/School_Website/css/unistyling.css">
-  <link rel="stylesheet" href="/School_Website/css/header&Footer.css">
-  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <head>
+    <title>Course Display</title>
+    <link rel="stylesheet" href="/School_Website/css/course.css" />
+    <link rel="stylesheet" href="/School_Website/css/unistyling.css" />
+    <link rel="stylesheet" href="/School_Website/css/header&Footer.css" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
-    rel="stylesheet">
-</head>
-
-<body class="light-mode">
-  <div id="header-container"></div>
-  <script id="header-template" type="text/x-handlebars-template">
-    <section class="header">
+  <body class="light-mode">
+    <div id="header-container"></div>
+    <script id="header-template" type="text/x-handlebars-template">
+      <section class="header">
         <nav>
-            <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    {{#each menuItems}}
-                        <li><a href="{{this.link}}">{{this.label}}</a></li>
-                    {{/each}}
-                </ul>
-            </div>
+          <div class="logo"><a href="{{homeLink}}">{{siteName}}</a></div>
+          <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+              {{#each menuItems}}
+                <li><a href="{{this.link}}">{{this.label}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
         </nav>
-    </section>
-</script>
-   <div class="container"> 
-    <div class="main_heading">Courses</div>
-    <div class="line-separation"></div>
-    <section class="courses" id="courses-container">
-      <script id="course-template" type="text/x-handlebars-template">
-        <div class="styling-box">
-            <div class="course">
-                <h2 class="course-title">{{title}}</h2>
-                <p class="description">{{description}}</p>
-                <p class="directbtn">
-                    <a href="topic.html?course={{id}}">Start</a>   <!-- Use Handlebars expression to insert the course ID into the link --> <!-- Include the course ID in the query parameter -->
-                </p>
-                </p>
-                <!-- <p class="directbtn">
-                    <a href="/path-to-topic-screen.html?course=courseID">Start</a>
-                </p>   -->              
-            </div>
-        </div>
+      </section>
     </script>
-    </section>
-  </div>
- 
-  <!-- Footer -->
- <div id="footer-container"></div>
- <script id="footer-template" type="text/x-handlebars-template">
-     <footer class="footer">        
-         <h1>{{contactHeading}}</h1>
-         <div class="container">
-             <div class="row">
-                 {{#each columns}}
-                     <div class="footer-col">
-                         <h4>{{this.title}}</h4>
-                         <ul>
-                             {{#each this.links}}
-                                 <li><a href="{{this.url}}">{{this.label}}</a></li>
-                             {{/each}}
-                         </ul>
-                     </div>
-                 {{/each}}
-                 <div class="footer-col">
-                     <h4>{{socialHeading}}</h4>
-                     <div class="social-links">
-                         {{#each socialIcons}}
-                             <a href="{{this.url}}"><i class="{{this.iconClass}}"></i></a>
-                         {{/each}}
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </footer>
- </script>   
+    <div class="container">
+      <div class="main_heading">Courses</div>
+      <div class="line-separation"></div>
+      <section class="courses" id="courses-container">
+        <script id="course-template" type="text/x-handlebars-template">
+          <div class="styling-box">
+              <div class="course">
+                  <h2 class="course-title">{{title}}</h2>
+                  <p class="description">{{description}}</p>
+                  <p class="directbtn">
+                      <a href="topic.html?course={{id}}">Start</a>
+                  </p>
+                  </p>
+              </div>
+          </div>
+        </script>
+      </section>
+    </div>
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    <script id="footer-template" type="text/x-handlebars-template">
+      <footer class="footer">
+        <h1>{{contactHeading}}</h1>
+        <div class="container">
+          <div class="row">
+            {{#each columns}}
+              <div class="footer-col">
+                <h4>{{this.title}}</h4>
+                <ul>
+                  {{#each this.links}}
+                    <li><a href="{{this.url}}">{{this.label}}</a></li>
+                  {{/each}}
+                </ul>
+              </div>
+            {{/each}}
+            <div class="footer-col">
+              <h4>{{socialHeading}}</h4>
+              <div class="social-links">
+                {{#each socialIcons}}
+                  <a href="{{this.url}}"><i class="{{this.iconClass}}"></i></a>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </script>
     <script src="/School_Website/JavaScript/course.js"></script>
-    <script src="/School_Website/JavaScript/headerAndFooter.js"></script>    
-</body>
+    <script src="/School_Website/JavaScript/headerAndFooter.js"></script>
+  </body>
 </html>

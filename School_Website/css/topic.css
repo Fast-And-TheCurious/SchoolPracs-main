@@ -5,7 +5,6 @@
 }
 :root{    
     --text-colour: #fff; /* Make it contrast with the red */
-    --background-color: #f44336;/* Find less bright red */
     --widthOfContent: 97%;
     --border-color:1px solid #726f6f;
     --box-padding: 1rem;
@@ -18,7 +17,7 @@ body {
 /* CSS for Split Container */
 .split-container {
     display: flex;
-    height: 100%; /* Adjust the height as needed */
+    height: 100%;
     background: rgb(247, 246, 246);
 }
 .main-container{

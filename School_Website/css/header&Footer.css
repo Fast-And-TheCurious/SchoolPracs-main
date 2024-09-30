@@ -1,6 +1,5 @@
 :root{
-    --text-colour: #fff; /* Make it contrast with the red */
-    --background-color: #f44336;/* Find less bright red */
+    --text-colour: #fff;
 }
 .header {
     min-height: 0.1rem;

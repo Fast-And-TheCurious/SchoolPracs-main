@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-/* const session = require("express-session"); */
+const session = require("express-session");
 const PORT = process.env.PORT || 5000; 
-/* const cors = require("cors"); */
+const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
@@ -28,19 +28,19 @@ if (!secretKey) {
 }
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-/* app.use(cors({
+app.use(cors({
   origin: 'http://127.0.0.1:5502', // Adjust to your frontend URL
   credentials: true // Allow credentials (cookies, authorization headers)
-})); */
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
-/* app.use(session({
+app.use(session({
   secret: process.env.SESSION_SECRET || secretKey,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Note: Set 'secure: true' if using HTTPS
-})); */
+}));
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

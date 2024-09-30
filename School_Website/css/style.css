@@ -3,18 +3,10 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
 }
-/* Make sure all headings are same size */
 :root {
-  /* 
-    https://hookagency.com/blog/website-color-schemes/
-    darkGreen: #164A41;
-*/
- 
   --blackish: #202020;
-  --grey: #dce1e3;
-  --greyWater: #5c5f58;
-  --text-colour: #fff; /* Make it contrast with the red */
-  --background-color: #f44336; /* Find less bright red */
+  --text-colour: #fff; 
+  --background-color: #f44336;
 }
 .header {
   min-height: 100vh;
@@ -168,7 +160,7 @@ nav .locate {
 /* About US */
 
 .about-background_container {
-  background: rgba(248, 243, 243, 0.9);
+  background: #f0f0f0;
 }
 
 .about-us {
