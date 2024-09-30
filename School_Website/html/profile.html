@@ -1,11 +1,10 @@
- <!-- Use this website to help: https://demos.creative-tim.com/argon-dashboard/docs/components/forms.html -->
+
  <!DOCTYPE html>
  <html lang="en">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/School_Website/css/profile.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -25,50 +24,47 @@
               <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div class="card shadow">
                   <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
+                    <div>
                       <div class="card-profile-image">                        
                           <img id="user-profile-icon" src="/School_Website/images/jgsnow_cyberpunk_post-apocalyptic_urban_street_cinematic_high_d_a841e87f-aee3-44d7-8bb5-6151aae8e669.png
                           " class="rounded-circle">                        
                       </div>
                     </div>
                   </div>
-                  <div class="card-body pt-0">
+                  <div class="card-body ">
                     <div class="row">
                       <div class="col">
-                        <div class="card-profile-stats justify-content-center mt-md-5">
+                        <div class="card-profile-stats justify-content-center">
                           </div>
                       </div>
                     </div>
                     <div>                      
-                      <hr class="my-4">                     
-                        <h3 class="font-weight-light text-muted mb-4">User Stats:</h3>                           
+                      <hr class="my-4 vertical-space">                     
+                        <h3>User Stats:</h3>                           
                           <div class="profile-grid">
                             <div class="profile-item">
-                              <label class="profile-heading" for="user-profile">Completed Courses</label>
+                              <label>Completed Courses</label>
                               <div class="completedCourses number-display">
-                                <span id="num_completedCourses">0</span>
+                                <span id="num_completedCourses"></span>0
                               </div>
                             </div>
                             <div class="profile-item">
-                              <label class="profile-heading" for="user-profile">Lessons Completed</label>
+                              <label>Lessons Completed</label>
                               <div class="completedLessons number-display">
                                 <span id="num_lessons">0</span>
                               </div>
                             </div>
                             <div class="profile-item">
-                              <label class="profile-heading" for="user-profile">Points</label>
+                              <label>Points</label>
                               <div class="totalPoints number-display">
                                 <span id="num_points">0</span>
                               </div>
                             </div>
-                            
                           </div>
-                          
                         <hr class="my-4">  
                         <div class="setting_box">
-                          <h3  id="settingHeading" class="font-weight-light">Settings</h3>
-                                             
-                        <div class="page" id="logout">
+                          <h3  id="settingHeading">Settings</h3>                                             
+                        <div id="logout">
                             <button id="logoutButton" class="button">
                               Logout
                             </button>
@@ -78,39 +74,37 @@
                               Return to home page
                             </button>
                           </a>                          
-                        </div>                   
-                      
+                        </div>
                       <hr class="my-4">  
                     </div>
                   </div>
                 </div>
               </div>
               <!--  -->
-              <div class="col-xl-8 order-xl-1">
-                <div class="card bg-secondary shadow">
-                  <div class="card-header bg-white border-0">
+              <div class="col-xl-8">
+                <div class="card shadow">
+                  <div class="card-header bg-white">
                     <div class="row align-items-center">
                       <div class="col-8">
                         <h3 class="mb-0">My account</h3>
-                      </div>
-                     
+                      </div>                     
                     </div>
                   </div>
                   <div class="card-body">
                     <form>
                       <!-- User information -->
-                      <h6 class="heading-small text-muted mb-4">User information</h6>
-                      <div class="pl-lg-4">
+                      <h6 class="heading-small">User information</h6>
+                      <div>
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="form-group focused">
-                              <label  class="form-control-label" for="input-username">Username</label>
+                              <label for="input-username">Username</label>
                               <input id="username" type="text" id="username" class="form-control" placeholder="Username" value="" readonly><!-- value <-- is the value the user will input when making an account so use the sorted value -->
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="form-control-label" for="input-email">Email address</label>
+                              <label for="input-email">Email address</label>
                               <input type="email" id="user-email" class="form-control" placeholder="TheBuilder@example.com" value="" readonly><!-- value <-- is the value the user will input when making an account so use the sorted value -->
                             </div>
                           </div>
@@ -120,9 +114,8 @@
                       <hr class="my-4">
 
                       <!-- Progress -->
-                      <!-- https://www.chartjs.org/docs/latest/getting-started/integration.html -->
-                      <h6 class="heading-small text-muted mb-4">Analytics</h6>
-                      <div class="pl-lg-4">
+                     <h6 class="heading-small">Analytics</h6>
+                      <div>
                         <div class="container">
                           <div class="row">
                             <div class="col-md-12">
