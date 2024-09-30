@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
-const session = require("express-session");
+/* const session = require("express-session"); */
 const PORT = process.env.PORT || 5000; 
-const cors = require("cors");
+/* const cors = require("cors"); */
 const cookieParser = require('cookie-parser');
-const cookie=require('cookie');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -14,8 +12,6 @@ const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
 const lessonManager = require("./lessonManager");
 const helpManager = require("./helpManager");
-const signUpManager = require("./signUpManager");
-const loginManager = require("./loginManager");
 const courseManager = require("./courseManager");
 const userManager = require("./userManager"); 
 const imageManager = require('./imageManager');
@@ -32,19 +28,19 @@ if (!secretKey) {
 }
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors({
+/* app.use(cors({
   origin: 'http://127.0.0.1:5502', // Adjust to your frontend URL
   credentials: true // Allow credentials (cookies, authorization headers)
-}));
+})); */
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use(session({
+/* app.use(session({
   secret: process.env.SESSION_SECRET || secretKey,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Note: Set 'secure: true' if using HTTPS
-}));
+})); */
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -129,21 +125,6 @@ app.get("/api/images", async (req, res) => {
     console.error("Error retrieving images:", error);
     res.status(500).send("Internal Server Error");
   }
-});
-
-// See if need to delete?
-app.post("/api/signup", (req, res) => {
-  const { username, gmail, password } = req.body;
-
-  // Perform the signup action (validate, store in the database, etc.)
-
-  // Set cookies
-  res.cookie('username', username);
-  res.cookie('gmail', gmail);
-  res.cookie('password', password);
-
-  // Send a response, or redirect to another page if needed
-  res.status(200).json({ message: "Signup successful" });
 });
 
 /* User */
