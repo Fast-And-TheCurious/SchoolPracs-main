@@ -5,6 +5,11 @@ async function validateAndSubmit() {
   const gmail = document.getElementById("gmail").value;
   const password = document.getElementById("password").value;
 
+  const usernameMinLength = 3;
+  const usernameMaxLength = 20;
+  const gmailMinLength = 6; 
+  const gmailMaxLength = 30;
+
   // Check if input values are not empty
   if (username.trim() === '' || gmail.trim() === '' || password.trim() === '') {
     alert("Please fill in all the fields.");
@@ -17,6 +22,17 @@ async function validateAndSubmit() {
       return; // Stop execution if password is not strong
     }
 
+  // Check username length
+  if (username.length < usernameMinLength || username.length > usernameMaxLength) {
+    alert(`Username must be between ${usernameMinLength} and ${usernameMaxLength} characters long.`);
+    return; // Stop execution
+  }
+
+  // Check Gmail length
+  if (gmail.length < gmailMinLength || gmail.length > gmailMaxLength) {
+    alert(`Gmail must be between ${gmailMinLength} and ${gmailMaxLength} characters long.`);
+    return; // Stop execution
+  }
     try {
       // Check if the username exists on the server
       const usernameResponse = await fetch(`http://localhost:5000/api/user/usernameExist?username=${encodeURIComponent(username)}`);
@@ -55,10 +71,12 @@ document.getElementById("signUpButton").addEventListener("click", validateAndSub
 
 function checkPasswordStrength(password) {
   // Check if password is at least 6 characters long
-  if (password.length < 6) {
+  if (password.length < 6 ) {
     return "Password should be at least 6 characters long.";
   }
-
+  if(password.length>20){
+    return "Password can only be 20 characters long."
+  }
   // Check if password contains at least one uppercase letter
   if (!/[A-Z]/.test(password)) {
     return "Password should contain at least one uppercase letter.";
