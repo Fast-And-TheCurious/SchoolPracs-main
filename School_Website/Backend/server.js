@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
-
+const path = require('path');
 const { createConnection } = require("./database");
 const unitManager = require("./unitManager")
 const lessonManager = require("./lessonManager");
@@ -41,6 +41,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // Note: Set 'secure: true' if using HTTPS
 }));
+// Serve static files from the 'School_Website' folder
+app.use(express.static(path.join(__dirname, 'School_Website')));
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

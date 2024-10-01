@@ -55,6 +55,8 @@ if (selectedImageCookie) {
     document.getElementById("passwordDisplay").innerText = getCookie("password") || "N/A";
 
     async function addUserToDataBase() {
+
+        event.preventDefault();
         const username = getCookie("username");
         const gmail = getCookie("gmail");
         const password = getCookie("password");
@@ -74,17 +76,18 @@ if (selectedImageCookie) {
                         profileIcon: selectedImage,
                     }),
                 });
-
+                 // Log response status and details
+            console.log('Response Status:', response.status);
+            const responseBody = await response.text();
+            console.log('Response Body:', responseBody);
                 if (response.ok) {
-                    console.log('User added successfully!');
-                    //Handle success                   School_Website\html\index.html
-                      // Redirect to another page after successful user addition
+                    console.log('User added successfully!');                  
                       /* Redirect to new page doesn't work */
-                      window.open("http://127.0.0.1:5000/School_Website/html/index.html", "_self");
-             // window.location.href = "/School_Website/html/index.html";
+                 window.location.href = "/School_Website/html/index.html";
                 } else {
+                    // Handle faliure
                     console.error('Failed to add user:', response.statusText);
-                    // Handle  failure
+                    console.error('Detailed error message:', responseBody);
                 }
             } catch (error) {
                 console.error('Error:', error);
