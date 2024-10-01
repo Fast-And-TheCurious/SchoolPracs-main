@@ -1,6 +1,19 @@
 document
   .getElementById("resetButton")
   .addEventListener("click", async function () {
+    const tooltip = document.querySelector('.tooltiptext');
+const button = document.querySelector('.tooltip');
+
+button.addEventListener('mouseenter', () => {
+    tooltip.style.visibility = 'visible';
+    tooltip.style.opacity = '1';
+});
+
+button.addEventListener('mouseleave', () => {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+});
+
     //Get values of fields filled in
     const verificationCode = document
       .getElementById("verificationCode")
