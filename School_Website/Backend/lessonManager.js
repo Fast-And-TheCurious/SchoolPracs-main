@@ -84,6 +84,22 @@ class lessonManager {
       throw error; // Rethrow the error for the API to handle
   }
   }
+  async getLessonIdByLessonTitle(lesson_Title){
+    try{
+      console.log(`Executing query---------------------: SELECT id FROM bryantmdb.lessons WHERE title = ${lesson_Title}`);
+      
+      const query =   'SELECT id FROM bryantmdb.lessons WHERE title = ?';
+      const [result] = await select(query, [lesson_Title]);
+         if (result.length === 0) {
+          console.log("Executing query:----------------", query, "with lessonTitle:", lesson_Title);
+      return { success: false, message: 'No lesson found with that title' };
+    }  console.log("Executing query:--------------------", query, "with lessonTitle:", lesson_Title);
+      return { success: true, lessons: result, message: 'Lesson id retrieved successfully' };
+    }catch (error) {
+      console.error('Error fetching lesson id:', error);
+      throw error; // Rethrow the error for the API to handle
+  }
+  }
 }
 
 module.exports = lessonManager;

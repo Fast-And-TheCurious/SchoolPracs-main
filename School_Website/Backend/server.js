@@ -588,3 +588,16 @@ app.get('/api/articles', async (req, res) => {
     res.status(200).json({ messages: result });
   }
 });
+
+app.get('/api/getLessonIdByLessonTitle', async (req, res) => {
+  const lessonTitle = req.query.lesson_Title;
+  const manager = new lessonManager();
+
+  try {
+    const result = await manager.getLessonIdByLessonTitle(lessonTitle);
+    res.status(200).json(result); // Return the entire result to keep the structure
+  } catch (error) {
+    console.error('Error in getLessonIdByLessonTitle:', error);
+    res.status(500).json({ success: false, error: 'An error occurred while fetching lesson ID' });
+  }
+});

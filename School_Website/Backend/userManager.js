@@ -234,6 +234,38 @@ async updateHistoryActivities(content,userID){
   }
 
 }
+async completeLesson(userID, unitID, lessonID) {
+  try {
+      // Check if the user has already completed the lesson within the unit
+      const queryCheckCompletion = 'SELECT * FROM user_points WHERE userID = ? AND unitID = ?';
+      const [lessonCompleted] = await select(queryCheckCompletion, [userID, unitID]);
+
+      if (!lessonCompleted) {
+          // Fetch mastery points for the unit
+          const queryFetchUnit = 'SELECT masteryPoints FROM unit WHERE id = ?';
+          const [unit] = await select(queryFetchUnit, [unitID]);
+
+          if (unit) {
+              const masteryPoints = unit.masteryPoint;
+
+              // Insert record to user_points table with earned points
+              const queryInsertPoints = 'INSERT INTO user_points (userID, unitID, points_earned) VALUES (?, ?, ?)';
+              await update(queryInsertPoints, [userID, unitID, masteryPoints]);
+
+              return { success: true, message: 'Lesson completed and points awarded!' };
+          } else {
+              return { success: false, message: 'Unit not found!' };
+          }
+      } else {
+          return { success: false, message: 'Lesson already completed!' };
+      }
+  } catch (error) {
+      // Handle errors in database operations
+      console.error('Error completing lesson:', error);
+      return { success: false, message: 'An error occurred while completing the lesson', error };
+  }
+}
+
 
 }
 

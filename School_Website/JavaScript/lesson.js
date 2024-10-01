@@ -44,10 +44,39 @@ function getCookie(name) {
     }
   }
 
+
   let userID;
   let lesson_Title="";
   let watched;
-
+let unitID;
+let lessonID;
+async function fetchLessonID(lesson_Title) {
+  const colonIndex = lesson_Title.indexOf(':');
+console.log("colonInex",colonIndex);
+// substring from the character after the colon
+  const title = lesson_Title.substring(colonIndex + 3).trim();
+  console.log("title used for fecthing lesson id:", title);
+  try {
+    const response = await fetch(`http://localhost:5000/api/getLessonIdByLessonTitle?lesson_Title=${encodeURIComponent(title)}`);
+            
+      if (!response.ok) {
+          throw new Error('Failed to fetch lesson ID');
+      }
+      
+      const data = await response.json();
+      if (data.success) {
+          const lessonID = data.lessons.length > 0 ? data.lessons[0].id : null; // Assuming lessons is an array and contains the ID
+          console.log('Lesson ID:', lessonID);
+          return lessonID; // Return the lesson ID to use later
+      } else {
+          console.error('Error fetching lesson ID:', data.error);
+          return null; // Handle the error appropriately
+      }
+  } catch (error) {
+      console.error('Error fetching lesson ID:', error);
+      return null; // Handle the error appropriately
+  }
+}
   const lessonsContent = {
     lessons: [],
   }
@@ -167,12 +196,14 @@ function getCookie(name) {
     console.log("currentUnitIndex",currentUnitIndex);
     // Update the lessonTitle variable
     lesson_Title =lessonDataExport.lessons[currentUnitIndex].unit+": "+lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
+    
+    unitID = lessonDataExport.lessons[currentUnitIndex].id;
 
     lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;    
     console.log("Current lesson title: ", lesson_Title); 
-    
+    console.log("current unit id: ", unitID);
     }
  
   populateSidebar(currentUnitIndex);
@@ -232,6 +263,9 @@ function getCookie(name) {
   
   async function updateLessonCompleted() { 
     watched=watched+1;  
+    // Find the index of the colon
+    lessonID = await fetchLessonID(lesson_Title);
+    console.log("current lesson id: ", lessonID);
   console.log("watched.");
 
   if(watched>1){
