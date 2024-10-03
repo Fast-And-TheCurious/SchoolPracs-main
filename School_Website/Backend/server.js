@@ -1,27 +1,26 @@
-const express = require("express");
-const app = express();
-const session = require("express-session");
-const PORT = process.env.PORT || 5000; 
-const cors = require("cors");
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
+const express = require("express"); // Framework for building web applications
+const app = express(); 
+const session = require("express-session");  // Middleware for session management
+const PORT = process.env.PORT || 5000; // Port for the server
+const cors = require("cors"); // Middleware for enabling CORS
+const cookieParser = require('cookie-parser'); // Middleware for parsing cookies
+const bodyParser = require('body-parser'); // Middleware for parsing request bodies
+const dotenv = require('dotenv'); // Module to load environment variables
 dotenv.config();
-const path = require('path');
-const { createConnection } = require("./database");
-const unitManager = require("./unitManager")
-const lessonManager = require("./lessonManager");
-const helpManager = require("./helpManager");
-const courseManager = require("./courseManager");
-const userManager = require("./userManager"); 
-const imageManager = require('./imageManager');
-const blogManager = require('./blogManager');
-// Import email and password reset logic modules
-const { sendPasswordResetEmail } = require('./gmailService');
-const { initiatePasswordReset } = require('./gmailManager');
+const path = require('path');  // Module for handling file paths
+const { createConnection } = require("./database"); // Database connection manager
+const unitManager = require("./unitManager"); // Manager for units
+const lessonManager = require("./lessonManager"); // Manager for lessons
+const helpManager = require("./helpManager"); // Manager for help messages
+const courseManager = require("./courseManager");  // Manager for courses
+const userManager = require("./userManager"); // Manager for users
+const imageManager = require('./imageManager'); // Manager for images
+const blogManager = require('./blogManager'); // Manager for blogs
+const { sendPasswordResetEmail } = require('./gmailService'); // Service for sending password reset emails
+const { initiatePasswordReset } = require('./gmailManager'); // Manager for initiating password resets
 // const { sendAdminResponse } = require('./gmailManager');
-const gmailManager = require ("./gmailManager");
-const secretKey = process.env.JWT_SECRET;
+const gmailManager = require ("./gmailManager"); // Manager for Gmail-related functionalities
+const secretKey = process.env.JWT_SECRET; 
 if (!secretKey) {
   console.error('Secret key for JWT is not defined');
   process.exit(1); // Stop process with an error
