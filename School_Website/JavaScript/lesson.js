@@ -52,10 +52,8 @@ let unitID;
 let lessonID;
 async function fetchLessonID(lesson_Title) {
   const colonIndex = lesson_Title.indexOf(':');
-console.log("colonInex",colonIndex);
 // substring from the character after the colon
   const title = lesson_Title.substring(colonIndex + 3).trim();
-  console.log("title used for fecthing lesson id:", title);
   try {
     const response = await fetch(`http://localhost:5000/api/getLessonIdByLessonTitle?lesson_Title=${encodeURIComponent(title)}`);
             
@@ -66,7 +64,6 @@ console.log("colonInex",colonIndex);
       const data = await response.json();
       if (data.success) {
           const lessonID = data.lessons.length > 0 ? data.lessons[0].id : null; // Assuming lessons is an array and contains the ID
-          console.log('Lesson ID:', lessonID);
           return lessonID; // Return the lesson ID to use later
       } else {
           console.error('Error fetching lesson ID:', data.error);
@@ -87,7 +84,6 @@ console.log("colonInex",colonIndex);
   document.addEventListener("DOMContentLoaded", async function () {
 
     userID = getCookie("userID");
-    console.log("userID: ", userID);
     const courseIDFetched = getCookie("courseID");
 
     const courseID = parseInt(courseIDFetched, 10);
@@ -99,8 +95,6 @@ console.log("colonInex",colonIndex);
     } else {
       console.error("The course ID is not a valid integer:", courseIDFetched);
     }
-
-    console.log("courseID",courseID);
    
     if (!courseID) {
         console.error("No valid course ID fetched.");
@@ -136,7 +130,6 @@ console.log("colonInex",colonIndex);
         })),
     });
   });
-  console.log("lessonsContent:",lessonsContent);
 
   let startIndexOfLessonsToUse= -1;
   let endIndex = -1;
@@ -159,7 +152,6 @@ console.log("colonInex",colonIndex);
   for(let i = startIndexOfLessonsToUse; i<endIndex+1 && i < lessonsContent.lessons.length; i++){
     lessonDataExport.lessons.push(lessonsContent.lessons[i]);
   }
-  console.log("lessonDataExport",lessonDataExport);
 
   let currentUnitIndex = 0;
   let currentLessonIndex = 0;
@@ -192,8 +184,6 @@ console.log("colonInex",colonIndex);
     });
 
     sidebarLessons[currentLessonIndex].classList.add("active-lesson");   
-    console.log("currentLessonIndex",currentLessonIndex);
-    console.log("currentUnitIndex",currentUnitIndex);
     // Update the lessonTitle variable
     lesson_Title =lessonDataExport.lessons[currentUnitIndex].unit+": "+lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
     
@@ -202,8 +192,6 @@ console.log("colonInex",colonIndex);
     lessonTitleElement.textContent = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].lessonTitle;
 
     youtubeVideo.src = lessonDataExport.lessons[currentUnitIndex].unitlessonContent[currentLessonIndex].youTubeVideo;    
-    console.log("Current lesson title: ", lesson_Title); 
-    console.log("current unit id: ", unitID);
     }
  
   populateSidebar(currentUnitIndex);
@@ -265,8 +253,6 @@ console.log("colonInex",colonIndex);
     watched=watched+1;  
     // Find the index of the colon
     lessonID = await fetchLessonID(lesson_Title);
-    console.log("current lesson id: ", lessonID);
-  console.log("watched.");
 
   if(watched>1){
     alert("Video has been watched.");
